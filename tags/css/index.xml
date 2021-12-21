@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CSS on Zink&#39;s Blog</title>
+    <link>https://zinkwu.github.io/tags/css/</link>
+    <description>Recent content in CSS on Zink&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Mon, 13 Dec 2021 09:02:20 +0800</lastBuildDate><atom:link href="https://zinkwu.github.io/tags/css/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Grid Layout</title>
+      <link>https://zinkwu.github.io/articles/grid-layout/</link>
+      <pubDate>Mon, 13 Dec 2021 09:02:20 +0800</pubDate>
+      
+      <guid>https://zinkwu.github.io/articles/grid-layout/</guid>
+      <description>什么是 Grid   Grid 是一种 CSS 布局方案 将浏览器划分为一个个网格并可以任意组合 Flex 和 Grid 看似相似，但内在相差很大  Flex 是轴线布局，只能指定 Item 处于轴线某个位置 Grid 是网格布局，将容器划分为行和列，产生单元格，并指定 Item 处于某个单元格中       基本概念   row 行 column 列 grid line 网格线 cell 单元格 将容器设置为display: grid后，容器内子元素的float、diaplay: inline-block、display: table-cell、vertical-align和column-*等设置都会失效  这个游戏能帮你更好的学习 grid
+   容器属性     grid-template-columns 和 grid-template-rows  1 2 3 4 5 6 7 8 9 10 11  &amp;lt;div class=&amp;#34;container&amp;#34;&amp;gt; &amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;3&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;4&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;5&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;6&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;7&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;8&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;9&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt;   1 2 3 4 5 6 7 8 9 10 11 12 13  .</description>
+    </item>
+    
+  </channel>
+</rss>
