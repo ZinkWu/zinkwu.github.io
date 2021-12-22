@@ -321,7 +321,7 @@
 &lt;span class=&#34;nb&#34;&gt;Set-PsFzfOption&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-PSReadlineChordProvider&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Ctrl+f&amp;#39;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;-PSReadlineChordReverseHistory&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;Ctrl+r&amp;#39;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;用法基本跟 fzf 相似，可查看文档学习：https://github.com/kelleyma49/PSFzf&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;用法基本跟 fzf 相似，可查看文档学习: &lt;a href=&#34;https://github.com/kelleyma49/PSFzf&#34;&gt;https://github.com/kelleyma49/PSFzf&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;搞个-which-和-touch-命令出来&#34;&gt;
     &lt;a href=&#34;#%e6%90%9e%e4%b8%aa-which-%e5%92%8c-touch-%e5%91%bd%e4%bb%a4%e5%87%ba%e6%9d%a5&#34; class=&#34;anchor&#34;&gt;
         &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
