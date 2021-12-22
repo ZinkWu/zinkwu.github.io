@@ -6,7 +6,20 @@
     <description>Recent content in Articles on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Mon, 13 Dec 2021 09:02:20 +0800</lastBuildDate><atom:link href="https://zinkwu.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Dec 2021 01:47:35 +0800</lastBuildDate><atom:link href="https://zinkwu.github.io/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Win11 PowerShell 配置</title>
+      <link>https://zinkwu.github.io/articles/win11-terminal-%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Thu, 23 Dec 2021 01:47:35 +0800</pubDate>
+      
+      <guid>https://zinkwu.github.io/articles/win11-terminal-%E9%85%8D%E7%BD%AE/</guid>
+      <description>首先请确保已安装 Git
+   下载字体  下载并安装字体，为了修复乱码
+地址: https://github.com/ryanoasis/nerd-fonts/releases 我使用的是 Hack。
+   Install PowerShell  安装方式很多，自行搜索，我是直接从 Microsoft store 安装
+   Terminal 的基本设置  修改字体为你下载的字体 开启亚克力效果 设置默认终端    安装 Scoop  1  iwr -useb get.scoop.sh | iex      安装 Neovim  1 2  scoop install neovim gcc nvim --version      PowerShell 配置  1 2  # 确认处于 user\xxx 目录下 nvim .</description>
+    </item>
+    
     <item>
       <title>Grid Layout</title>
       <link>https://zinkwu.github.io/articles/grid-layout/</link>
