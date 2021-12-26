@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="dark">
+    <title>二叉树基础 | Zink&#39;s Blog</title>
+
+    
+    
+    
+    <meta property="og:site_name" content="Zink&#39;s Blog" />
+    <meta property="og:title" content="二叉树基础 | Zink&#39;s Blog"/>
+    <meta itemprop="name" content="二叉树基础 | Zink&#39;s Blog" />
+    <meta name="twitter:title" content="二叉树基础 | Zink&#39;s Blog" />
+    <meta name="application-name" content="二叉树基础 | Zink&#39;s Blog" />
+
+
+    <meta name="description" content="" />
+    <meta name="twitter:description" content=""/>
+    <meta itemprop="description" content=""/>
+    <meta property="og:description" content="" />
+
+    
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <link rel="stylesheet" href="/sass/main.min.ab99ff095f832511e24ffb2fba2b51ad473b2f7e9301d674eba2c6c3a6e8bd81.css">
+    
+</head>
+    <script>
+    (function() {
+        const colorSchemeKey = 'ThemeColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.userColorScheme = 'dark';
+        } else {
+            document.documentElement.dataset.userColorScheme = 'light';
+        }
+    })();
+</script>
+
+    <body class="dark">
+        <nav class="navbar">
+    <div class="container">
+        <div class="flex">
+            <div>
+                <a class="brand" href="/">
+                    
+                    <span class="emoji">
+                        🥁
+                    </span>
+                    
+                    
+                    Zink&#39;s Blog
+                    </a>
+            </div>
+            <div class="flex">
+                
+                <a href="/about/">About</a>
+                
+                <a href="/articles/">Articles</a>
+                
+                <a href="/tags">Tags</a>
+                
+                <a href="/index.xml">RSS</a>
+                
+                <button id="dark-mode-button">
+                  <svg class="light" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="#FFD983" d="M30.312.776C32 19 20 32 .776 30.312c8.199 7.717 21.091 7.588 29.107-.429C37.9 21.867 38.03 8.975 30.312.776z"/><path d="M30.705 15.915a1.163 1.163 0 1 0 1.643 1.641a1.163 1.163 0 0 0-1.643-1.641zm-16.022 14.38a1.74 1.74 0 0 0 0 2.465a1.742 1.742 0 1 0 0-2.465zm13.968-2.147a2.904 2.904 0 0 1-4.108 0a2.902 2.902 0 0 1 0-4.107a2.902 2.902 0 0 1 4.108 0a2.902 2.902 0 0 1 0 4.107z" fill="#FFCC4D"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)" /></svg>
+                  <svg class="dark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="#FFD983" d="M16 2s0-2 2-2s2 2 2 2v2s0 2-2 2s-2-2-2-2V2zm18 14s2 0 2 2s-2 2-2 2h-2s-2 0-2-2s2-2 2-2h2zM4 16s2 0 2 2s-2 2-2 2H2s-2 0-2-2s2-2 2-2h2zm5.121-8.707s1.414 1.414 0 2.828s-2.828 0-2.828 0L4.878 8.708s-1.414-1.414 0-2.829c1.415-1.414 2.829 0 2.829 0l1.414 1.414zm21 21s1.414 1.414 0 2.828s-2.828 0-2.828 0l-1.414-1.414s-1.414-1.414 0-2.828s2.828 0 2.828 0l1.414 1.414zm-.413-18.172s-1.414 1.414-2.828 0s0-2.828 0-2.828l1.414-1.414s1.414-1.414 2.828 0s0 2.828 0 2.828l-1.414 1.414zm-21 21s-1.414 1.414-2.828 0s0-2.828 0-2.828l1.414-1.414s1.414-1.414 2.828 0s0 2.828 0 2.828l-1.414 1.414zM16 32s0-2 2-2s2 2 2 2v2s0 2-2 2s-2-2-2-2v-2z"/><circle fill="#FFD983" cx="18" cy="18" r="10"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)" /></svg>
+                </button>
+            </div>
+            </div>
+    </div>
+</nav>
+        <main>
+            
+<div class="container">
+    <article>
+        <header class="article-header">
+            <div class="thumb">
+                <div>
+                    <h1>二叉树基础</h1>
+                    <div class="post-meta">
+                        <div>
+                            
+                            
+                              
+                            
+                            By Zink | <time>April 24, 2020</time>
+                            | 4 minutes
+                        </div>
+                        <div class="tags">
+                            
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </article>
+
+    <div class="article-post">
+    <ul>
+<li>
+<p>树</p>
+<ul>
+<li><code>树</code>是一种常用的数据结构，用来模拟具有树状结构性质的数据集合</li>
+<li>树的每一个节点有一个根植和一个包含所有子节点的列表。</li>
+</ul>
+</li>
+<li>
+<p>二叉树</p>
+<ul>
+<li><code>二叉树</code>是一种更为典型的树状结构。二叉树每个节点最多具有两个子树，通常子树称为“左子树”和“右子树”</li>
+</ul>
+</li>
+<li>
+<p>二叉树前序遍历</p>
+<ul>
+<li>前序遍历首先访问根节点，然后遍历左子树，最后遍历右子树（根节点 -&gt; 左子树 -&gt; 右子树）</li>
+<li>算法：</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
+</span><span class="cm">* Definition for a binary tree node.
+</span><span class="cm">* function TreeNode(val) {
+</span><span class="cm">*     this.val = val;
+</span><span class="cm">*     this.left = this.right = null;
+</span><span class="cm">* }
+</span><span class="cm">*/</span>
+<span class="cm">/**
+</span><span class="cm">* @param {TreeNode} root
+</span><span class="cm">* @return {number[]}
+</span><span class="cm">*/</span>
+
+<span class="c1">//  递归
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">preorderTraversal</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+   <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+       <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
+           <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
+           <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
+           <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span>
+       <span class="p">}</span>
+   <span class="p">}</span>
+   <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span>
+   <span class="k">return</span> <span class="nx">result</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>二叉树中序遍历
+<ul>
+<li>先遍历左子树，然后访问根节点，最后遍历右子树（左子树 -&gt; 根节点  -&gt; 右子树）</li>
+<li>算法：</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
+</span><span class="cm"> * Definition for a binary tree node.
+</span><span class="cm"> * function TreeNode(val) {
+</span><span class="cm"> *     this.val = val;
+</span><span class="cm"> *     this.left = this.right = null;
+</span><span class="cm"> * }
+</span><span class="cm"> */</span>
+<span class="cm">/**
+</span><span class="cm"> * @param {TreeNode} root
+</span><span class="cm"> * @return {number[]}
+</span><span class="cm"> */</span>
+
+<span class="kr">const</span> <span class="nx">inorderTraversal</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
+            <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">result</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>二叉树后序遍历
+<ul>
+<li>先遍历左子树，然后遍历右子树，最后访问根节点（左子树 -&gt; 右子树 -&gt; 根节点）</li>
+<li>算法</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
+</span><span class="cm"> * Definition for a binary tree node.
+</span><span class="cm"> * function TreeNode(val) {
+</span><span class="cm"> *     this.val = val;
+</span><span class="cm"> *     this.left = this.right = null;
+</span><span class="cm"> * }
+</span><span class="cm"> */</span>
+<span class="cm">/**
+</span><span class="cm"> * @param {TreeNode} root
+</span><span class="cm"> * @return {number[]}
+</span><span class="cm"> */</span>
+<span class="kr">const</span> <span class="nx">postorderTraversal</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span>
+            <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">result</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>二叉树层序遍历
+<ul>
+<li>算法：</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
+</span><span class="cm"> * Definition for a binary tree node.
+</span><span class="cm"> * function TreeNode(val) {
+</span><span class="cm"> *     this.val = val;
+</span><span class="cm"> *     this.left = this.right = null;
+</span><span class="cm"> * }
+</span><span class="cm"> */</span>
+<span class="cm">/**
+</span><span class="cm"> * @param {TreeNode} root
+</span><span class="cm"> * @return {number[][]}
+</span><span class="cm"> */</span>
+
+<span class="c1">// 广度优先 前序
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">levelOrder</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">levels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="nx">levels</span>
+    <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">level</span><span class="p">){</span>
+        <span class="kd">let</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">levels</span><span class="p">.</span><span class="nx">length</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">len</span> <span class="o">===</span> <span class="nx">level</span><span class="p">)</span> <span class="nx">levels</span><span class="p">.</span><span class="nx">push</span><span class="p">([])</span> 
+        <span class="nx">levels</span><span class="p">[</span><span class="nx">level</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">levels</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>二叉树最大深度
+<ul>
+<li>给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数</li>
+<li>算法：</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
+</span><span class="cm"> * Definition for a binary tree node.
+</span><span class="cm"> * function TreeNode(val) {
+</span><span class="cm"> *     this.val = val;
+</span><span class="cm"> *     this.left = this.right = null;
+</span><span class="cm"> * }
+</span><span class="cm"> */</span>
+<span class="cm">/**
+</span><span class="cm"> * @param {TreeNode} root
+</span><span class="cm"> * @return {number}
+</span><span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">maxDepth</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 写递归的一个重要思路就是相信这个函数能完成任务，此题带有动态规划的感觉
+</span><span class="c1"></span>    <span class="c1">// 最大深度 = 1+Math.max(根节点的左子树最大深度, 根节点的右子树最大深度)
+</span><span class="c1"></span>    <span class="c1">// 根节点的左子树最大深度 = 1 + Math.max(左子树的左子树最大深度, 左子树的右子树最大深度)
+</span><span class="c1"></span>    <span class="c1">// 根节点的右子树最大深度 = 1 + Math.max(右子树的左子树最大深度, 右子树的右子树最大深度)
+</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">root</span><span class="p">){</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">maxDepth</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">),</span> <span class="nx">maxDepth</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>对称二叉树
+<ul>
+<li>给定一个二叉树，检查它是否是镜像对称的。</li>
+<li>算法：</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
+</span><span class="cm"> * Definition for a binary tree node.
+</span><span class="cm"> * function TreeNode(val) {
+</span><span class="cm"> *     this.val = val;
+</span><span class="cm"> *     this.left = this.right = null;
+</span><span class="cm"> * }
+</span><span class="cm"> */</span>
+<span class="cm">/**
+</span><span class="cm"> * @param {TreeNode} root
+</span><span class="cm"> * @return {boolean}
+</span><span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">isSymmetric</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">isMirroTree</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">root</span><span class="p">)</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">isMirroTree</span><span class="p">(</span><span class="nx">root_1</span><span class="p">,</span> <span class="nx">root_2</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">root_1</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">root_2</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">root_1</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">root_2</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">root_1</span><span class="p">.</span><span class="nx">val</span> <span class="o">===</span> <span class="nx">root_2</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isMirroTree</span><span class="p">(</span><span class="nx">root_1</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">root_2</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isMirroTree</span><span class="p">(</span><span class="nx">root_1</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">root_2</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>路径总和
+<ul>
+<li>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</li>
+<li><strong>说明</strong>: 叶子节点是指没有子节点的节点。</li>
+<li>算法：</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
+</span><span class="cm"> * Definition for a binary tree node.
+</span><span class="cm"> * function TreeNode(val) {
+</span><span class="cm"> *     this.val = val;
+</span><span class="cm"> *     this.left = this.right = null;
+</span><span class="cm"> * }
+</span><span class="cm"> */</span>
+<span class="cm">/**
+</span><span class="cm"> * @param {TreeNode} root
+</span><span class="cm"> * @param {number} sum
+</span><span class="cm"> * @return {boolean}
+</span><span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">hasPathSum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">helper</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">helper</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sum</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">){</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+        <span class="nx">sum</span> <span class="o">-=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">val</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nx">sum</span> <span class="o">===</span> <span class="mi">0</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">helper</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span> <span class="o">||</span> <span class="nx">helper</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+</div>
+
+<div class="container">
+    
+    <nav class="flex container suggested">
+        
+        <a rel="prev" href="/articles/print-linked-list/" title="Previous post (older)">
+            <span>Previous</span>
+            从尾到头打印链表
+            </a>
+        
+        
+        
+        <a rel="next" href="/articles/add-binary/" title="Next post (newer)">
+            <span>Next</span>
+            二进制求和
+            </a> 
+        
+    </nav>
+    
+</div>
+ 
+<div class="container">
+    
+    <script src="https://giscus.app/client.js" 
+        data-repo="zinkwu/zinkwu.github.io"
+        data-repo-id="R_kgDOGj_r8w"
+        
+        data-category="Announcements"
+        data-category-id="DIC_kwDOGj_r884CAZIx"
+        
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<script>
+    function setGiscusTeheme(theme) {
+        let giscus = document.querySelector('.giscus iframe');
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme
+                        }
+                    }
+                },
+                'https://giscus.app'
+            )
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://giscus.app') return;
+        setGiscusTeheme(document.documentElement.dataset.userColorScheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setGiscusTeheme(e.detail)
+    })
+</script>
+
+</div>
+
+</main>
+
+
+        </main>
+        <footer class="footer flex">
+    <section class="container">
+        <nav class="footer-links">
+            
+            <a href="/">© 2021 Zink Powered by Hugo &amp; hugo-tania</a>
+            
+        </nav>
+
+        
+    </section>
+    <script defer src="/ts/features.a534d05c446023fa2ae2a638f87cc2443ad8e49f6aaeb4d9f24ed61d53766712.js" 
+    data-enable-footnotes="false"
+    ></script>
+</footer>
+
+    </body>
+</html>

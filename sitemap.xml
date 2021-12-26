@@ -2,16 +2,99 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://zinkwu.blog/</loc>
+    <lastmod>2021-12-23T06:55:09+08:00</lastmod>
+    <priority>0</priority>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/</loc>
+    <lastmod>2021-12-23T06:55:09+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/tags/</loc>
+    <lastmod>2021-12-23T06:55:09+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/tags/vue/</loc>
+    <lastmod>2021-12-23T06:55:09+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/vue-false-read-second-commit/</loc>
+    <lastmod>2021-12-23T06:55:09+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/windows-terminal-build/</loc>
+    <lastmod>2021-12-23T01:47:35+08:00</lastmod>
+  </url><url>
     <loc>https://zinkwu.blog/about/</loc>
     <lastmod>2021-12-21T09:02:20+08:00</lastmod>
   </url><url>
-    <loc>https://zinkwu.blog/</loc>
-    <priority>0</priority>
+    <loc>https://zinkwu.blog/tags/css/</loc>
+    <lastmod>2021-12-13T09:02:20+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/grid-layout/</loc>
+    <lastmod>2021-12-13T09:02:20+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/ubuntu-config/</loc>
+    <lastmod>2021-11-24T09:08:12+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/metge-two-sorted-linked-list/</loc>
+    <lastmod>2021-07-17T10:09:51+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/tags/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2021-07-17T10:09:51+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/bit-operation/</loc>
+    <lastmod>2020-10-07T10:09:46+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/add-binary/</loc>
+    <lastmod>2020-07-23T10:09:44+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/binary-tree/</loc>
+    <lastmod>2020-04-24T10:09:33+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2020-04-24T10:09:33+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/print-linked-list/</loc>
+    <lastmod>2020-03-29T10:09:29+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/replace-spaces/</loc>
+    <lastmod>2020-03-28T10:24:35+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/locating-a-2d-matrix/</loc>
+    <lastmod>2020-03-26T10:25:39+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/array-repetition-numbers/</loc>
+    <lastmod>2020-03-24T10:26:48+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/two-sum/</loc>
+    <lastmod>2020-01-14T10:28:07+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/linked-list/</loc>
+    <lastmod>2020-01-06T10:28:59+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/stack-queue/</loc>
+    <lastmod>2019-12-18T10:29:50+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/what-happens-when-you-type-an-url-in-the-browser-and-press-ente/</loc>
+    <lastmod>2019-11-18T10:30:51+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/call-apply-bind-implement/</loc>
+    <lastmod>2019-09-24T10:33:29+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/tags/javascript/</loc>
+    <lastmod>2019-09-24T10:33:29+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/chinese-input-debounce/</loc>
+    <lastmod>2019-09-23T10:35:18+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/about-this/</loc>
+    <lastmod>2019-09-16T10:36:19+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/debounce-throttle/</loc>
+    <lastmod>2019-08-06T10:37:38+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/js-deep-and-shallow-clone/</loc>
+    <lastmod>2019-07-24T10:38:27+08:00</lastmod>
   </url><url>
     <loc>https://zinkwu.blog/articles/</loc>
   </url><url>
     <loc>https://zinkwu.blog/categories/</loc>
-  </url><url>
-    <loc>https://zinkwu.blog/tags/</loc>
   </url>
 </urlset>
