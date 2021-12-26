@@ -8,10 +8,10 @@
     <lastBuildDate>Thu, 23 Dec 2021 06:55:09 +0800</lastBuildDate><atom:link href="https://zinkwu.blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
     <title>Vue源码阅读记-Second Commit</title>
-    <link>https://zinkwu.blog/articles/vue-false-read-second-commit/</link>
+    <link>https://zinkwu.blog/articles/vue-source-read-second-commit/</link>
     <pubDate>Thu, 23 Dec 2021 06:55:09 +0800</pubDate>
     
-    <guid>https://zinkwu.blog/articles/vue-false-read-second-commit/</guid>
+    <guid>https://zinkwu.blog/articles/vue-source-read-second-commit/</guid>
     <description>
         &lt;p&gt;为什么要从 Second Commit 开始阅读呢？&lt;/p&gt;
 &lt;ul&gt;
