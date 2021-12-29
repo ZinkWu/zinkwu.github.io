@@ -6,7 +6,21 @@
     <description>Recent content in Articles on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 23 Dec 2021 06:55:09 +0800</lastBuildDate><atom:link href="https://zinkwu.blog/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Dec 2021 03:09:54 +0800</lastBuildDate><atom:link href="https://zinkwu.blog/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>wsl2 oh-my-zsh 配置</title>
+      <link>https://zinkwu.blog/articles/wsl2-install-and-oh-my-zsh-config/</link>
+      <pubDate>Thu, 30 Dec 2021 03:09:54 +0800</pubDate>
+      
+      <guid>https://zinkwu.blog/articles/wsl2-install-and-oh-my-zsh-config/</guid>
+      <description>install wsl2  参照官方文档
+   install oh-my-zsh  先安装 zsh
+1 2 3  sudo apt install zsh zsh --version   安装 oh-my-zsh
+1 2 3 4 5  sh -c &amp;#34;$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&amp;#34; # or sh -c &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&amp;#34;   此时你的根目录下应该有一个 .oh-my-zsh 目录 plugins 目录是存放插件的地方，themes 是存放主题的地方
+现在让我们来试着修改主题
+1  vim ~/.zshrc   找到 ZSH_THEME= 这一行，修改为 ys，然后在 bash 中运行 source ~/.zshrc</description>
+    </item>
+    
     <item>
       <title>Vue源码阅读记-Second Commit</title>
       <link>https://zinkwu.blog/articles/vue-source-read-second-commit/</link>

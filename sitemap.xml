@@ -3,11 +3,14 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://zinkwu.blog/</loc>
-    <lastmod>2021-12-23T06:55:09+08:00</lastmod>
+    <lastmod>2021-12-30T03:09:54+08:00</lastmod>
     <priority>0</priority>
   </url><url>
     <loc>https://zinkwu.blog/articles/</loc>
-    <lastmod>2021-12-23T06:55:09+08:00</lastmod>
+    <lastmod>2021-12-30T03:09:54+08:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/wsl2-install-and-oh-my-zsh-config/</loc>
+    <lastmod>2021-12-30T03:09:54+08:00</lastmod>
   </url><url>
     <loc>https://zinkwu.blog/tags/</loc>
     <lastmod>2021-12-23T06:55:09+08:00</lastmod>
