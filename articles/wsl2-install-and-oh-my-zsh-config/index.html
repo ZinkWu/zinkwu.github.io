@@ -95,7 +95,7 @@
                               
                             
                             By Zink | <time>December 30, 2021</time>
-                            | 1 minutes
+                            | 2 minutes
                         </div>
                         <div class="tags">
                             
@@ -136,7 +136,7 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo apt install zsh
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt install zsh
 
 zsh --version
 </code></pre></td></tr></table>
@@ -151,7 +151,7 @@ zsh --version
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sh -c <span class="s2">&#34;</span><span class="k">$(</span>wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sh -c <span class="s2">&#34;</span><span class="k">$(</span>wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span>
 
 <span class="c1"># or</span>
 
@@ -170,7 +170,7 @@ sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://r
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">vim ~/.zshrc
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">vim ~/.zshrc
 </code></pre></td></tr></table>
 </div>
 </div><p>找到 <code>ZSH_THEME=</code> 这一行，修改为 <code>ys</code>，然后在 <code>bash</code> 中运行 <code>source ~/.zshrc</code></p>
@@ -186,7 +186,7 @@ sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://r
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">vim ~/.zshrc
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">vim ~/.zshrc
 
 <span class="c1"># 找到 plugins=(...) 这一行</span>
 
@@ -210,7 +210,7 @@ sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://r
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/.oh-my-zsh/plugins
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> ~/.oh-my-zsh/plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 
@@ -256,7 +256,7 @@ vim ~/.zshrc
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">NVS_HOME</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.nvs&#34;</span>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">export</span> <span class="nv">NVS_HOME</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.nvs&#34;</span>
 git clone https://github.com/jasongin/nvs <span class="s2">&#34;</span><span class="nv">$NVS_HOME</span><span class="s2">&#34;</span>
 . <span class="s2">&#34;</span><span class="nv">$NVS_HOME</span><span class="s2">/nvs.sh&#34;</span> install
 
@@ -285,7 +285,7 @@ nvs use <span class="m">12</span>
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir -p ~/.npm-global
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">mkdir -p ~/.npm-global
 npm config <span class="nb">set</span> prefix ~/.npm-global
 </code></pre></td></tr></table>
 </div>
@@ -296,11 +296,66 @@ npm config <span class="nb">set</span> prefix ~/.npm-global
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;export PATH=~/.npm-global/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span> &gt;&gt; ~/.zshrc
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;export PATH=~/.npm-global/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span> &gt;&gt; ~/.zshrc
 <span class="nb">source</span> ~/.zshrc
 </code></pre></td></tr></table>
 </div>
 </div><p>ok，这样我们已经得到一个基本可用的开发环境了</p>
+<hr>
+<p>2021-1-8 更新</p>
+<h2 id="代理设置">
+    <a href="#%e4%bb%a3%e7%90%86%e8%ae%be%e7%bd%ae" class="anchor">
+        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+            <path fill-rule="evenodd"
+                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
+            </path>
+        </svg>
+    </a>
+    代理设置
+</h2>
+<p>windows: clash</p>
+<p>google clash for windows 即可</p>
+<p>wsl2: proxychains</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt install proxychains
+
+mkdir ~/.proxychains
+
+sudo cp /etc/proxychains.conf ~/.proxychains/proxychains.conf
+
+vim ~/.zshrc
+</code></pre></td></tr></table>
+</div>
+</div><p>在<code>.zshrc</code>中添加以下代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-.zshrc" data-lang=".zshrc"><span class="nv">windows_ip</span><span class="o">=</span><span class="k">$(</span>cat /etc/resolv.conf <span class="p">|</span> grep nameserver <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
+sed -i <span class="s1">&#39;/socks5/d&#39;</span> <span class="nv">$HOME</span>/.proxychains/proxychains.conf
+<span class="c1"># &#39;$windows_ip&#39; 1080&#39; 请将 1080 改为你自己的代理端口</span>
+sed -i <span class="s1">&#39;$a socks5 &#39;</span><span class="nv">$windows_ip</span><span class="s1">&#39; 1080&#39;</span> <span class="nv">$HOME</span>/.proxychains/proxychains.conf
+
+<span class="nb">alias</span> <span class="nv">ss</span><span class="o">=</span><span class="s1">&#39;proxychains&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>于是我们可以 <code>ss git clone xxx</code></p>
 
     </div>
 </div>
