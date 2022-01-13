@@ -6,7 +6,22 @@
     <description>Recent content in Articles on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 30 Dec 2021 03:09:54 +0800</lastBuildDate><atom:link href="https://zinkwu.blog/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Jan 2022 19:54:52 +0800</lastBuildDate><atom:link href="https://zinkwu.blog/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>康复训练之 Vue2 UI 库开发总结</title>
+      <link>https://zinkwu.blog/articles/publish-yourself-npm-package/</link>
+      <pubDate>Thu, 13 Jan 2022 19:54:52 +0800</pubDate>
+      
+      <guid>https://zinkwu.blog/articles/publish-yourself-npm-package/</guid>
+      <description>之前康复训练，写了一个组件库，涵盖了：
+ 单元测试 自动化集成 上传至npm 书写文档  接下来总结下每一步
+   单元测试  单元测试使用了Chai、Karma、Mocha、Siono
+ Chai.js 是一个断言库 Karma 是一个测试运行容器，可以呼起浏览器运行测试代码 Mocha 是一个测试框架，参考了阮一峰的文章 Siono 作为 mock 工具提供间谍函数等，可以让我们在测试中测试组件的事件支持  其中难点在于如何将这个几个工具搭配起来构成一套完整的测试环境，除了google就是看文档&amp;hellip;
+   自动化集成  当然，我也不想每次写完代码都自己手动跑一遍测试代码，所以我选择了GitHub Actions，在每次push代码时自动测试，失败了会有邮件通知
+   上传至NPM  写了库，总是想 share 出去的
+1 2 3 4 5 6  # 登录 npm adduser # 根据提示填写 # 发布 npm publish      书写文档  文档方面，选择了 VuePress，就图个文档易读</description>
+    </item>
+    
     <item>
       <title>wsl2 oh-my-zsh 配置</title>
       <link>https://zinkwu.blog/articles/wsl2-install-and-oh-my-zsh-config/</link>

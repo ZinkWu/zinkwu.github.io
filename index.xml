@@ -5,7 +5,95 @@
     <description>Recent content on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 30 Dec 2021 03:09:54 +0800</lastBuildDate><atom:link href="https://zinkwu.blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Jan 2022 19:54:52 +0800</lastBuildDate><atom:link href="https://zinkwu.blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+    <title>康复训练之 Vue2 UI 库开发总结</title>
+    <link>https://zinkwu.blog/articles/publish-yourself-npm-package/</link>
+    <pubDate>Thu, 13 Jan 2022 19:54:52 +0800</pubDate>
+    
+    <guid>https://zinkwu.blog/articles/publish-yourself-npm-package/</guid>
+    <description>
+        &lt;p&gt;之前康复训练，写了一个组件库，涵盖了：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单元测试&lt;/li&gt;
+&lt;li&gt;自动化集成&lt;/li&gt;
+&lt;li&gt;上传至npm&lt;/li&gt;
+&lt;li&gt;书写文档&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接下来总结下每一步&lt;/p&gt;
+&lt;h3 id=&#34;单元测试&#34;&gt;
+    &lt;a href=&#34;#%e5%8d%95%e5%85%83%e6%b5%8b%e8%af%95&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    单元测试
+&lt;/h3&gt;
+&lt;p&gt;单元测试使用了&lt;code&gt;Chai&lt;/code&gt;、&lt;code&gt;Karma&lt;/code&gt;、&lt;code&gt;Mocha&lt;/code&gt;、&lt;code&gt;Siono&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chai.js 是一个断言库&lt;/li&gt;
+&lt;li&gt;Karma 是一个测试运行容器，可以呼起浏览器运行测试代码&lt;/li&gt;
+&lt;li&gt;Mocha 是一个测试框架，参考了阮一峰的&lt;a href=&#34;https://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html&#34;&gt;文章&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Siono 作为 mock 工具提供间谍函数等，可以让我们在测试中测试组件的事件支持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中难点在于如何将这个几个工具搭配起来构成一套完整的测试环境，除了google就是看文档&amp;hellip;&lt;/p&gt;
+&lt;h3 id=&#34;自动化集成&#34;&gt;
+    &lt;a href=&#34;#%e8%87%aa%e5%8a%a8%e5%8c%96%e9%9b%86%e6%88%90&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    自动化集成
+&lt;/h3&gt;
+&lt;p&gt;当然，我也不想每次写完代码都自己手动跑一遍测试代码，所以我选择了&lt;a href=&#34;https://docs.github.com/cn/actions&#34;&gt;GitHub Actions&lt;/a&gt;，在每次push代码时自动测试，失败了会有邮件通知&lt;/p&gt;
+&lt;h3 id=&#34;上传至npm&#34;&gt;
+    &lt;a href=&#34;#%e4%b8%8a%e4%bc%a0%e8%87%b3npm&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    上传至NPM
+&lt;/h3&gt;
+&lt;p&gt;写了库，总是想 share 出去的&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 登录&lt;/span&gt;
+npm adduser
+&lt;span class=&#34;c1&#34;&gt;# 根据提示填写&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;# 发布&lt;/span&gt;
+npm publish
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;书写文档&#34;&gt;
+    &lt;a href=&#34;#%e4%b9%a6%e5%86%99%e6%96%87%e6%a1%a3&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    书写文档
+&lt;/h3&gt;
+&lt;p&gt;文档方面，选择了 &lt;a href=&#34;https://vuepress.vuejs.org/zh/&#34;&gt;VuePress&lt;/a&gt;，就图个文档易读&lt;/p&gt;
+
+    </description>
+    </item>
+    
     <item>
     <title>wsl2 oh-my-zsh 配置</title>
     <link>https://zinkwu.blog/articles/wsl2-install-and-oh-my-zsh-config/</link>
