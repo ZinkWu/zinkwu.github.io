@@ -32,7 +32,7 @@
             &lt;/path&gt;
         &lt;/svg&gt;
     &lt;/a&gt;
-    通过 &amp;lt;code&amp;gt;createApp&amp;lt;/code&amp;gt; 创建应用实例
+    通过 createApp 创建应用实例
 &lt;/h3&gt;
 &lt;p&gt;在 vue2.x 中，使用的是&lt;code&gt;new Vue()&lt;/code&gt;，返回的是根组件实例，而&lt;code&gt;createApp&lt;/code&gt;返回的是应用实例，想要得到根组件实例，还需要使用&lt;code&gt;mount&lt;/code&gt;方法，个人认为这个改动是在语法层面上区分创建组件和创建应用&lt;/p&gt;
 &lt;h3 id=&#34;es6-proxy&#34;&gt;
@@ -346,7 +346,7 @@
             &lt;/path&gt;
         &lt;/svg&gt;
     &lt;/a&gt;
-    &amp;lt;code&amp;gt;v-for&amp;lt;/code&amp;gt;
+    v-for
 &lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -538,15 +538,15 @@
     &lt;/a&gt;
     Component
 &lt;/h2&gt;
-&lt;h3 id=&#34;在自定义组件上使用v-model&#34;&gt;
-    &lt;a href=&#34;#%e5%9c%a8%e8%87%aa%e5%ae%9a%e4%b9%89%e7%bb%84%e4%bb%b6%e4%b8%8a%e4%bd%bf%e7%94%a8v-model&#34; class=&#34;anchor&#34;&gt;
+&lt;h3 id=&#34;在自定义组件上使用-v-model&#34;&gt;
+    &lt;a href=&#34;#%e5%9c%a8%e8%87%aa%e5%ae%9a%e4%b9%89%e7%bb%84%e4%bb%b6%e4%b8%8a%e4%bd%bf%e7%94%a8-v-model&#34; class=&#34;anchor&#34;&gt;
         &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
             &lt;path fill-rule=&#34;evenodd&#34;
                 d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
             &lt;/path&gt;
         &lt;/svg&gt;
     &lt;/a&gt;
-    在自定义组件上使用&amp;lt;code&amp;gt;v-model&amp;lt;/code&amp;gt;
+    在自定义组件上使用 v-model
 &lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;v-model&lt;/code&gt;本质上是一个语法糖，当我们剥开包装纸，其实是这样的&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -660,15 +660,15 @@
 &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;使用emits定义组件发出的事件&#34;&gt;
-    &lt;a href=&#34;#%e4%bd%bf%e7%94%a8emits%e5%ae%9a%e4%b9%89%e7%bb%84%e4%bb%b6%e5%8f%91%e5%87%ba%e7%9a%84%e4%ba%8b%e4%bb%b6&#34; class=&#34;anchor&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;使用-emits-定义组件发出的事件&#34;&gt;
+    &lt;a href=&#34;#%e4%bd%bf%e7%94%a8-emits-%e5%ae%9a%e4%b9%89%e7%bb%84%e4%bb%b6%e5%8f%91%e5%87%ba%e7%9a%84%e4%ba%8b%e4%bb%b6&#34; class=&#34;anchor&#34;&gt;
         &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
             &lt;path fill-rule=&#34;evenodd&#34;
                 d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
             &lt;/path&gt;
         &lt;/svg&gt;
     &lt;/a&gt;
-    使用&amp;lt;code&amp;gt;emits&amp;lt;/code&amp;gt;定义组件发出的事件
+    使用 emits 定义组件发出的事件
 &lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
