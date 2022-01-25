@@ -113,7 +113,7 @@
 <ul>
 <li>答案来自我看过我的一篇<a href="https://lutaonan.com/blog/trick-for-reading-source-code/">博客</a>，但是关于 First Commit，基本是关于 Grunt 的配置，现代前端开发中，多以使用 Webpack 为主，所以粗略看了一下之后并无记录的打算。</li>
 </ul>
-<p>不罗嗦，直接看<a href="https://github.com/vuejs/vue/blob/871ed91266/explorations/getset.html">代码</a></p>
+<p>不罗嗦，直接看<a href="https://sourcegraph.com/github.com/vuejs/vue@871ed9126639c9128c18bb2f19e6afd42c0c5ad9/-/blob/explorations/getset.html?L17">代码</a></p>
 <p>在这段代码我们已经触及了 Vue 的核心：data bind，实际上也跟我们现在写的 Vue 差不多（当然，这里不是指 SFC ）</p>
 <p>首先在 HTML 部分，我们看到了文档中的“Mustache”语法，接下来我们看看最初的 data bind 是如何实现的。</p>
 <p>在第 23 行，<code>var content  = el.innerHTML.replace(/\{\{(.*)\}\}/g, markToken)</code>，用正则表达式匹配<code>{{...}}</code>，</p>
