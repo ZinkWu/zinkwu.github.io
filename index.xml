@@ -1621,10 +1621,10 @@ sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;$a socks5 &amp;#39;&lt;/span&gt;&
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;首先会找到含有&lt;code&gt;bindingMark=...&lt;/code&gt; Attribute的Element，并在bindings对应的key中记录它，接着再删除元素中的&lt;code&gt;bindingMark&lt;/code&gt; Attribute，最后使用&lt;code&gt;Object.defineProperty&lt;/code&gt;来做到 data bind，这也是 Vue 数据响应的核心。&lt;/p&gt;
-&lt;p&gt;接着遍历&lt;code&gt;initData&lt;/code&gt;，将&lt;code&gt;initData&lt;/code&gt;中的值浅拷贝给&lt;code&gt;data&lt;/code&gt;，上面已经使用&lt;code&gt;Object.defineProperty&lt;/code&gt;定义了data对于&lt;code&gt;{{}}&lt;/code&gt;中值的&lt;code&gt;get&lt;/code&gt;和&lt;code&gt;set&lt;/code&gt;。所以此时将&lt;code&gt;initData&lt;/code&gt;中的键值对拷贝到&lt;code&gt;data&lt;/code&gt;中，就会触发对应 property 的&lt;code&gt;set&lt;/code&gt;，这里也就完成了对模板的数据更新。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;首先会找到含有&lt;code&gt;bindingMark=...&lt;/code&gt; Attribute的 Element，并在bindings对应的key中记录它，接着再删除元素中的&lt;code&gt;bindingMark&lt;/code&gt; Attribute，最后使用&lt;code&gt;Object.defineProperty&lt;/code&gt;来做到 data bind，这也是 Vue 数据响应的核心。&lt;/p&gt;
+&lt;p&gt;接着遍历&lt;code&gt;initData&lt;/code&gt;，将&lt;code&gt;initData&lt;/code&gt;中的值浅拷贝给&lt;code&gt;data&lt;/code&gt;，上面已经使用&lt;code&gt;Object.defineProperty&lt;/code&gt;定义了&lt;code&gt;data&lt;/code&gt;对于&lt;code&gt;{{}}&lt;/code&gt;中值的&lt;code&gt;get&lt;/code&gt;和&lt;code&gt;set&lt;/code&gt;。所以此时将&lt;code&gt;initData&lt;/code&gt;中的键值对拷贝到&lt;code&gt;data&lt;/code&gt;中，就会触发对应 property 的&lt;code&gt;set&lt;/code&gt;，这里也就完成了对模板的数据更新。&lt;/p&gt;
 &lt;p&gt;这里已经包含了 data bind 和数据响应的核心，当然，这只是一个简单的实现。此外，Vue 的另一个核心：component system 还没有出现，后面会慢慢看到。&lt;/p&gt;
-&lt;p&gt;有兴趣的同学可以听一下尤小右当初为什么要开发 Vue 的&lt;a href=&#34;https://teahour.fm/78&#34;&gt;podcast&lt;/a&gt;，很有意思，在这里你能很快找到 Vue 的核心并且理解为什么需要它们。&lt;/p&gt;
+&lt;p&gt;有兴趣的同学可以听一下尤小右当初为什么要开发 Vue 的 &lt;a href=&#34;https://teahour.fm/78&#34;&gt;podcast&lt;/a&gt;，很有意思，在这里你能很快找到 Vue 的核心并且理解为什么需要它们。&lt;/p&gt;
 
     </description>
     </item>
