@@ -95,7 +95,7 @@
                               
                             
                             By Zink | <time>December 23, 2021</time>
-                            | 2 minutes
+                            | 1 minutes
                         </div>
                         <div class="tags">
                             
@@ -113,7 +113,17 @@
 <ul>
 <li>答案来自我看过我的一篇<a href="https://lutaonan.com/blog/trick-for-reading-source-code/">博客</a>，但是关于 First Commit，基本是关于 Grunt 的配置，现代前端开发中，多以使用 Webpack 为主，所以粗略看了一下之后并无记录的打算。</li>
 </ul>
-<p>不罗嗦，直接看代码</p>
+<p>不罗嗦，直接看<a href="https://github.com/vuejs/vue/blob/871ed91266/explorations/getset.html">代码</a></p>
+<p>在这段代码我们已经触及了 Vue 的核心：data bind，实际上也跟我们现在写的 Vue 差不多（当然，这里不是指 SFC ）</p>
+<p>首先在 HTML 部分，我们看到了文档中的“Mustache”语法，接下来我们看看最初的 data bind 是如何实现的。</p>
+<p>在第 23 行，<code>var content  = el.innerHTML.replace(/\{\{(.*)\}\}/g, markToken)</code>，用正则表达式匹配<code>{{...}}</code>，</p>
+<p>关于 <code>String.prototype.replace()</code></p>
+<blockquote>
+<p>你可以指定一个函数作为第二个参数。在这种情况下，当匹配执行后，该函数就会执行。 函数的返回值作为替换字符串。 (注意：上面提到的特殊替换参数在这里不能被使用。) 另外要注意的是，如果第一个参数是正则表达式，并且其为全局匹配模式，那么这个方法将被多次调用，每次匹配都会被调用。</p>
+</blockquote>
+<p>当第二个参数是一个函数时，函数接收多个参数，第一个参数<code>match</code>，表示匹配的子串，比如：<code>{{msg}}</code>、<code>{{what}}</code>等，第二个参数用于匹配正则表达式中括号匹配到的字符串，就是匹配正则表达式的这一部分：<code>(.*)</code>，并且这里可以接收多个参数：<code>p1,p2,p3...</code>，他们分别是括号对应的索引，具体参见 MDN。</p>
+<p>ok，我们继续回到 23 行，每次匹配执行后都会执行这个函数，这个函数首先会往<code>bindings</code>内填充<code>key:value</code>，key 是<code>{{}}</code>内的值，value 则是一个空对象，然后 return 一个字符串 <code>return '&lt;span ' + bindingMark + '=&quot;' + variable +'&quot;&gt;&lt;/span&gt;'</code></p>
+<p>接着遍历 bindings 执行 bind 方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -132,133 +142,30 @@
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;IE=edge&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1.0&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;test&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{msg}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{msg}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{msg}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{what}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{hey}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="kd">var</span> <span class="nx">bindingMark</span> <span class="o">=</span> <span class="s1">&#39;data-element-binding&#39;</span>
-    <span class="kd">function</span> <span class="nx">Element</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">initData</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
-        <span class="nx">el</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
-      <span class="nx">bindings</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">// the internal copy
-</span><span class="c1"></span>      <span class="nx">data</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">// the external interface
-</span><span class="c1"></span>      <span class="nx">content</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\{\{(.*)\}\}/g</span><span class="p">,</span> <span class="nx">markToken</span><span class="p">)</span>
-
-      <span class="nx">el</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">content</span>
-
-      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">variable</span> <span class="k">in</span> <span class="nx">bindings</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">bind</span><span class="p">(</span><span class="nx">variable</span><span class="p">)</span>
-      <span class="p">}</span>
-
-      <span class="k">if</span> <span class="p">(</span><span class="nx">initData</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">variable</span> <span class="k">in</span> <span class="nx">initData</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">data</span><span class="p">[</span><span class="nx">variable</span><span class="p">]</span> <span class="o">=</span> <span class="nx">initData</span><span class="p">[</span><span class="nx">variable</span><span class="p">]</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-
-      <span class="kd">function</span> <span class="nx">markToken</span><span class="p">(</span><span class="nx">match</span><span class="p">,</span> <span class="nx">variable</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">return</span> <span class="s1">&#39;&lt;span &#39;</span> <span class="o">+</span> <span class="nx">bindingMark</span> <span class="o">+</span> <span class="s1">&#39;=&#34;&#39;</span> <span class="o">+</span> <span class="nx">variable</span> <span class="o">+</span> <span class="s1">&#39;&#34;&gt;&lt;/span&gt;&#39;</span>
-      <span class="p">}</span>
-
-      <span class="kd">function</span> <span class="nx">bind</span><span class="p">(</span><span class="nx">variable</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">els</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;[&#39;</span> <span class="o">+</span> <span class="nx">bindingMark</span> <span class="o">+</span> <span class="s1">&#39;=&#34;&#39;</span> <span class="o">+</span> <span class="nx">variable</span> <span class="o">+</span> <span class="s1">&#39;&#34;]&#39;</span><span class="p">);</span>
-        <span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">els</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">e</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="nx">bindingMark</span><span class="p">)</span>
-        <span class="p">})</span>
-        <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">variable</span><span class="p">,</span> <span class="p">{</span>
-          <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
-            <span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">els</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-              <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">newVal</span>
-            <span class="p">})</span>
-          <span class="p">},</span>
-          <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">value</span>
-          <span class="p">}</span>
-        <span class="p">})</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Element</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="p">{</span>
-      <span class="nx">msg</span><span class="o">:</span> <span class="s1">&#39;hello&#39;</span>
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kd">function</span> <span class="nx">bind</span> <span class="p">(</span><span class="nx">variable</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">els</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;[&#39;</span> <span class="o">+</span> <span class="nx">bindingMark</span> <span class="o">+</span> <span class="s1">&#39;=&#34;&#39;</span> <span class="o">+</span> <span class="nx">variable</span> <span class="o">+</span> <span class="s1">&#39;&#34;]&#39;</span><span class="p">)</span>
+    <span class="p">;[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">els</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="nx">bindingMark</span><span class="p">)</span>
     <span class="p">})</span>
-
-  <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">variable</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">els</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">newVal</span>
+        <span class="p">})</span>
+    <span class="p">},</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">value</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+<span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>卡在了正则表达式，看了书再来继续</p>
+</div><p>首先会找到含有<code>bindingMark=...</code> Attribute的Element，并在bindings对应的key中记录它，接着再删除元素中的<code>bindingMark</code> Attribute，最后使用<code>Object.defineProperty</code>来做到 data bind，这也是 Vue 数据响应的核心。</p>
+<p>接着遍历<code>initData</code>，将<code>initData</code>中的值浅拷贝给<code>data</code>，上面已经使用<code>Object.defineProperty</code>定义了data对于<code>{{}}</code>中值的<code>get</code>和<code>set</code>。所以此时将<code>initData</code>中的键值对拷贝到<code>data</code>中，就会触发对应 property 的<code>set</code>，这里也就完成了对模板的数据更新。</p>
+<p>这里已经包含了 data bind 和数据响应的核心，当然，这只是一个简单的实现。此外，Vue 的另一个核心：component system 还没有出现，后面会慢慢看到。</p>
+<p>有兴趣的同学可以听一下尤小右当初为什么要开发 Vue 的<a href="https://teahour.fm/78">podcast</a>，很有意思，在这里你能很快找到 Vue 的核心并且理解为什么需要它们。</p>
 
     </div>
 </div>
