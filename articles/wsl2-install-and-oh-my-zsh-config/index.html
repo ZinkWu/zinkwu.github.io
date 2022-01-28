@@ -134,14 +134,24 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt install zsh
 
 zsh --version
+
+which zsh
+
+<span class="c1"># $ZSH_PATH 是 which zsh 的值</span>
+chsh -s <span class="nv">$ZSH_PATH</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>安装 oh-my-zsh</p>
+</div><p>重启 terminal，安装 oh-my-zsh</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -274,6 +284,27 @@ nvs ls
 
 <span class="c1"># 在当前 Shell 切换版本</span>
 nvs use <span class="m">12</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Node 版本大于等于 16.9.0 之后默认安装 corepack，相当于包管理器的管理器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">corepack <span class="nb">enable</span>
+
+yarn -v
+which yarn
+
+pnpm -v
+which pnpm
 </code></pre></td></tr></table>
 </div>
 </div><p>使用 nvs 时，默认的 prefix 是当前激活的 Node.js 版本的安装路径。</p>
