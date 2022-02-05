@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vue3 on Zink&#39;s Blog</title>
+    <link>https://zinkwu.blog/tags/vue3/</link>
+    <description>Recent content in Vue3 on Zink&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Tue, 18 Jan 2022 05:29:32 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/tags/vue3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vue3 文档笔记-基础篇</title>
+      <link>https://zinkwu.blog/articles/vue3-%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/</link>
+      <pubDate>Tue, 18 Jan 2022 05:29:32 +0000</pubDate>
+      
+      <guid>https://zinkwu.blog/articles/vue3-%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/</guid>
+      <description>好记性不如烂笔头
+   Basic     通过 createApp 创建应用实例  在 vue2.x 中，使用的是new Vue()，返回的是根组件实例，而createApp返回的是应用实例，想要得到根组件实例，还需要使用mount方法，个人认为这个改动是在语法层面上区分创建组件和创建应用
+   ES6 Proxy  vue2.x 使用 Object.defineProperty来实现数据相应，vue3 中使用 new Proxy()为数据架设一层代理，来实现数据响应
+   计算属性 computed   计算属性会缓存结果，只要依赖值不变，多次访问该计算属性也不会执行代码，而是直接返回缓存结果，减小性能开销 计算属性拥有getter、setter     侦听器 watch   watch 与 computed 几乎相同，唯一不同的是，watch 允许在其中执行异步操作     class 与 style 的绑定     class    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  &amp;lt;div :class=&amp;#34;{active: isActive}&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div :class=&amp;#34;classes&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; data(){ return { classes: { avtive: true, container: true } } } &amp;lt;div :class=&amp;#34;[activeClass, containerClass]&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; data(){ return { activeClass: &amp;#39;active&amp;#39;, containerClass: &amp;#39;container&amp;#39; } }     也可以直接在v-bind:class中使用三运运算符来切换 class</description>
+    </item>
+    
+  </channel>
+</rss>
