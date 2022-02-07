@@ -1601,6 +1601,7 @@ sed -i &lt;span class=&#34;s1&#34;&gt;&amp;#39;$a socks5 &amp;#39;&lt;/span&gt;&
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;于是我们可以 &lt;code&gt;ss git clone xxx&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果 proxychains 连接 windows 代理超时，请关闭防火墙&lt;/strong&gt;&lt;/p&gt;
 
     </description>
     </item>
