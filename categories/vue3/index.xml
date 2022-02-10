@@ -9,10 +9,10 @@
     <lastBuildDate>Tue, 18 Jan 2022 05:29:32 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/categories/vue3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vue3 文档笔记-基础篇</title>
-      <link>https://zinkwu.blog/articles/vue3-%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/</link>
+      <link>https://zinkwu.blog/articles/vue3-docs-basic-notes/</link>
       <pubDate>Tue, 18 Jan 2022 05:29:32 +0000</pubDate>
       
-      <guid>https://zinkwu.blog/articles/vue3-%E6%96%87%E6%A1%A3%E7%AC%94%E8%AE%B0-%E5%9F%BA%E7%A1%80%E7%AF%87/</guid>
+      <guid>https://zinkwu.blog/articles/vue3-docs-basic-notes/</guid>
       <description>好记性不如烂笔头
    Basic     通过 createApp 创建应用实例  在 vue2.x 中，使用的是new Vue()，返回的是根组件实例，而createApp返回的是应用实例，想要得到根组件实例，还需要使用mount方法，个人认为这个改动是在语法层面上区分创建组件和创建应用
    ES6 Proxy  vue2.x 使用 Object.defineProperty来实现数据相应，vue3 中使用 new Proxy()为数据架设一层代理，来实现数据响应
