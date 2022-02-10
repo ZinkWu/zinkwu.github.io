@@ -6,7 +6,18 @@
     <description>Recent content in Articles on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Tue, 25 Jan 2022 05:06:20 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Feb 2022 18:19:40 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>什么是继承？</title>
+      <link>https://zinkwu.blog/articles/whats-inheritance/</link>
+      <pubDate>Thu, 10 Feb 2022 18:19:40 +0000</pubDate>
+      
+      <guid>https://zinkwu.blog/articles/whats-inheritance/</guid>
+      <description>要理解继承，首先需要理解原型链
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  function Person(name, age, gender){ this.name = name this.age = age this.gender = gender } Person.prototype.hi = function (){ console.log(`Hi, I&amp;#39;m ${this.name}`) } let f = new Person(&amp;#39;zoe&amp;#39;, 18, &amp;#39;female&amp;#39;) f.__proto__ === Person.prototype // true，ES5写法 Object.getPrototypeOf(f) === Person.prototype // true，ES6写法, __proto__ 是浏览器厂商私建 Person.prototype.__proto__ === Object.prototype // true   首先定义几个基本名词：
+ 实例对象：通过new xxx出来的对象叫做实例对象 构造函数：如上方代码中的Person，一般以大写字母开头命名 - __proto__：ES6 之前，没有明确访问原型的方法，只能通过__proto__来访问，它的作用就是找到实例对象的原型 prototype：原型，是构造函数的一个属性 constructor：构造函数，写过 Java 这类 oop 的同学应该不陌生，这个在 ES5 中不经常接触到，ES6 中的 Class 经常用到，  然后通过上面的代码，我们可以得到这样的公式：</description>
+    </item>
+    
     <item>
       <title>谈论宏大叙事的人们</title>
       <link>https://zinkwu.blog/articles/%E8%B0%88%E8%AE%BA%E5%AE%8F%E5%A4%A7%E5%8F%99%E4%BA%8B%E7%9A%84%E4%BA%BA%E4%BB%AC/</link>

@@ -3,14 +3,20 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://zinkwu.blog/</loc>
-    <lastmod>2022-02-07T12:45:31+00:00</lastmod>
+    <lastmod>2022-02-10T18:20:38+00:00</lastmod>
     <priority>0</priority>
   </url><url>
     <loc>https://zinkwu.blog/articles/</loc>
-    <lastmod>2022-02-07T12:45:31+00:00</lastmod>
+    <lastmod>2022-02-10T18:20:38+00:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/tags/javascript/</loc>
+    <lastmod>2022-02-10T18:20:38+00:00</lastmod>
   </url><url>
     <loc>https://zinkwu.blog/tags/</loc>
-    <lastmod>2022-02-05T01:11:46+00:00</lastmod>
+    <lastmod>2022-02-10T18:20:38+00:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/whats-inheritance/</loc>
+    <lastmod>2022-02-10T18:20:38+00:00</lastmod>
   </url><url>
     <loc>https://zinkwu.blog/articles/%E8%B0%88%E8%AE%BA%E5%AE%8F%E5%A4%A7%E5%8F%99%E4%BA%8B%E7%9A%84%E4%BA%BA%E4%BB%AC/</loc>
     <lastmod>2022-02-05T01:11:46+00:00</lastmod>
@@ -100,9 +106,6 @@
     <lastmod>2019-11-18T10:30:51+08:00</lastmod>
   </url><url>
     <loc>https://zinkwu.blog/articles/call-apply-bind-implement/</loc>
-    <lastmod>2019-09-24T10:33:29+08:00</lastmod>
-  </url><url>
-    <loc>https://zinkwu.blog/tags/javascript/</loc>
     <lastmod>2019-09-24T10:33:29+08:00</lastmod>
   </url><url>
     <loc>https://zinkwu.blog/articles/chinese-input-debounce/</loc>
