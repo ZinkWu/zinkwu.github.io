@@ -6,7 +6,19 @@
     <description>Recent content in JavaScript on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 10 Feb 2022 18:19:40 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 11 Feb 2022 19:35:51 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Promise 详解</title>
+      <link>https://zinkwu.blog/articles/promise/</link>
+      <pubDate>Fri, 11 Feb 2022 19:35:51 +0000</pubDate>
+      
+      <guid>https://zinkwu.blog/articles/promise/</guid>
+      <description>Promise 是什么？  先想象一下你在一家港式甜品店点餐，点餐的流程通常是这样的： 选品 -&amp;gt; 支付 -&amp;gt; 等待 -&amp;gt; 取餐 -&amp;gt; 用餐 -&amp;gt; 走人
+现在思考一下等待 -&amp;gt; 取餐这一步骤，我们如何知道什么时候该去取餐了呢？答案就是当你点完餐之后服务员会给你一个通知器（通常是一个小圆盘），当我们的餐做好之后，这个通知器会亮起，你看到这个就知道：哦，我的餐做好了，该去取了。
+在这个例子中，这个通知器就好像我们的 Promise，甜品店作为生产者，我们作为消费者，这个通知器就是 Promise。生产者完成生产后通过通知器通知消费者。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  // 生产者 function dessertShop(resolve, reject){ setTimeout(() =&amp;gt; { resolve(&amp;#39;dount&amp;#39;) }, 2000) } let notifier = new Promise(dessertShop) // .then(...)就是消费者 notifier.then((dessert) =&amp;gt; { if(dessert === &amp;#39;dount&amp;#39;){ console.log(&amp;#39;get!&amp;#39;) } })    resolve(value)表示任务完成，结果为 value reject(error)表示任务失败，原因为 error  由new promise实例化的对象notifier具有以下内部属性：</description>
+    </item>
+    
     <item>
       <title>什么是继承？</title>
       <link>https://zinkwu.blog/articles/whats-inheritance/</link>
