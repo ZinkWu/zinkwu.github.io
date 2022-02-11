@@ -83,8 +83,14 @@
     &lt;/a&gt;
     Promise 基本语法
 &lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;code&gt;let promise = new Promise(fn)&lt;/code&gt;，实例化一个&lt;code&gt;promise&lt;/code&gt;对象，参数&lt;code&gt;fn&lt;/code&gt;是一个函数表示生产者，&lt;code&gt;fn&lt;/code&gt;接受两个参数&lt;code&gt;resolve&lt;/code&gt;和&lt;code&gt;reject&lt;/code&gt;，用于通知&lt;code&gt;promise&lt;/code&gt;实例化对象结果。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;code&gt;promise.then(resolvedHanlder, rejectedHandler)&lt;/code&gt;，&lt;code&gt;.then&lt;/code&gt;就是消费者，接受两个参数，参数为函数，第一个参数表示针对&lt;code&gt;fulfilled&lt;/code&gt;结果作处理，第二个参数表示针对&lt;code&gt;rejected&lt;/code&gt;作处理。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr&gt;
 &lt;p&gt;tood:&lt;/p&gt;
 &lt;ul&gt;
