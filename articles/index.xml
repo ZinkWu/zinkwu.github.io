@@ -75,7 +75,7 @@
       <guid>https://zinkwu.blog/articles/wsl2-install-and-oh-my-zsh-config/</guid>
       <description>install wsl2  参照官方文档
    install oh-my-zsh  先安装 zsh
-1 2 3 4 5 6 7 8  sudo apt install zsh zsh --version which zsh # $ZSH_PATH 是 which zsh 的值 chsh -s $ZSH_PATH   重启 terminal，安装 oh-my-zsh
+1 2 3 4 5 6 7 8  sudo apt install zsh zsh --version which zsh # $ZSH_PATH 是 which zsh 的值 chsh -s $ZSH_PATH   安装 oh-my-zsh
 1 2 3 4 5  sh -c &amp;#34;$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&amp;#34; # or sh -c &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&amp;#34;   此时你的根目录下应该有一个 .oh-my-zsh 目录 plugins 目录是存放插件的地方，themes 是存放主题的地方</description>
     </item>
     
