@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="dark">
+    <title>Event Loop Promise async/await 总结 | Zink&#39;s Blog</title>
+
+    
+    
+    
+    <meta property="og:site_name" content="Zink&#39;s Blog" />
+    <meta property="og:title" content="Event Loop Promise async/await 总结 | Zink&#39;s Blog"/>
+    <meta itemprop="name" content="Event Loop Promise async/await 总结 | Zink&#39;s Blog" />
+    <meta name="twitter:title" content="Event Loop Promise async/await 总结 | Zink&#39;s Blog" />
+    <meta name="application-name" content="Event Loop Promise async/await 总结 | Zink&#39;s Blog" />
+
+
+    <meta name="description" content="" />
+    <meta name="twitter:description" content=""/>
+    <meta itemprop="description" content=""/>
+    <meta property="og:description" content="" />
+
+    
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <link rel="stylesheet" href="/sass/main.min.ab99ff095f832511e24ffb2fba2b51ad473b2f7e9301d674eba2c6c3a6e8bd81.css">
+    
+</head>
+    <script>
+    (function() {
+        const colorSchemeKey = 'ThemeColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.userColorScheme = 'dark';
+        } else {
+            document.documentElement.dataset.userColorScheme = 'light';
+        }
+    })();
+</script>
+
+    <body class="dark">
+        <nav class="navbar">
+    <div class="container">
+        <div class="flex">
+            <div>
+                <a class="brand" href="/">
+                    
+                    <span class="emoji">
+                        🥁
+                    </span>
+                    
+                    
+                    Zink&#39;s Blog
+                    </a>
+            </div>
+            <div class="flex">
+                
+                <a href="/about/">About</a>
+                
+                <a href="/articles/">Articles</a>
+                
+                <a href="/tags">Tags</a>
+                
+                <a href="/index.xml">RSS</a>
+                
+                <button id="dark-mode-button">
+                  <svg class="light" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="#FFD983" d="M30.312.776C32 19 20 32 .776 30.312c8.199 7.717 21.091 7.588 29.107-.429C37.9 21.867 38.03 8.975 30.312.776z"/><path d="M30.705 15.915a1.163 1.163 0 1 0 1.643 1.641a1.163 1.163 0 0 0-1.643-1.641zm-16.022 14.38a1.74 1.74 0 0 0 0 2.465a1.742 1.742 0 1 0 0-2.465zm13.968-2.147a2.904 2.904 0 0 1-4.108 0a2.902 2.902 0 0 1 0-4.107a2.902 2.902 0 0 1 4.108 0a2.902 2.902 0 0 1 0 4.107z" fill="#FFCC4D"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)" /></svg>
+                  <svg class="dark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="#FFD983" d="M16 2s0-2 2-2s2 2 2 2v2s0 2-2 2s-2-2-2-2V2zm18 14s2 0 2 2s-2 2-2 2h-2s-2 0-2-2s2-2 2-2h2zM4 16s2 0 2 2s-2 2-2 2H2s-2 0-2-2s2-2 2-2h2zm5.121-8.707s1.414 1.414 0 2.828s-2.828 0-2.828 0L4.878 8.708s-1.414-1.414 0-2.829c1.415-1.414 2.829 0 2.829 0l1.414 1.414zm21 21s1.414 1.414 0 2.828s-2.828 0-2.828 0l-1.414-1.414s-1.414-1.414 0-2.828s2.828 0 2.828 0l1.414 1.414zm-.413-18.172s-1.414 1.414-2.828 0s0-2.828 0-2.828l1.414-1.414s1.414-1.414 2.828 0s0 2.828 0 2.828l-1.414 1.414zm-21 21s-1.414 1.414-2.828 0s0-2.828 0-2.828l1.414-1.414s1.414-1.414 2.828 0s0 2.828 0 2.828l-1.414 1.414zM16 32s0-2 2-2s2 2 2 2v2s0 2-2 2s-2-2-2-2v-2z"/><circle fill="#FFD983" cx="18" cy="18" r="10"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)" /></svg>
+                </button>
+            </div>
+            </div>
+    </div>
+</nav>
+        <main>
+            
+<div class="container">
+    <article>
+        <header class="article-header">
+            <div class="thumb">
+                <div>
+                    <h1>Event Loop Promise async/await 总结</h1>
+                    <div class="post-meta">
+                        <div>
+                            
+                            
+                              
+                            
+                            By Zink | <time>February 11, 2022</time>
+                            | 3 minutes
+                        </div>
+                        <div class="tags">
+                            
+                            <a href="/tags/javascript/">JavaScript</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </article>
+
+    <div class="article-post">
+    <h2 id="同步任务">
+    <a href="#%e5%90%8c%e6%ad%a5%e4%bb%bb%e5%8a%a1" class="anchor">
+        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+            <path fill-rule="evenodd"
+                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
+            </path>
+        </svg>
+    </a>
+    同步任务
+</h2>
+<p>因为 JavaScript 是单线程的，所以同步任务只能在主线程上排队执行，并且只有当前一个任务完成才能执行下一个任务</p>
+<p>当 JavaScript 运行时，每个函数的执行都会进入调用栈（Call Stack）中，当前函数执行完毕后将其移出栈，然后执行下一个函数，如果其中有非常耗时的函数执行，那么调用栈就阻塞了，后面的任务只能一直处于等待状态无法执行，且此时 UI 对面任何用户操作都不会响应，看起来就像程序崩溃了一样。</p>
+<p>为什么解决这个问题，我们有了异步任务</p>
+<h2 id="异步任务">
+    <a href="#%e5%bc%82%e6%ad%a5%e4%bb%bb%e5%8a%a1" class="anchor">
+        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+            <path fill-rule="evenodd"
+                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
+            </path>
+        </svg>
+    </a>
+    异步任务
+</h2>
+<p>常见的异步：</p>
+<ul>
+<li><code>setTimeout()</code></li>
+<li><code>setInterval()</code></li>
+<li><code>Promise.resolve().then()</code></li>
+<li><code>fetch.then()</code></li>
+</ul>
+<p>异步任务在执行之前不会进入调用栈，它进入事件循环队列（Event Loop Queue），当主线程执行完毕后，且异步时机到了，就会将事件循环队列中的任务推入调用栈中执行。</p>
+<h2 id="event-loop">
+    <a href="#event-loop" class="anchor">
+        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+            <path fill-rule="evenodd"
+                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
+            </path>
+        </svg>
+    </a>
+    Event Loop
+</h2>
+<p>Event Loop 的工作非常简单，它只是监控调用栈和回调队列（包含每个事件对应的回调函数，比如 click 的回调函数）。如果调用栈为空，Event Loop 将队列中的第一个任务<strong>移除并推送</strong>到调用栈。</p>
+<p>从 ES6 开始，Event Loop 处理异步也分两种，在<code>Macrotask</code>中处理<code>setTimeout</code>这类的，在<code>Microtask</code>中处理<code>Promise</code>这类的。它会优先处理<code>Microtask</code>中的任务</p>
+<h2 id="nodejs-中的-event-loop">
+    <a href="#nodejs-%e4%b8%ad%e7%9a%84-event-loop" class="anchor">
+        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+            <path fill-rule="evenodd"
+                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
+            </path>
+        </svg>
+    </a>
+    Node.js 中的 Event Loop
+</h2>
+<p>Node.js 中的 Event Loop 分为 6 个阶段，依次是：</p>
+<ul>
+<li>timers 定时器
+<ul>
+<li>这个阶段执行已被<code>setTimeout()</code>和<code>setInterval()</code>调度的回调函数</li>
+</ul>
+</li>
+<li>pending callbacks 待定回调
+<ul>
+<li>执行延迟到下一个循环迭代的I/O回调</li>
+</ul>
+</li>
+<li>idle, prepare
+<ul>
+<li>Node.js 系统内部使用</li>
+</ul>
+</li>
+<li>poll 轮询
+<ul>
+<li>检索新的 I/O 事件；执行与 I/O 相关的回调（几乎所有情况下，除了关闭的回调函数，那些由计时器和 <code>setImmediate()</code> 调度的之外），其余情况 node 将在适当的时候在此阻塞（等待）</li>
+</ul>
+</li>
+<li>check 检测
+<ul>
+<li><code>setImmediate()</code>回调函数在这里执行</li>
+</ul>
+</li>
+<li>close callback 关闭的回调函数
+<ul>
+<li>一些关闭的回调函数，如：<code>sockt.on('close', ...)</code></li>
+</ul>
+</li>
+</ul>
+<p><strong><code>process.nextTick()</code>的回调会在每个阶段结束之前调用。</strong></p>
+<p>每次运行的事件循环之间，Node.js 检查它是否在等待任何异步 I/O 或计时器，如果没有的话，则完全关闭。</p>
+<p>当我们在 Node 中首次执行 JavaScript 代码时，会有开启 Event Loop 和执行 JavaScript 两个阶段，这两个阶段是串行发生，开启速度受制于机器性能，这就是为什么在主线程中执行这两个异步，他们的顺序并不总是相同。</p>
+<h2 id="promise">
+    <a href="#promise" class="anchor">
+        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
+            <path fill-rule="evenodd"
+                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
+            </path>
+        </svg>
+    </a>
+    Promise
+</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">fn</span> <span class="o">=</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">resolve</span><span class="p">({</span>
+    	<span class="nx">info</span><span class="o">:</span> <span class="s1">&#39;success&#39;</span>
+    <span class="p">})</span>
+  <span class="p">},</span> <span class="mi">3000</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="nx">onFulfilled</span> <span class="o">=</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">onRejected</span> <span class="o">=</span> <span class="p">(</span><span class="nx">reson</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reason</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">onFulfilled</span><span class="p">,</span> <span class="nx">onRejected</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的代码是一个基本的<code>Promise</code>使用方法，对于<code>Promise</code>的学习，个人认为直接看 A+ 规范比较好，接下来我会基于 A+ 规范的角度来详细介绍 <code>Promise</code>。</p>
+<p><code>Promise</code>表示构造函数，<code>promise</code>表示实例化对象。</p>
+<ol>
+<li>
+<p><code>Promise</code>是一个构造函数，接受一个回调函数作为参数，这个参数必须是函数，否则抛出<code>TypeError</code></p>
+</li>
+<li>
+<p><code>promise</code>具有三种状态：<code>pending</code>、<code>fulfilled</code>、<code>rejected</code>，</p>
+<ol>
+<li>当状态转换至<code>fulfilled</code>或<code>rejected</code>时，状态不可再次变更，且<code>fulfilled</code>状态必须有一个值（不可变），<code>rejected</code>状态必须有一个值作为拒绝的原因（不可变）</li>
+</ol>
+</li>
+<li>
+<p><code>promise</code>必须具有<code>then</code>方法，用来访问当前值，或最终值，或被拒绝的原因</p>
+<ol>
+<li><code>then</code>方法接受两个参数，如上面代码所示<code>onFulfilled</code>和<code>onRejected</code></li>
+<li>这两个参数都是可选的，且如果其不是函数，则必须被忽略</li>
+</ol>
+</li>
+<li>
+<p><code>onFulfilled</code>如果是函数，则会在<code>promise</code>已经是<code>fulfilled</code>状态时调用，且将<code>promise</code>的值作为第一个参数，该函数<strong>只被调用一次</strong></p>
+</li>
+<li>
+<p><code>onRejected</code>如果是函数，则会在<code>promise</code>已经是<code>rejected</code>状态时调用，且将<code>promise</code>拒绝的原因作为第一个参数，该函数<strong>只被调用一次</strong></p>
+</li>
+<li>
+<p>在<a href="https://es5.github.io/#x10.3">执行上下文</a>堆栈仅包含平台代码之前，不得调用 <code>onFulfilled</code> 或 <code>onRejected</code></p>
+<ol>
+<li>这句话的意思其实就是将<code>onFulfilled</code>/<code>onRejected</code>添加到<code>Microtask</code>队列中去，异步调用它</li>
+</ol>
+</li>
+<li>
+<p><code>onFulfilled</code>/<code>onRejected</code>作为函数调用时，其内部没有<code>this</code></p>
+</li>
+<li>
+<p><code>then</code>可以在同一个<code>promise</code>上多次调用</p>
+<ol>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">)</span>
+
+<span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(...,</span> <span class="p">...)</span>
+<span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(...,</span> <span class="p">...)</span>
+<span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(...,</span> <span class="p">...)</span>
+
+<span class="c1">// onFulfilled/onRejected 必须按照书写顺序执行
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</li>
+<li>
+<p><code>then</code>必须新建且返回一个<code>promise</code></p>
+<ol>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">onFulfilled</span><span class="p">,</span> <span class="nx">onRejected</span><span class="p">)</span>
+
+<span class="nx">promise2</span> <span class="k">instanceof</span> <span class="nb">Promise</span> <span class="c1">//true
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>如果 <code>onFulfilled</code> 或 <code>onRejected</code> 抛出异常 <code>e</code>, <code>promise2</code> 必须被拒绝，并把 <code>e</code> 作为被拒绝的原因</p>
+</li>
+<li>
+<p>如果 <code>onFulfilled</code> 不是函数，且 <code>promise</code>处于已处理状态，则 <code>promise2</code> 也必须处于已处理状态，且拥有和 <code>promise</code> 已处理状态相同的值。</p>
+</li>
+<li>
+<p>如果 <code>onRejected</code> 不是函数，且 <code>promise</code> 处于已拒绝状态，则 <code>promise2</code> 必须处于已拒绝状态，且拥有和 <code>promise</code> 相同的拒绝原因</p>
+</li>
+<li>
+<p>2.2.7.1 如果 <code>onFulfilled</code> 或 <code>onRejected</code> 返回值 <code>x</code>，执行<code>Promise</code>解决步骤 <code>[[Resolve]](promise2, x)</code></p>
+</li>
+</ol>
+</li>
+<li>
+<p>在这里引入一下规范中的<code>Promise</code>解决步骤，这里我会直接用白话讲，其代码实现可以参考<a href="https://github.com/ZinkWu/ts-play-ground/blob/main/src/promise.ts#L67">我的代码</a></p>
+<ol>
+<li>
+<p><code>Promise</code>解决步骤其实就是<code>Promise</code>中的一个静态私有方法，暂且命名为<code>resolveWith</code></p>
+</li>
+<li>
+<p>当<code>onFulfilled</code>/<code>onRejected</code>返回值<code>x</code>的时候，就执行<code>resolveWith(promise2, x)</code>，这个<code>promise2</code>在<code>then</code>方法执行时创建</p>
+</li>
+<li>
+<p>执行<code>resolveWith(promise2, x)</code>，它具有以下规则</p>
+<ul>
+<li>
+<p>如果<code>promise2</code>和<code>x</code>引用同一个对象，即<code>promise2 === x</code>为<code>true</code>，则以一个<code>TypeError</code>类型的值作为拒绝<code>promise2</code>的原因</p>
+</li>
+<li>
+<p>如果<code>x</code>是一个<code>Promise</code>对象，接收其状态</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+<span class="nx">cosnt</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">result</span> <span class="c1">//return 了一个 fulfilled 状态的 Promise 对象
+</span><span class="c1"></span><span class="p">})</span>
+
+<span class="nx">promise2</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">result</span><span class="p">.</span><span class="nx">state</span> <span class="c1">//true !!!这里的 state 属性实际是不能访问的，这里只是为了演示
+</span><span class="c1"></span><span class="nx">promise2</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="nx">result</span><span class="p">.</span><span class="nx">value</span> <span class="c1">//true !!!这里的 value 属性实际是不能访问的，这里只是为了演示
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>当<code>x</code>处于<code>pending</code>状态时，<code>promise2</code>也必须保持未处理状态，直到<code>x</code>被处理或拒绝</p>
+</li>
+<li>
+<p>当<code>x</code>处于<code>fulfilled</code>状态时，<code>promise2</code>也必须处于<code>fulfilled</code>状态，且值相同</p>
+</li>
+<li>
+<p>当<code>x</code>处于<code>rejected</code>状态时，<code>promise2</code>也必须处于<code>rejected</code>状态，且拒绝的原因相同</p>
+</li>
+</ul>
+</li>
+<li>
+<p>当<code>x</code>是一个对象或函数时</p>
+<ul>
+<li>
+<p>用<code>x.then</code>代替<code>then</code></p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">then</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">then</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>如果在获取<code>x.then</code>的过程中抛出异常<code>e</code>，则拒绝<code>promise2</code>并用<code>e</code>作为拒绝的原因</p>
+<ul>
+<li>解释以下为什么获取一个对象的属性会抛出异常，<code>Object.defineProperty()</code>可以设置一个属性的<code>getter</code>/<code>setter</code>，可以在<code>getter</code>中抛出异常</li>
+</ul>
+</li>
+<li>
+<p>如果<code>x.then</code>是一个函数（这时就可以将<code>x</code>视为<code>thenable</code>，因为它具有<code>then</code>方法），则用<code>x</code>作为<code>this</code>调用该函数，并将<code>resolvePromise</code>作为函数的第一个参数，<code>rejectePromise</code>作为函数的第二个参数</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">then</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">then</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">then</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">){</span>
+  <span class="nx">then</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">resolvePromise</span><span class="p">,</span> <span class="nx">rejectPromise</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 看懂了吗，就跟我们的 promise.then(onFulfilled, onRejected)一样，只不过改用 call 调用并改变 this 指向
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>如果/当使用值 <code>y</code> 调用 <code>resolvePromise</code> 时，运行 <code>resolveWith(promise, y)</code>（这里其实就有点递归的味道了，规范也确实提到了这种方法可能会导致无限递归，如果<code>thenable</code>的<code>then</code>方法返回一个<code>thenable</code>2，且<code>thenable2</code>的<code>then</code>也返回一个<code>thenable3</code>···，一直这样套娃，就会无限递归，最后爆栈了）</p>
+</li>
+<li>
+<p>如果/当使用 <code>r</code> 作为原因调用 <code>rejectPromise</code> 时，用 <code>r</code> 拒绝 <code>promise</code>。</p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">(</span><span class="nx">then</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">then</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span>
+    <span class="k">this</span><span class="p">,</span>
+    <span class="p">(</span><span class="nx">y</span><span class="o">:</span> <span class="nx">any</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">resolveWith</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">},</span>
+    <span class="p">(</span><span class="nx">r</span><span class="o">:</span> <span class="nx">any</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">}</span>
+  <span class="p">)</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>上面两句话的意思就是说，<code>x</code>作为<code>thenable</code>，可以定义自己的<code>then</code>方法，且在其中自由决定调用<code>resolve</code>还是<code>reject</code></p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">thenable</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">then</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">){</span>
+    <span class="nx">resolve</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="kr">const</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">thenable</span><span class="p">)</span> <span class="c1">//thenable的then方法会在promise的then中被调用
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>如果同时调用 <code>resolvePromise</code> 和 <code>rejectPromise</code>，或者对同一个参数进行多次调用，则第一次调用优先，并且忽略任何后来的的调用（这里就是<code>onFulfilled</code>和<code>onRejected</code>的特征）</p>
+</li>
+<li>
+<p>如果调用 <code>then</code> 时抛出异常 <code>e</code></p>
+<ul>
+<li>如果 <code>resolvePromise</code> 或 <code>rejectPromise</code> 已经被调用，忽略该异常</li>
+<li>否则，拒绝 <code>promise2</code> 并以 <code>e</code> 作为拒绝原因</li>
+</ul>
+</li>
+<li>
+<p>如果 <code>then</code> 不是函数，用 <code>x</code> 去执行 <code>promise2</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>如果 <code>x</code> 不是对象或函数，用 <code>x</code> 去执行 <code>promise2</code></p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>上述的<code>Promise</code>解决步骤，用白话来说就是</p>
+<ol>
+<li>如果<code>onFulfilled</code>或<code>onRejected</code>返回的<code>x</code>是一个简单数据类型，那么<code>then</code>方法就返回一个处于<code>onFulfilled</code>的新的<code>promise</code>，且值是<code>x</code></li>
+<li>如果<code>onFulfilled</code>或<code>onRejected</code>返回的<code>x</code>是一个函数或对象（其实函数也是一种对象啦），则判断<code>x</code>是否具有<code>then</code>方法（或者说判断<code>x</code>是否是一个<code>thenable</code>)
+<ol>
+<li>如果<code>x.then</code>是一个函数，则取执行它，且它内部的<code>this</code>还是<code>x</code>，且<code>x.then</code>接受两个参数：<code>resolve</code>和<code>reject</code>，<code>x.then</code>调用<code>resolve</code>/<code>reject</code>，那么<code>promise2</code>也会是对应的状态，且值就是<code>x.then</code>调用<code>resolve</code>/<code>reject</code>所传的值</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>至此，A+ 规范就结束了，A+ 规范定义了<code>Promise</code>的基本行为和<code>Promise</code>链的实现</p>
+</li>
+</ol>
+<p><a href="https://github.com/lingirlsea/promisesaplus">A+ 译文参考</a></p>
+<p><strong>以下内容待更新</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>promise.catch()</code></li>
+<li><input disabled="" type="checkbox"> <code>promise.finally()</code></li>
+<li><input disabled="" type="checkbox"> <code>Promise.race()</code></li>
+<li><input disabled="" type="checkbox"> <code>Promise.all()</code></li>
+<li><input disabled="" type="checkbox"> <code>Promise.allSettled()</code></li>
+<li><input disabled="" type="checkbox"> <code>Promise.any()</code></li>
+<li><input disabled="" type="checkbox"> <code>Promise.resolve/reject()</code></li>
+<li><input disabled="" type="checkbox"> <code>async/await</code></li>
+</ul>
+
+    </div>
+</div>
+
+<div class="container">
+    
+    <nav class="flex container suggested">
+        
+        <a rel="prev" href="/articles/whats-inheritance/" title="Previous post (older)">
+            <span>Previous</span>
+            什么是继承？
+            </a>
+        
+        
+        
+    </nav>
+    
+</div>
+ 
+<div class="container">
+    
+    <script src="https://giscus.app/client.js" 
+        data-repo="zinkwu/zinkwu.github.io"
+        data-repo-id="R_kgDOGj_r8w"
+        
+        data-category="Announcements"
+        data-category-id="DIC_kwDOGj_r884CAZIx"
+        
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-theme="light"
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<script>
+    function setGiscusTeheme(theme) {
+        let giscus = document.querySelector('.giscus iframe');
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme
+                        }
+                    }
+                },
+                'https://giscus.app'
+            )
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://giscus.app') return;
+        setGiscusTeheme(document.documentElement.dataset.userColorScheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setGiscusTeheme(e.detail)
+    })
+</script>
+
+</div>
+
+</main>
+
+
+        </main>
+        <footer class="footer flex">
+    <section class="container">
+        <nav class="footer-links">
+            
+            <a href="/">© 2021-2022 Zink&#39;s Blog</a>
+            
+        </nav>
+
+        
+    </section>
+    <script defer src="/ts/features.a534d05c446023fa2ae2a638f87cc2443ad8e49f6aaeb4d9f24ed61d53766712.js" 
+    data-enable-footnotes="false"
+    ></script>
+</footer>
+
+    </body>
+</html>
