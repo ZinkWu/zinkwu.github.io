@@ -288,8 +288,6 @@
 </li>
 <li>
 <p><code>then</code>可以在同一个<code>promise</code>上多次调用</p>
-<ol>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -311,12 +309,8 @@
 </span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ol>
-</li>
 <li>
 <p><code>then</code>必须新建且返回一个<code>promise</code></p>
-<ol>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -333,19 +327,11 @@
 <span class="nx">promise2</span> <span class="k">instanceof</span> <span class="nb">Promise</span> <span class="c1">//true
 </span></code></pre></td></tr></table>
 </div>
-</div></li>
-<li>
-<p>如果 <code>onFulfilled</code> 或 <code>onRejected</code> 抛出异常 <code>e</code>, <code>promise2</code> 必须被拒绝，并把 <code>e</code> 作为被拒绝的原因</p>
-</li>
-<li>
-<p>如果 <code>onFulfilled</code> 不是函数，且 <code>promise</code>处于已处理状态，则 <code>promise2</code> 也必须处于已处理状态，且拥有和 <code>promise</code> 已处理状态相同的值。</p>
-</li>
-<li>
-<p>如果 <code>onRejected</code> 不是函数，且 <code>promise</code> 处于已拒绝状态，则 <code>promise2</code> 必须处于已拒绝状态，且拥有和 <code>promise</code> 相同的拒绝原因</p>
-</li>
-<li>
-<p>2.2.7.1 如果 <code>onFulfilled</code> 或 <code>onRejected</code> 返回值 <code>x</code>，执行<code>Promise</code>解决步骤 <code>[[Resolve]](promise2, x)</code></p>
-</li>
+</div><ol>
+<li>如果 <code>onFulfilled</code> 或 <code>onRejected</code> 抛出异常 <code>e</code>, <code>promise2</code> 必须被拒绝，并把 <code>e</code> 作为被拒绝的原因</li>
+<li>如果 <code>onFulfilled</code> 不是函数，且 <code>promise</code>处于已处理状态，则 <code>promise2</code> 也必须处于已处理状态，且拥有和 <code>promise</code> 已处理状态相同的值。</li>
+<li>如果 <code>onRejected</code> 不是函数，且 <code>promise</code> 处于已拒绝状态，则 <code>promise2</code> 必须处于已拒绝状态，且拥有和 <code>promise</code> 相同的拒绝原因</li>
+<li>2.2.7.1 如果 <code>onFulfilled</code> 或 <code>onRejected</code> 返回值 <code>x</code>，执行<code>Promise</code>解决步骤 <code>[[Resolve]](promise2, x)</code></li>
 </ol>
 </li>
 <li>
@@ -365,8 +351,6 @@
 </li>
 <li>
 <p>如果<code>x</code>是一个<code>Promise</code>对象，接收其状态</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -389,16 +373,10 @@
 </span><span class="c1"></span><span class="nx">promise2</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="nx">result</span><span class="p">.</span><span class="nx">value</span> <span class="c1">//true !!!这里的 value 属性实际是不能访问的，这里只是为了演示
 </span></code></pre></td></tr></table>
 </div>
-</div></li>
-<li>
-<p>当<code>x</code>处于<code>pending</code>状态时，<code>promise2</code>也必须保持未处理状态，直到<code>x</code>被处理或拒绝</p>
-</li>
-<li>
-<p>当<code>x</code>处于<code>fulfilled</code>状态时，<code>promise2</code>也必须处于<code>fulfilled</code>状态，且值相同</p>
-</li>
-<li>
-<p>当<code>x</code>处于<code>rejected</code>状态时，<code>promise2</code>也必须处于<code>rejected</code>状态，且拒绝的原因相同</p>
-</li>
+</div><ul>
+<li>当<code>x</code>处于<code>pending</code>状态时，<code>promise2</code>也必须保持未处理状态，直到<code>x</code>被处理或拒绝</li>
+<li>当<code>x</code>处于<code>fulfilled</code>状态时，<code>promise2</code>也必须处于<code>fulfilled</code>状态，且值相同</li>
+<li>当<code>x</code>处于<code>rejected</code>状态时，<code>promise2</code>也必须处于<code>rejected</code>状态，且拒绝的原因相同</li>
 </ul>
 </li>
 <li>
@@ -406,8 +384,6 @@
 <ul>
 <li>
 <p>用<code>x.then</code>代替<code>then</code></p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -417,8 +393,6 @@
 </code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p>如果在获取<code>x.then</code>的过程中抛出异常<code>e</code>，则拒绝<code>promise2</code>并用<code>e</code>作为拒绝的原因</p>
 <ul>
@@ -427,8 +401,6 @@
 </li>
 <li>
 <p>如果<code>x.then</code>是一个函数（这时就可以将<code>x</code>视为<code>thenable</code>，因为它具有<code>then</code>方法），则用<code>x</code>作为<code>this</code>调用该函数，并将<code>resolvePromise</code>作为函数的第一个参数，<code>rejectePromise</code>作为函数的第二个参数</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -448,15 +420,11 @@
 </span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p>如果/当使用值 <code>y</code> 调用 <code>resolvePromise</code> 时，运行 <code>resolveWith(promise, y)</code>（这里其实就有点递归的味道了，规范也确实提到了这种方法可能会导致无限递归，如果<code>thenable</code>的<code>then</code>方法返回一个<code>thenable</code>2，且<code>thenable2</code>的<code>then</code>也返回一个<code>thenable3</code>···，一直这样套娃，就会无限递归，最后爆栈了）</p>
 </li>
 <li>
 <p>如果/当使用 <code>r</code> 作为原因调用 <code>rejectPromise</code> 时，用 <code>r</code> 拒绝 <code>promise</code>。</p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -478,12 +446,8 @@
 </code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p>上面两句话的意思就是说，<code>x</code>作为<code>thenable</code>，可以定义自己的<code>then</code>方法，且在其中自由决定调用<code>resolve</code>还是<code>reject</code></p>
-<ul>
-<li>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -509,8 +473,6 @@
 </span></code></pre></td></tr></table>
 </div>
 </div></li>
-</ul>
-</li>
 <li>
 <p>如果同时调用 <code>resolvePromise</code> 和 <code>rejectPromise</code>，或者对同一个参数进行多次调用，则第一次调用优先，并且忽略任何后来的的调用（这里就是<code>onFulfilled</code>和<code>onRejected</code>的特征）</p>
 </li>

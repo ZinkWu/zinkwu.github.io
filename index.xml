@@ -192,8 +192,6 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;then&lt;/code&gt;可以在同一个&lt;code&gt;promise&lt;/code&gt;上多次调用&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -215,12 +213,8 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;code&gt;then&lt;/code&gt;必须新建且返回一个&lt;code&gt;promise&lt;/code&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -237,19 +231,11 @@
 &lt;span class=&#34;nx&#34;&gt;promise2&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;instanceof&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Promise&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//true
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果 &lt;code&gt;onFulfilled&lt;/code&gt; 或 &lt;code&gt;onRejected&lt;/code&gt; 抛出异常 &lt;code&gt;e&lt;/code&gt;, &lt;code&gt;promise2&lt;/code&gt; 必须被拒绝，并把 &lt;code&gt;e&lt;/code&gt; 作为被拒绝的原因&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果 &lt;code&gt;onFulfilled&lt;/code&gt; 不是函数，且 &lt;code&gt;promise&lt;/code&gt;处于已处理状态，则 &lt;code&gt;promise2&lt;/code&gt; 也必须处于已处理状态，且拥有和 &lt;code&gt;promise&lt;/code&gt; 已处理状态相同的值。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果 &lt;code&gt;onRejected&lt;/code&gt; 不是函数，且 &lt;code&gt;promise&lt;/code&gt; 处于已拒绝状态，则 &lt;code&gt;promise2&lt;/code&gt; 必须处于已拒绝状态，且拥有和 &lt;code&gt;promise&lt;/code&gt; 相同的拒绝原因&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;2.2.7.1 如果 &lt;code&gt;onFulfilled&lt;/code&gt; 或 &lt;code&gt;onRejected&lt;/code&gt; 返回值 &lt;code&gt;x&lt;/code&gt;，执行&lt;code&gt;Promise&lt;/code&gt;解决步骤 &lt;code&gt;[[Resolve]](promise2, x)&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;如果 &lt;code&gt;onFulfilled&lt;/code&gt; 或 &lt;code&gt;onRejected&lt;/code&gt; 抛出异常 &lt;code&gt;e&lt;/code&gt;, &lt;code&gt;promise2&lt;/code&gt; 必须被拒绝，并把 &lt;code&gt;e&lt;/code&gt; 作为被拒绝的原因&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;onFulfilled&lt;/code&gt; 不是函数，且 &lt;code&gt;promise&lt;/code&gt;处于已处理状态，则 &lt;code&gt;promise2&lt;/code&gt; 也必须处于已处理状态，且拥有和 &lt;code&gt;promise&lt;/code&gt; 已处理状态相同的值。&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;onRejected&lt;/code&gt; 不是函数，且 &lt;code&gt;promise&lt;/code&gt; 处于已拒绝状态，则 &lt;code&gt;promise2&lt;/code&gt; 必须处于已拒绝状态，且拥有和 &lt;code&gt;promise&lt;/code&gt; 相同的拒绝原因&lt;/li&gt;
+&lt;li&gt;2.2.7.1 如果 &lt;code&gt;onFulfilled&lt;/code&gt; 或 &lt;code&gt;onRejected&lt;/code&gt; 返回值 &lt;code&gt;x&lt;/code&gt;，执行&lt;code&gt;Promise&lt;/code&gt;解决步骤 &lt;code&gt;[[Resolve]](promise2, x)&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -269,8 +255,6 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果&lt;code&gt;x&lt;/code&gt;是一个&lt;code&gt;Promise&lt;/code&gt;对象，接收其状态&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -293,16 +277,10 @@
 &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;promise2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//true !!!这里的 value 属性实际是不能访问的，这里只是为了演示
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;当&lt;code&gt;x&lt;/code&gt;处于&lt;code&gt;pending&lt;/code&gt;状态时，&lt;code&gt;promise2&lt;/code&gt;也必须保持未处理状态，直到&lt;code&gt;x&lt;/code&gt;被处理或拒绝&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;当&lt;code&gt;x&lt;/code&gt;处于&lt;code&gt;fulfilled&lt;/code&gt;状态时，&lt;code&gt;promise2&lt;/code&gt;也必须处于&lt;code&gt;fulfilled&lt;/code&gt;状态，且值相同&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;当&lt;code&gt;x&lt;/code&gt;处于&lt;code&gt;rejected&lt;/code&gt;状态时，&lt;code&gt;promise2&lt;/code&gt;也必须处于&lt;code&gt;rejected&lt;/code&gt;状态，且拒绝的原因相同&lt;/p&gt;
-&lt;/li&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;当&lt;code&gt;x&lt;/code&gt;处于&lt;code&gt;pending&lt;/code&gt;状态时，&lt;code&gt;promise2&lt;/code&gt;也必须保持未处理状态，直到&lt;code&gt;x&lt;/code&gt;被处理或拒绝&lt;/li&gt;
+&lt;li&gt;当&lt;code&gt;x&lt;/code&gt;处于&lt;code&gt;fulfilled&lt;/code&gt;状态时，&lt;code&gt;promise2&lt;/code&gt;也必须处于&lt;code&gt;fulfilled&lt;/code&gt;状态，且值相同&lt;/li&gt;
+&lt;li&gt;当&lt;code&gt;x&lt;/code&gt;处于&lt;code&gt;rejected&lt;/code&gt;状态时，&lt;code&gt;promise2&lt;/code&gt;也必须处于&lt;code&gt;rejected&lt;/code&gt;状态，且拒绝的原因相同&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -310,8 +288,6 @@
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;用&lt;code&gt;x.then&lt;/code&gt;代替&lt;code&gt;then&lt;/code&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -321,8 +297,6 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果在获取&lt;code&gt;x.then&lt;/code&gt;的过程中抛出异常&lt;code&gt;e&lt;/code&gt;，则拒绝&lt;code&gt;promise2&lt;/code&gt;并用&lt;code&gt;e&lt;/code&gt;作为拒绝的原因&lt;/p&gt;
 &lt;ul&gt;
@@ -331,8 +305,6 @@
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果&lt;code&gt;x.then&lt;/code&gt;是一个函数（这时就可以将&lt;code&gt;x&lt;/code&gt;视为&lt;code&gt;thenable&lt;/code&gt;，因为它具有&lt;code&gt;then&lt;/code&gt;方法），则用&lt;code&gt;x&lt;/code&gt;作为&lt;code&gt;this&lt;/code&gt;调用该函数，并将&lt;code&gt;resolvePromise&lt;/code&gt;作为函数的第一个参数，&lt;code&gt;rejectePromise&lt;/code&gt;作为函数的第二个参数&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -352,15 +324,11 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果/当使用值 &lt;code&gt;y&lt;/code&gt; 调用 &lt;code&gt;resolvePromise&lt;/code&gt; 时，运行 &lt;code&gt;resolveWith(promise, y)&lt;/code&gt;（这里其实就有点递归的味道了，规范也确实提到了这种方法可能会导致无限递归，如果&lt;code&gt;thenable&lt;/code&gt;的&lt;code&gt;then&lt;/code&gt;方法返回一个&lt;code&gt;thenable&lt;/code&gt;2，且&lt;code&gt;thenable2&lt;/code&gt;的&lt;code&gt;then&lt;/code&gt;也返回一个&lt;code&gt;thenable3&lt;/code&gt;···，一直这样套娃，就会无限递归，最后爆栈了）&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果/当使用 &lt;code&gt;r&lt;/code&gt; 作为原因调用 &lt;code&gt;rejectPromise&lt;/code&gt; 时，用 &lt;code&gt;r&lt;/code&gt; 拒绝 &lt;code&gt;promise&lt;/code&gt;。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -382,12 +350,8 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;上面两句话的意思就是说，&lt;code&gt;x&lt;/code&gt;作为&lt;code&gt;thenable&lt;/code&gt;，可以定义自己的&lt;code&gt;then&lt;/code&gt;方法，且在其中自由决定调用&lt;code&gt;resolve&lt;/code&gt;还是&lt;code&gt;reject&lt;/code&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -413,8 +377,6 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;如果同时调用 &lt;code&gt;resolvePromise&lt;/code&gt; 和 &lt;code&gt;rejectPromise&lt;/code&gt;，或者对同一个参数进行多次调用，则第一次调用优先，并且忽略任何后来的的调用（这里就是&lt;code&gt;onFulfilled&lt;/code&gt;和&lt;code&gt;onRejected&lt;/code&gt;的特征）&lt;/p&gt;
 &lt;/li&gt;
