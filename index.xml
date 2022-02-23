@@ -5,7 +5,42 @@
     <description>Recent content on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Fri, 11 Feb 2022 19:36:53 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Feb 2022 18:08:16 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+    <title>2022 CheckList</title>
+    <link>https://zinkwu.blog/articles/2022-checklist/</link>
+    <pubDate>Wed, 23 Feb 2022 18:08:16 +0000</pubDate>
+    
+    <guid>https://zinkwu.blog/articles/2022-checklist/</guid>
+    <description>
+        &lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 回去上班&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 读完 Vue2 &amp;amp; Vue3 的两本基于源码的书&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 读完《数据结构与算法图解》并实践&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 反复阅读《CSS 世界》&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 学习 TS &amp;amp; React 并实践&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 阅读《HTTP 权威指南》前四章&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 学习写 Rust&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 多写记录反思&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 如果有可能的话，继续打鼓吧&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最重要的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 英语报班&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 将英语用于日常生活&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 尽量在互联网上脱离简中环境&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 褪去那些华而不实的东西&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; 
+    src=&#34;https://zinkwu.blog/last-hope.jpg&#34; 
+    alt=&#34;last hope&#34; 
+     
+    width=591 
+    height=&#34;1280&#34;  /&gt;&lt;/p&gt;
+
+    </description>
+    </item>
+    
     <item>
     <title>Event Loop Promise async/await 总结</title>
     <link>https://zinkwu.blog/articles/event-loop-promise-async-await/</link>

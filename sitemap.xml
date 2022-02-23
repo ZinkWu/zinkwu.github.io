@@ -3,20 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://zinkwu.blog/</loc>
-    <lastmod>2022-02-18T18:40:04+00:00</lastmod>
+    <lastmod>2022-02-23T18:30:57+00:00</lastmod>
     <priority>0</priority>
   </url><url>
+    <loc>https://zinkwu.blog/tags/2022/</loc>
+    <lastmod>2022-02-23T18:30:57+00:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/2022-checklist/</loc>
+    <lastmod>2022-02-23T18:30:57+00:00</lastmod>
+  </url><url>
     <loc>https://zinkwu.blog/articles/</loc>
-    <lastmod>2022-02-18T18:40:04+00:00</lastmod>
-  </url><url>
-    <loc>https://zinkwu.blog/articles/event-loop-promise-async-await/</loc>
-    <lastmod>2022-02-18T18:40:04+00:00</lastmod>
-  </url><url>
-    <loc>https://zinkwu.blog/tags/javascript/</loc>
-    <lastmod>2022-02-18T18:40:04+00:00</lastmod>
+    <lastmod>2022-02-23T18:30:57+00:00</lastmod>
   </url><url>
     <loc>https://zinkwu.blog/tags/</loc>
-    <lastmod>2022-02-18T18:40:04+00:00</lastmod>
+    <lastmod>2022-02-23T18:30:57+00:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/articles/event-loop-promise-async-await/</loc>
+    <lastmod>2022-02-18T18:43:48+00:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/tags/javascript/</loc>
+    <lastmod>2022-02-18T18:43:48+00:00</lastmod>
   </url><url>
     <loc>https://zinkwu.blog/articles/whats-inheritance/</loc>
     <lastmod>2022-02-10T18:20:38+00:00</lastmod>
