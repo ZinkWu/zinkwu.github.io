@@ -134,16 +134,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">debounce</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
-    <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-      <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span>
-    <span class="p">},</span> <span class="mi">500</span><span class="p">)</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">debounce</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="mi">500</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="什么是节流如何实现">
@@ -173,18 +173,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">throttle</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">canRun</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> 
-  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">canRun</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-    <span class="nx">canRun</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> 
-    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span> 
-      <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-      <span class="nx">canRun</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="p">},</span> <span class="mi">500</span><span class="p">);</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">throttle</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">canRun</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">canRun</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">canRun</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">      <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">canRun</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="mi">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h3 id="区别">

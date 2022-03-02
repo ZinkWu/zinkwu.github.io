@@ -151,18 +151,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="nx">fn</span><span class="p">()</span>    <span class="c1">// undefined
-</span><span class="c1"></span>
-<span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>    <span class="c1">// 1
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fn</span><span class="p">()</span>    <span class="c1">// undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>    <span class="c1">// 1
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>call</code> 是如何将 <code>this</code> 绑定到 <code>obj</code> 上的呢？
 我们换一种思路，先看下面的代码</p>
@@ -178,15 +178,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="nx">fn</span><span class="p">(){</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span>    <span class="c1">// 1
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span>    <span class="c1">// 1
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这段代码大家都能理解对吧，接下来，让我们打开脑洞。</p>
 <p>如果 <code>call</code> 只是将调用函数绑定到了第一个参数身上呢？似乎一切就说得通了</p>
@@ -213,26 +213,26 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myCall</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">){</span>
-    <span class="nx">context</span> <span class="o">=</span> <span class="nx">context</span> <span class="o">||</span> <span class="nb">window</span>
-    <span class="c1">//首先判断是否传入第一个参数，如果没传，那么 this 就默认绑定到 window
-</span><span class="c1"></span>
-    <span class="nx">context</span><span class="p">.</span><span class="nx">callFn</span> <span class="o">=</span> <span class="k">this</span>
-    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">callFn</span><span class="p">()</span>
-    <span class="k">delete</span> <span class="nx">context</span><span class="p">.</span><span class="nx">callFn</span>
-    <span class="k">return</span> <span class="nx">result</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span>
-<span class="p">}</span>
-
-<span class="nx">fn</span><span class="p">.</span><span class="nx">myCall</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>    <span class="c1">// 1
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myCall</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">context</span> <span class="o">=</span> <span class="nx">context</span> <span class="o">||</span> <span class="nb">window</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//首先判断是否传入第一个参数，如果没传，那么 this 就默认绑定到 window
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="nx">context</span><span class="p">.</span><span class="nx">callFn</span> <span class="o">=</span> <span class="k">this</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">callFn</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="nx">context</span><span class="p">.</span><span class="nx">callFn</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">result</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fn</span><span class="p">.</span><span class="nx">myCall</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>    <span class="c1">// 1
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>ok，初步绑定 <code>this</code> 的工作我们已经完成，接下来思考如何将剩下的参数传给调用函数。</p>
 <p>在函数中，我们不光可以访问 <code>this</code> 还可以访问 <code>arguments</code> 这个属性，他是一个类数组，内容就是传递给函数的参数，于是与，获取参数的问题也解决了。</p>
@@ -282,49 +282,49 @@
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">val1</span><span class="p">,</span><span class="nx">val2</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;val: &#39;</span><span class="p">,</span> <span class="nx">val1</span><span class="p">,</span> <span class="nx">val2</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myCall</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">){</span>
-    <span class="nx">context</span> <span class="o">=</span> <span class="nx">context</span> <span class="o">||</span> <span class="nb">window</span>
-    <span class="kd">let</span> <span class="nx">args</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="c1">// ES5 的方法
-</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="nx">args</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-    <span class="p">}</span>
-
-    <span class="cm">/*
-</span><span class="cm">     * ES6的方法
-</span><span class="cm">     * args = [...arguments].slice(1)
-</span><span class="cm">     *
-</span><span class="cm">     * 这个做法不推荐，在实现 cal l的方法中使用 call，有点本末倒置了
-</span><span class="cm">     * args = Array.prototype.silce.call(arguments, 1)
-</span><span class="cm">     */</span>
-
-    <span class="nx">context</span><span class="p">.</span><span class="nx">callFn</span> <span class="o">=</span> <span class="k">this</span>
-
-    <span class="c1">// ES5 的做法，eval 接收一个字符串，将字符串作为 JS 代码执行
-</span><span class="c1"></span>    <span class="c1">// 字符串模板会将数组变量展开
-</span><span class="c1"></span>    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="sb">`context.callFn(</span><span class="si">${</span><span class="nx">args</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
-
-    <span class="cm">/*
-</span><span class="cm">     * ES6 的做法
-</span><span class="cm">     * let result =  context.callFn(...args)
-</span><span class="cm">     */</span>
-
-    <span class="k">delete</span>  <span class="nx">context</span><span class="p">.</span><span class="nx">callFn</span>
-    <span class="k">return</span> <span class="nx">result</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span>
-<span class="p">}</span>
-
-<span class="nx">fn</span><span class="p">.</span><span class="nx">myCall</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>    <span class="c1">// 1, val: 61, 11
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">val1</span><span class="p">,</span><span class="nx">val2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;val: &#39;</span><span class="p">,</span> <span class="nx">val1</span><span class="p">,</span> <span class="nx">val2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myCall</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">context</span> <span class="o">=</span> <span class="nx">context</span> <span class="o">||</span> <span class="nb">window</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">args</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// ES5 的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">args</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * ES6的方法
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * args = [...arguments].slice(1)
+</span></span></span><span class="line"><span class="cl"><span class="cm">     *
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 这个做法不推荐，在实现 cal l的方法中使用 call，有点本末倒置了
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * args = Array.prototype.silce.call(arguments, 1)
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">context</span><span class="p">.</span><span class="nx">callFn</span> <span class="o">=</span> <span class="k">this</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// ES5 的做法，eval 接收一个字符串，将字符串作为 JS 代码执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 字符串模板会将数组变量展开
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="sb">`context.callFn(</span><span class="si">${</span><span class="nx">args</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * ES6 的做法
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * let result =  context.callFn(...args)
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span>  <span class="nx">context</span><span class="p">.</span><span class="nx">callFn</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">result</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fn</span><span class="p">.</span><span class="nx">myCall</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>    <span class="c1">// 1, val: 61, 11
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="实现-apply">
     <a href="#%e5%ae%9e%e7%8e%b0-apply" class="anchor">
@@ -360,26 +360,26 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span><span class="nx">val2</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;val&#39;</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">val2</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myApply</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">){</span>
-    <span class="nx">context</span> <span class="o">=</span> <span class="nx">context</span> <span class="o">||</span> <span class="nb">window</span>
-    <span class="kd">let</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="nx">context</span><span class="p">.</span><span class="nx">applyFn</span> <span class="o">=</span> <span class="k">this</span>
-    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="sb">`context.applyFn(</span><span class="si">${</span><span class="nx">args</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
-    <span class="k">delete</span> <span class="nx">context</span><span class="p">.</span><span class="nx">applyFn</span>
-    <span class="k">return</span> <span class="nx">result</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span>
-<span class="p">}</span>
-
-<span class="nx">fn</span><span class="p">.</span><span class="nx">myApply</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="p">[</span><span class="mi">66</span><span class="p">,</span><span class="mi">11</span><span class="p">])</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span><span class="nx">val2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;val&#39;</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">val2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myApply</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">context</span> <span class="o">=</span> <span class="nx">context</span> <span class="o">||</span> <span class="nb">window</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">context</span><span class="p">.</span><span class="nx">applyFn</span> <span class="o">=</span> <span class="k">this</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="sb">`context.applyFn(</span><span class="si">${</span><span class="nx">args</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span> <span class="nx">context</span><span class="p">.</span><span class="nx">applyFn</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">result</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fn</span><span class="p">.</span><span class="nx">myApply</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="p">[</span><span class="mi">66</span><span class="p">,</span><span class="mi">11</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="实现-bind">
     <a href="#%e5%ae%9e%e7%8e%b0-bind" class="anchor">
@@ -422,33 +422,33 @@
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span><span class="nx">val2</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;val&#39;</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">val2</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myBind</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">){</span>
-<span class="c1">// 这里直接使用我们自己实现的 call 函数
-</span><span class="c1"></span>    <span class="kd">let</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">myCall</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
-
-<span class="c1">//     ES5 的写法
-</span><span class="c1">//     let me = this;
-</span><span class="c1">//     return function () {
-</span><span class="c1">//         return me.myApply(context, args.slice(1))
-</span><span class="c1">//     }
-</span><span class="c1"></span>    <span class="k">return</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-<span class="c1">//     使用已经实现的 apply 函数来绑定 this 并且 return 这个函数
-</span><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="nx">myApply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-
-<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span>
-<span class="p">}</span>
-
-<span class="nx">fn</span><span class="p">.</span><span class="nx">myBind</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span><span class="nx">val2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;val&#39;</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">val2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">myBind</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 这里直接使用我们自己实现的 call 函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">let</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">myCall</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//     ES5 的写法
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     let me = this;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     return function () {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//         return me.myApply(context, args.slice(1))
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//     使用已经实现的 apply 函数来绑定 this 并且 return 这个函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">this</span><span class="p">.</span><span class="nx">myApply</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fn</span><span class="p">.</span><span class="nx">myBind</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>

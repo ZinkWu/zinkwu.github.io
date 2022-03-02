@@ -148,19 +148,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
-<span class="p">}</span>
-
-<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;window&#39;</span>
-
-<span class="nx">fn</span><span class="p">()</span>  <span class="c1">//window
-</span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//1
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;window&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//window
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//1
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>首先我们要明确一点 ，<code>this</code> 不是编写代码时就绑定的，而是运行时绑定的。
 比如 <code>fn()</code> 在调用时，所处的环境是 <code>global</code>，所以他的 <code>this</code> 就是 <code>window</code>
@@ -193,12 +193,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="nx">fn</span><span class="p">()</span>  <span class="c1">//window
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//window
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>fn()</code> 被独立调用，此时的 <code>this</code> 是默认绑定，所以 <code>this</code> 指向了 <code>window</code></p>
 </li>
@@ -219,17 +219,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
-<span class="p">}</span>
-
-<span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//1
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//1
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>首先，<code>fn</code>被声明然后作为引用属性添加到 <code>obj</code> 上，我们知道，对象、函数、数组等都是引用类型，存在于堆内存中，以传值（地址）的方式被变量引 用，所以 <code>obj</code> 并不包含或者拥有函数 <code>fn</code></p>
 <p><code>obj.fn()</code> 的调用点以 <code>obj</code> 环境来引用函数，所以，函数在被调用的时间节点上拥有对象环境 <code>obj</code></p>
@@ -253,22 +253,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">fn</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">a</span><span class="o">:</span> <span class="mi">42</span><span class="p">,</span>
-  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
-<span class="p">};</span>
-
-<span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">a</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-  <span class="nx">obj2</span><span class="o">:</span> <span class="nx">obj2</span>
-<span class="p">};</span>
-
-<span class="nx">obj1</span><span class="p">.</span><span class="nx">obj2</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span> <span class="c1">// 42
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">42</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">obj2</span><span class="o">:</span> <span class="nx">obj2</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">obj1</span><span class="p">.</span><span class="nx">obj2</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span> <span class="c1">// 42
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -292,21 +292,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span>
-
-<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;window&#39;</span>
-
-<span class="nx">foo</span><span class="p">()</span>  <span class="c1">//window
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;window&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">foo</span><span class="p">()</span>  <span class="c1">//window
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这段代码，将 <code>foo</code> 引用了 <code>obj.fn</code>，但是在 <code>foo()</code>，他依然属于函数独立调用，所以 <code>this</code> 指向全局作用域的 <code>a</code></p>
 <div class="highlight"><div class="chroma">
@@ -329,23 +329,23 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span>
-  <span class="nx">f</span><span class="p">()</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
-<span class="p">}</span>
-
-<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;window&#39;</span>
-
-<span class="nx">bar</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">)</span>  <span class="c1">//  window
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">f</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;window&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">bar</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">)</span>  <span class="c1">//  window
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这段代码中，将 <code>obj.fn</code> 作为回调函数传入 <code>bar</code> 中，但是 <code>bar</code> 调用回调函数的方式依然属于 函数独立调用，所以 <code>this</code> 指向 全局作用域的 <code>a</code></p>
 <div class="highlight"><div class="chroma">
@@ -364,19 +364,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
-<span class="p">}</span>
-
-<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;window&#39;</span>
-
-<span class="nx">setTimeout</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1">//  window
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;window&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1">//  window
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这段代码跟上一段一样。</p>
 </li>
@@ -401,21 +401,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">fn</span><span class="p">(){</span>
-    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
-    <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
-  <span class="p">},</span>
-  <span class="nx">arrow</span><span class="p">(){</span>
-    <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">)}</span>
-    <span class="nx">setTimeout</span><span class="p">(</span> <span class="nx">a</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//window
-</span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">arrow</span><span class="p">()</span>  <span class="c1">//对象obj
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">arrow</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setTimeout</span><span class="p">(</span> <span class="nx">a</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//window
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">arrow</span><span class="p">()</span>  <span class="c1">//对象obj
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>obj.fn</code> 中 <code>setTimeout</code> 中的回调函数相当于函数独立调用，<code>this</code> 指向 <code>window</code>，<code>obj.arrow</code> 中的 <code>setTimeout</code> 中的回调函数是一个 <strong>箭头函数</strong>，而箭头函数的 <code>this</code> 时函数定义生效时所在的对象，也就是 <code>obj</code>，<code>arrow</code> 中的 <code>a</code> 引用了箭头函数，而这个箭头函数是在 <code>arrow</code> 执行时定义的，所以所指向的对象环境为 <code>obj</code>。</p>
 </li>

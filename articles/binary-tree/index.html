@@ -160,32 +160,32 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
-</span><span class="cm">* Definition for a binary tree node.
-</span><span class="cm">* function TreeNode(val) {
-</span><span class="cm">*     this.val = val;
-</span><span class="cm">*     this.left = this.right = null;
-</span><span class="cm">* }
-</span><span class="cm">*/</span>
-<span class="cm">/**
-</span><span class="cm">* @param {TreeNode} root
-</span><span class="cm">* @return {number[]}
-</span><span class="cm">*/</span>
-
-<span class="c1">//  递归
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">preorderTraversal</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
-   <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
-   <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
-       <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
-           <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
-           <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
-           <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span>
-       <span class="p">}</span>
-   <span class="p">}</span>
-   <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span>
-   <span class="k">return</span> <span class="nx">result</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">* Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm">* function TreeNode(val) {
+</span></span></span><span class="line"><span class="cl"><span class="cm">*     this.val = val;
+</span></span></span><span class="line"><span class="cl"><span class="cm">*     this.left = this.right = null;
+</span></span></span><span class="line"><span class="cl"><span class="cm">* }
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @param {TreeNode} root
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @return {number[]}
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//  递归
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">preorderTraversal</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">       <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">           <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="nx">result</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>二叉树中序遍历
@@ -223,31 +223,31 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
-</span><span class="cm"> * Definition for a binary tree node.
-</span><span class="cm"> * function TreeNode(val) {
-</span><span class="cm"> *     this.val = val;
-</span><span class="cm"> *     this.left = this.right = null;
-</span><span class="cm"> * }
-</span><span class="cm"> */</span>
-<span class="cm">/**
-</span><span class="cm"> * @param {TreeNode} root
-</span><span class="cm"> * @return {number[]}
-</span><span class="cm"> */</span>
-
-<span class="kr">const</span> <span class="nx">inorderTraversal</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
-            <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nx">result</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * function TreeNode(val) {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.val = val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.left = this.right = null;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * }
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {TreeNode} root
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return {number[]}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">inorderTraversal</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">result</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>二叉树后序遍历
@@ -284,30 +284,30 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
-</span><span class="cm"> * Definition for a binary tree node.
-</span><span class="cm"> * function TreeNode(val) {
-</span><span class="cm"> *     this.val = val;
-</span><span class="cm"> *     this.left = this.right = null;
-</span><span class="cm"> * }
-</span><span class="cm"> */</span>
-<span class="cm">/**
-</span><span class="cm"> * @param {TreeNode} root
-</span><span class="cm"> * @return {number[]}
-</span><span class="cm"> */</span>
-<span class="kr">const</span> <span class="nx">postorderTraversal</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span>
-            <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nx">result</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * function TreeNode(val) {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.val = val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.left = this.right = null;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * }
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {TreeNode} root
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return {number[]}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">postorderTraversal</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">result</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>二叉树层序遍历
@@ -346,33 +346,33 @@
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
-</span><span class="cm"> * Definition for a binary tree node.
-</span><span class="cm"> * function TreeNode(val) {
-</span><span class="cm"> *     this.val = val;
-</span><span class="cm"> *     this.left = this.right = null;
-</span><span class="cm"> * }
-</span><span class="cm"> */</span>
-<span class="cm">/**
-</span><span class="cm"> * @param {TreeNode} root
-</span><span class="cm"> * @return {number[][]}
-</span><span class="cm"> */</span>
-
-<span class="c1">// 广度优先 前序
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">levelOrder</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">levels</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="nx">levels</span>
-    <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">level</span><span class="p">){</span>
-        <span class="kd">let</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">levels</span><span class="p">.</span><span class="nx">length</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">len</span> <span class="o">===</span> <span class="nx">level</span><span class="p">)</span> <span class="nx">levels</span><span class="p">.</span><span class="nx">push</span><span class="p">([])</span> 
-        <span class="nx">levels</span><span class="p">[</span><span class="nx">level</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nx">levels</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * function TreeNode(val) {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.val = val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.left = this.right = null;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * }
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {TreeNode} root
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return {number[][]}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 广度优先 前序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">levelOrder</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">levels</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">root</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="nx">levels</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">level</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">levels</span><span class="p">.</span><span class="nx">length</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nx">len</span> <span class="o">===</span> <span class="nx">level</span><span class="p">)</span> <span class="nx">levels</span><span class="p">.</span><span class="nx">push</span><span class="p">([])</span> 
+</span></span><span class="line"><span class="cl">        <span class="nx">levels</span><span class="p">[</span><span class="nx">level</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">level</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fn</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">levels</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>二叉树最大深度
@@ -408,29 +408,29 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
-</span><span class="cm"> * Definition for a binary tree node.
-</span><span class="cm"> * function TreeNode(val) {
-</span><span class="cm"> *     this.val = val;
-</span><span class="cm"> *     this.left = this.right = null;
-</span><span class="cm"> * }
-</span><span class="cm"> */</span>
-<span class="cm">/**
-</span><span class="cm"> * @param {TreeNode} root
-</span><span class="cm"> * @return {number}
-</span><span class="cm"> */</span>
-<span class="kd">var</span> <span class="nx">maxDepth</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 写递归的一个重要思路就是相信这个函数能完成任务，此题带有动态规划的感觉
-</span><span class="c1"></span>    <span class="c1">// 最大深度 = 1+Math.max(根节点的左子树最大深度, 根节点的右子树最大深度)
-</span><span class="c1"></span>    <span class="c1">// 根节点的左子树最大深度 = 1 + Math.max(左子树的左子树最大深度, 左子树的右子树最大深度)
-</span><span class="c1"></span>    <span class="c1">// 根节点的右子树最大深度 = 1 + Math.max(右子树的左子树最大深度, 右子树的右子树最大深度)
-</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">root</span><span class="p">){</span>
-        <span class="k">return</span> <span class="mi">0</span>
-    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-        <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">maxDepth</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">),</span> <span class="nx">maxDepth</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * function TreeNode(val) {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.val = val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.left = this.right = null;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * }
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {TreeNode} root
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return {number}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">maxDepth</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 写递归的一个重要思路就是相信这个函数能完成任务，此题带有动态规划的感觉
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 最大深度 = 1+Math.max(根节点的左子树最大深度, 根节点的右子树最大深度)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 根节点的左子树最大深度 = 1 + Math.max(左子树的左子树最大深度, 左子树的右子树最大深度)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 根节点的右子树最大深度 = 1 + Math.max(右子树的左子树最大深度, 右子树的右子树最大深度)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">root</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">maxDepth</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">left</span><span class="p">),</span> <span class="nx">maxDepth</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">right</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>对称二叉树
@@ -464,27 +464,27 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
-</span><span class="cm"> * Definition for a binary tree node.
-</span><span class="cm"> * function TreeNode(val) {
-</span><span class="cm"> *     this.val = val;
-</span><span class="cm"> *     this.left = this.right = null;
-</span><span class="cm"> * }
-</span><span class="cm"> */</span>
-<span class="cm">/**
-</span><span class="cm"> * @param {TreeNode} root
-</span><span class="cm"> * @return {boolean}
-</span><span class="cm"> */</span>
-<span class="kd">var</span> <span class="nx">isSymmetric</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">isMirroTree</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">root</span><span class="p">)</span>
-<span class="p">};</span>
-
-<span class="kd">function</span> <span class="nx">isMirroTree</span><span class="p">(</span><span class="nx">root_1</span><span class="p">,</span> <span class="nx">root_2</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">root_1</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">root_2</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">root_1</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">root_2</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span>
-    <span class="k">return</span> <span class="p">(</span><span class="nx">root_1</span><span class="p">.</span><span class="nx">val</span> <span class="o">===</span> <span class="nx">root_2</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isMirroTree</span><span class="p">(</span><span class="nx">root_1</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">root_2</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isMirroTree</span><span class="p">(</span><span class="nx">root_1</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">root_2</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * function TreeNode(val) {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.val = val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.left = this.right = null;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * }
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {TreeNode} root
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return {boolean}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">isSymmetric</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">isMirroTree</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">root</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">isMirroTree</span><span class="p">(</span><span class="nx">root_1</span><span class="p">,</span> <span class="nx">root_2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">root_1</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">root_2</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">root_1</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">root_2</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="nx">root_1</span><span class="p">.</span><span class="nx">val</span> <span class="o">===</span> <span class="nx">root_2</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isMirroTree</span><span class="p">(</span><span class="nx">root_1</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">root_2</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isMirroTree</span><span class="p">(</span><span class="nx">root_1</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">root_2</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>路径总和
@@ -526,34 +526,34 @@
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
-</span><span class="cm"> * Definition for a binary tree node.
-</span><span class="cm"> * function TreeNode(val) {
-</span><span class="cm"> *     this.val = val;
-</span><span class="cm"> *     this.left = this.right = null;
-</span><span class="cm"> * }
-</span><span class="cm"> */</span>
-<span class="cm">/**
-</span><span class="cm"> * @param {TreeNode} root
-</span><span class="cm"> * @param {number} sum
-</span><span class="cm"> * @return {boolean}
-</span><span class="cm"> */</span>
-<span class="kd">var</span> <span class="nx">hasPathSum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">helper</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
-<span class="p">};</span>
-
-<span class="kd">function</span> <span class="nx">helper</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sum</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">){</span>
-        <span class="k">return</span> <span class="kc">false</span>
-    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-        <span class="nx">sum</span> <span class="o">-=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">val</span>
-    <span class="p">}</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">){</span>
-        <span class="k">return</span> <span class="nx">sum</span> <span class="o">===</span> <span class="mi">0</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">helper</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span> <span class="o">||</span> <span class="nx">helper</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for a binary tree node.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * function TreeNode(val) {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.val = val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.left = this.right = null;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * }
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {TreeNode} root
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {number} sum
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return {boolean}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">hasPathSum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">helper</span><span class="p">(</span><span class="nx">root</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">helper</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sum</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">sum</span> <span class="o">-=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">val</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">sum</span> <span class="o">===</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">helper</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span> <span class="o">||</span> <span class="nx">helper</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span> <span class="nx">sum</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>

@@ -174,69 +174,65 @@
 </span><span class="lnt">54
 </span><span class="lnt">55
 </span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">方法一</span><span class="err">：</span><span class="nx">遍历链表</span><span class="err">，</span><span class="nx">使用unshift将元素添加到数组头部</span>
-<span class="cm">/**
-</span><span class="cm"> * Definition for singly-linked list.
-</span><span class="cm"> * function ListNode(val) {
-</span><span class="cm"> *     this.val = val;
-</span><span class="cm"> *     this.next = null;
-</span><span class="cm"> * }
-</span><span class="cm"> */</span>
-<span class="cm">/**
-</span><span class="cm"> * @param {ListNode} head
-</span><span class="cm"> * @return {number[]}
-</span><span class="cm"> */</span>
-<span class="kd">var</span> <span class="nx">reversePrint</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">head</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">head</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="p">[]</span>
-   <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
-   <span class="k">while</span><span class="p">(</span><span class="nx">head</span><span class="p">){</span>
-       <span class="nx">result</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">head</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
-       <span class="nx">head</span> <span class="o">=</span> <span class="nx">head</span><span class="p">.</span><span class="nx">next</span>
-   <span class="p">}</span>
-   <span class="k">return</span> <span class="nx">result</span>
-<span class="p">};</span>
-
-<span class="nx">方法二</span><span class="err">：</span><span class="nx">反转链表</span><span class="err">，</span><span class="nx">遍历链表将元素push到数组</span>
-<span class="cm">/**
-</span><span class="cm"> * Definition for singly-linked list.
-</span><span class="cm"> * function ListNode(val) {
-</span><span class="cm"> *     this.val = val;
-</span><span class="cm"> *     this.next = null;
-</span><span class="cm"> * }
-</span><span class="cm"> */</span>
-<span class="cm">/**
-</span><span class="cm"> * @param {ListNode} head
-</span><span class="cm"> * @return {number[]}
-</span><span class="cm"> */</span>
-<span class="kd">var</span> <span class="nx">reversePrint</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">head</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">head</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="p">[]</span>
-   <span class="nx">head</span> <span class="o">=</span> <span class="nx">reverseList</span><span class="p">(</span><span class="nx">head</span><span class="p">)</span>
-   <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
-   <span class="k">while</span><span class="p">(</span><span class="nx">head</span><span class="p">){</span>
-       <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">head</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
-       <span class="nx">head</span> <span class="o">=</span> <span class="nx">head</span><span class="p">.</span><span class="nx">next</span>
-   <span class="p">}</span>
-   <span class="k">return</span> <span class="nx">result</span>
-<span class="p">};</span>
-
-<span class="kd">function</span> <span class="nx">reverseList</span><span class="p">(</span><span class="nx">head</span><span class="p">){</span>
-    <span class="kd">let</span> <span class="nx">next</span><span class="p">;</span>
-    <span class="kd">let</span> <span class="nx">pre</span><span class="p">;</span>
-    <span class="k">while</span><span class="p">(</span><span class="nx">head</span><span class="p">){</span>
-        <span class="nx">next</span> <span class="o">=</span> <span class="nx">head</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
-        <span class="nx">head</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">pre</span><span class="p">;</span>
-        <span class="nx">pre</span> <span class="o">=</span> <span class="nx">head</span><span class="p">;</span>
-        <span class="nx">head</span> <span class="o">=</span> <span class="nx">next</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">pre</span>
-<span class="p">}</span>
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="nx">方法一</span><span class="err">：</span><span class="nx">遍历链表</span><span class="err">，</span><span class="nx">使用unshift将元素添加到数组头部</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for singly-linked list.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * function ListNode(val) {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.val = val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.next = null;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * }
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {ListNode} head
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return {number[]}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">reversePrint</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">head</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">head</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">   <span class="k">while</span><span class="p">(</span><span class="nx">head</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">       <span class="nx">result</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">head</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="nx">head</span> <span class="o">=</span> <span class="nx">head</span><span class="p">.</span><span class="nx">next</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="nx">result</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">方法二</span><span class="err">：</span><span class="nx">反转链表</span><span class="err">，</span><span class="nx">遍历链表将元素push到数组</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for singly-linked list.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * function ListNode(val) {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.val = val;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.next = null;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * }
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {ListNode} head
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return {number[]}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">reversePrint</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">head</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">head</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">head</span> <span class="o">=</span> <span class="nx">reverseList</span><span class="p">(</span><span class="nx">head</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">   <span class="k">while</span><span class="p">(</span><span class="nx">head</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">       <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">head</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="nx">head</span> <span class="o">=</span> <span class="nx">head</span><span class="p">.</span><span class="nx">next</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="nx">result</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">reverseList</span><span class="p">(</span><span class="nx">head</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">pre</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="nx">head</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">next</span> <span class="o">=</span> <span class="nx">head</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">head</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">pre</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pre</span> <span class="o">=</span> <span class="nx">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">head</span> <span class="o">=</span> <span class="nx">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">pre</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>

@@ -156,9 +156,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span> <span class="c1">//1
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span> <span class="c1">//1
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>引用类型的值是对象，保存在<strong>堆内存</strong>中，引用类型的变量的值并不是值的本身，而是这个值在堆内存中的<strong>地址</strong>（也有说法为指针，不过我个人觉得地址容易理解）。当引用类型发生值的拷贝的时候，实际上目标变量得到的是原始变量的值的地址。</p>
 <div class="highlight"><div class="chroma">
@@ -172,14 +172,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;jack&#34;</span>
-<span class="p">}</span>
-<span class="cm">/*
-</span><span class="cm">此时{name: &#34;jack&#34;}这个对象存在于堆内存中，我们假设他的地址是218
-</span><span class="cm"> */</span>
-<span class="kd">let</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="nx">obj1</span> <span class="c1">//在这个赋值操作中，传递的其实是对象在内存中的地址
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;jack&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">此时{name: &#34;jack&#34;}这个对象存在于堆内存中，我们假设他的地址是218
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="nx">obj1</span> <span class="c1">//在这个赋值操作中，传递的其实是对象在内存中的地址
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><img loading="lazy" 
     src="https://i.loli.net/2019/07/24/5d37ffa3e3db962442.png" 
@@ -209,17 +209,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;jack&#34;</span><span class="p">,</span>
-    <span class="nx">age</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-    <span class="nx">gender</span><span class="o">:</span> <span class="s2">&#34;male&#34;</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nx">copyDate</span> <span class="o">=</span> <span class="nx">data</span>
-<span class="nx">copyDate</span> <span class="o">===</span> <span class="nx">data</span> <span class="c1">//true
-</span><span class="c1"></span><span class="nx">copyDate</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;Tom&#34;</span>
-<span class="nx">copyDate</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="nx">data</span><span class="p">.</span><span class="nx">name</span> <span class="c1">//true
-</span><span class="c1"></span><span class="nx">copyDate</span> <span class="o">===</span> <span class="nx">data</span> <span class="c1">//true
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;jack&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">age</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">gender</span><span class="o">:</span> <span class="s2">&#34;male&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">copyDate</span> <span class="o">=</span> <span class="nx">data</span>
+</span></span><span class="line"><span class="cl"><span class="nx">copyDate</span> <span class="o">===</span> <span class="nx">data</span> <span class="c1">//true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">copyDate</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;Tom&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">copyDate</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="nx">data</span><span class="p">.</span><span class="nx">name</span> <span class="c1">//true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">copyDate</span> <span class="o">===</span> <span class="nx">data</span> <span class="c1">//true
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面这段代码就是一个浅拷贝的例子，由此可见，浅拷贝就是<strong>目标变量</strong>得到<strong>原始变量</strong>的值后，
 不管是目标变量还是原是变量，只要值发生变化，那么两个变量都会收到影响。这一点从内存图中就可以看出，因为引用地址相同。</p>
@@ -241,11 +241,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span>
-<span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="nx">a</span>   <span class="c1">//1
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span>
+</span></span><span class="line"><span class="cl"><span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="nx">a</span>   <span class="c1">//1
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>变量b得到变量a的值，但变量b的值改变，不影响变量a，这就是深拷贝</p>
 <h2 id="存在的问题--解决方法">
@@ -284,27 +284,27 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//最容易想到的方法：遍历原始对象
-</span><span class="c1"></span><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;jack&#34;</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nx">copyObj</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">){</span>
-    <span class="nx">copyObj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
-<span class="p">}</span>
-<span class="nx">obj</span> <span class="o">===</span> <span class="nx">copyObj</span> <span class="c1">//false
-</span><span class="c1">//使用JSON
-</span><span class="c1"></span><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;alex&#34;</span><span class="p">}</span>
-<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">a</span><span class="p">))</span>
-<span class="c1">//ES6的方法
-</span><span class="c1"></span><span class="kd">let</span> <span class="nx">source</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Tom&#34;</span><span class="p">,</span>
-    <span class="nx">age</span><span class="o">:</span> <span class="mi">18</span>
-<span class="p">}</span>
-<span class="kd">let</span> <span class="nx">target</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">source</span><span class="p">)</span>
-<span class="c1">//Object.assign方法用于将原始对象的所有可枚举属性复制到目标对象上。
-</span><span class="c1"></span><span class="nx">target</span> <span class="o">===</span> <span class="nx">source</span>   <span class="c1">//false
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//最容易想到的方法：遍历原始对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;jack&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">copyObj</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">copyObj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">obj</span> <span class="o">===</span> <span class="nx">copyObj</span> <span class="c1">//false
+</span></span></span><span class="line"><span class="cl"><span class="c1">//使用JSON
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;alex&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">a</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//ES6的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">source</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Tom&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">age</span><span class="o">:</span> <span class="mi">18</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">target</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">source</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//Object.assign方法用于将原始对象的所有可枚举属性复制到目标对象上。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">target</span> <span class="o">===</span> <span class="nx">source</span>   <span class="c1">//false
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>数组的深拷贝</strong></p>
 <div class="highlight"><div class="chroma">
@@ -318,14 +318,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//最简单的方法还是遍历数组，这里就不多讲
-</span><span class="c1">//其次我们可以用到Array的方法，比如map、slice等可以返回新数组的方法
-</span><span class="c1"></span><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
-<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span> <span class="p">=&gt;</span> <span class="nx">n</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">slice</span><span class="p">()</span>
-
-<span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span> <span class="o">||</span> <span class="nx">a</span> <span class="o">===</span> <span class="nx">c</span>   <span class="c1">//false
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//最简单的方法还是遍历数组，这里就不多讲
+</span></span></span><span class="line"><span class="cl"><span class="c1">//其次我们可以用到Array的方法，比如map、slice等可以返回新数组的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span> <span class="p">=&gt;</span> <span class="nx">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">slice</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span> <span class="o">||</span> <span class="nx">a</span> <span class="o">===</span> <span class="nx">c</span>   <span class="c1">//false
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>

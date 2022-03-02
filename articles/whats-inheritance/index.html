@@ -129,22 +129,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">gender</span><span class="p">){</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">gender</span> <span class="o">=</span> <span class="nx">gender</span>
-<span class="p">}</span>
-
-<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hi</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
-	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hi, I&#39;m </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;zoe&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">)</span>
-
-<span class="nx">f</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true，ES5写法
-</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true，ES6写法, __proto__ 是浏览器厂商私建
-</span><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">gender</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">gender</span> <span class="o">=</span> <span class="nx">gender</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hi</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hi, I&#39;m </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;zoe&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;female&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">f</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true，ES5写法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true，ES6写法, __proto__ 是浏览器厂商私建
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>首先定义几个基本名词：</p>
 <ul>
@@ -180,22 +180,22 @@ Object.prototype.__proto__ === null
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Male</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">gender</span> <span class="o">=</span> <span class="s1">&#39;male&#39;</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Male</span><span class="p">(</span><span class="s2">&#34;m&#34;</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
-
-<span class="kd">function</span> <span class="nx">Female</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">gender</span> <span class="o">=</span> <span class="s1">&#39;female&#39;</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Female</span><span class="p">(</span><span class="s2">&#34;f&#34;</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Male</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">gender</span> <span class="o">=</span> <span class="s1">&#39;male&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Male</span><span class="p">(</span><span class="s2">&#34;m&#34;</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Female</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">gender</span> <span class="o">=</span> <span class="s1">&#39;female&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Female</span><span class="p">(</span><span class="s2">&#34;f&#34;</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在上面这个例子中，我们定义了两个构造函数，分别来构造男性和女性，但是 name 和 age 重复了，此时我们可以创建一个父类，来优化掉重复的代码</p>
 <div class="highlight"><div class="chroma">
@@ -229,34 +229,34 @@ Object.prototype.__proto__ === null
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Human</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
-<span class="p">}</span>
-
-<span class="nx">Human</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
-	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hi, I&#39;m </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb"> years old`</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c1">// ok，有父类了，接下来考虑如何继承
-</span><span class="c1"></span>
-<span class="kd">function</span> <span class="nx">Male</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
-	<span class="c1">// 父类实例化对象的属性我也得有
-</span><span class="c1"></span>	<span class="nx">Human</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span>
-	<span class="k">this</span><span class="p">.</span><span class="nx">gender</span> <span class="o">=</span> <span class="s1">&#39;male&#39;</span>
-<span class="p">}</span>
-
-<span class="c1">// 还得能访问到父类原型上的方法
-</span><span class="c1"></span><span class="nx">Male</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Human</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span> <span class="c1">//Object.create 创建一个新的对象，新对象的 __proto__ 指向参数对象
-</span><span class="c1"></span><span class="nx">Male</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nx">Male</span> <span class="c1">// 上一步中构造函数被 Human 覆盖掉了，这里改回来
-</span><span class="c1"></span>
-<span class="c1">// 到这里就结束了，Male 的 prototype 是一个空对象，并且 prototype 的 __proto__ 指向了 Human 的 prototype
-</span><span class="c1">// 其实 ES6 Class 的继承 extends 也是做了和上面两行代码相同的事
-</span><span class="c1"></span>
-<span class="kd">let</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Male</span><span class="p">(</span><span class="s2">&#34;zink&#34;</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
-<span class="nx">m</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">()</span> <span class="c1">// sayHi是 Human 原型上的方法
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="c1">// Male {name: &#39;zink&#39;, age: 24, gender: &#39;male&#39;}
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Human</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Human</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hi, I&#39;m </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb"> years old`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// ok，有父类了，接下来考虑如何继承
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Male</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 父类实例化对象的属性我也得有
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">Human</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">this</span><span class="p">.</span><span class="nx">gender</span> <span class="o">=</span> <span class="s1">&#39;male&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 还得能访问到父类原型上的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Male</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Human</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span> <span class="c1">//Object.create 创建一个新的对象，新对象的 __proto__ 指向参数对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Male</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nx">Male</span> <span class="c1">// 上一步中构造函数被 Human 覆盖掉了，这里改回来
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 到这里就结束了，Male 的 prototype 是一个空对象，并且 prototype 的 __proto__ 指向了 Human 的 prototype
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 其实 ES6 Class 的继承 extends 也是做了和上面两行代码相同的事
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Male</span><span class="p">(</span><span class="s2">&#34;zink&#34;</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">m</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">()</span> <span class="c1">// sayHi是 Human 原型上的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="c1">// Male {name: &#39;zink&#39;, age: 24, gender: &#39;male&#39;}
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>

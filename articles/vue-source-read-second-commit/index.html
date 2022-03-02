@@ -144,23 +144,23 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kd">function</span> <span class="nx">bind</span> <span class="p">(</span><span class="nx">variable</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">els</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;[&#39;</span> <span class="o">+</span> <span class="nx">bindingMark</span> <span class="o">+</span> <span class="s1">&#39;=&#34;&#39;</span> <span class="o">+</span> <span class="nx">variable</span> <span class="o">+</span> <span class="s1">&#39;&#34;]&#39;</span><span class="p">)</span>
-    <span class="p">;[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">els</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">e</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="nx">bindingMark</span><span class="p">)</span>
-    <span class="p">})</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">variable</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
-        <span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">els</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">newVal</span>
-        <span class="p">})</span>
-    <span class="p">},</span>
-    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">value</span>
-    <span class="p">}</span>
-  <span class="p">})</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">bind</span> <span class="p">(</span><span class="nx">variable</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">els</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;[&#39;</span> <span class="o">+</span> <span class="nx">bindingMark</span> <span class="o">+</span> <span class="s1">&#39;=&#34;&#39;</span> <span class="o">+</span> <span class="nx">variable</span> <span class="o">+</span> <span class="s1">&#39;&#34;]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">;[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">els</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">e</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="nx">bindingMark</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">variable</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">els</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">newVal</span>
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">bindings</span><span class="p">[</span><span class="nx">variable</span><span class="p">].</span><span class="nx">value</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>首先会找到含有<code>bindingMark=...</code> Attribute的 Element，并在bindings对应的key中记录它，接着再删除元素中的<code>bindingMark</code> Attribute，最后使用<code>Object.defineProperty</code>来做到 data bind，这也是 Vue 数据响应的核心。</p>
 <p>接着遍历<code>initData</code>，将<code>initData</code>中的值浅拷贝给<code>data</code>，上面已经使用<code>Object.defineProperty</code>定义了<code>data</code>对于<code>{{}}</code>中值的<code>get</code>和<code>set</code>。所以此时将<code>initData</code>中的键值对拷贝到<code>data</code>中，就会触发对应 property 的<code>set</code>，这里也就完成了对模板的数据更新。</p>

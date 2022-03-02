@@ -142,8 +142,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-HTML" data-lang="HTML"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -179,37 +179,37 @@
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="kd">let</span> <span class="nx">inputElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)</span>
-<span class="kd">let</span> <span class="nx">canRun</span> <span class="o">=</span> <span class="kc">true</span>
-
-<span class="nx">inputElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;compositionstart&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">)</span>
-  <span class="nx">canRun</span> <span class="o">=</span> <span class="kc">false</span>
-<span class="p">})</span>
-
-<span class="nx">inputElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;compositionend&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">)</span>
-  <span class="nx">canRun</span> <span class="o">=</span> <span class="kc">true</span>
-<span class="p">})</span>
-
-<span class="nx">inputElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="nx">debounce</span><span class="p">(</span><span class="nx">fn</span><span class="p">))</span>
-
-<span class="kd">function</span> <span class="nx">debounce</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
-    <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-      <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span>
-    <span class="p">},</span> <span class="mi">500</span><span class="p">)</span>
-  <span class="p">};</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
-  <span class="k">if</span><span class="p">(</span><span class="nx">canRun</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">inputElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">canRun</span> <span class="o">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">inputElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;compositionstart&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">canRun</span> <span class="o">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">inputElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;compositionend&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">canRun</span> <span class="o">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">inputElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="nx">debounce</span><span class="p">(</span><span class="nx">fn</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">debounce</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="mi">500</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span><span class="nx">canRun</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>当我们切换到中文输入法输入时开始在 input 中输入时，<code>compositionstart</code> 的回调函数被调用，将 <code>canRun</code> 状态切换为 <code>false</code>，半秒后执行 <code>fn</code> 时，<code>canRun</code> 状态为 <code>false</code>，不进行任何操作，当中文输入结束后，<code>compositionend</code> 的回调函数被调用，将 <code>canRun</code> 变为 <code>true</code>，此时 <code>input</code> 的回调函数调用，就可以执行后续的操作了，其实就是利用了 <code>compositionstart</code> 和 <code>compositionend</code> 来切换状态机的状态</p>
 

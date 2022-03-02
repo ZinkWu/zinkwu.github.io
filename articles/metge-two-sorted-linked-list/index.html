@@ -151,36 +151,36 @@ l1 和 l2 均按 非递减顺序 排列
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
-</span><span class="cm"> * Definition for singly-linked list.
-</span><span class="cm"> * function ListNode(val, next) {
-</span><span class="cm"> *     this.val = (val===undefined ? 0 : val)
-</span><span class="cm"> *     this.next = (next===undefined ? null : next)
-</span><span class="cm"> * }
-</span><span class="cm"> */</span>
-<span class="cm">/**
-</span><span class="cm"> * @param {ListNode} l1
-</span><span class="cm"> * @param {ListNode} l2
-</span><span class="cm"> * @return {ListNode}
-</span><span class="cm"> */</span>
-<span class="kd">var</span> <span class="nx">mergeTwoLists</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">l1</span><span class="p">,</span> <span class="nx">l2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">l1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">l2</span><span class="p">){</span>
-        <span class="k">return</span> <span class="kc">null</span>
-    <span class="p">}</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">l1</span><span class="p">){</span>
-        <span class="k">return</span> <span class="nx">l2</span>
-    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">l2</span><span class="p">){</span>
-        <span class="k">return</span> <span class="nx">l1</span>
-    <span class="p">}</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">l1</span><span class="p">.</span><span class="nx">val</span> <span class="o">&lt;=</span> <span class="nx">l2</span><span class="p">.</span><span class="nx">val</span><span class="p">){</span>
-        <span class="nx">l1</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">mergeTwoLists</span><span class="p">(</span><span class="nx">l1</span><span class="p">.</span><span class="nx">next</span><span class="p">,</span> <span class="nx">l2</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nx">l1</span>
-    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-        <span class="nx">l2</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">mergeTwoLists</span><span class="p">(</span><span class="nx">l1</span><span class="p">,</span> <span class="nx">l2</span><span class="p">.</span><span class="nx">next</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nx">l2</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for singly-linked list.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * function ListNode(val, next) {
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.val = (val===undefined ? 0 : val)
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *     this.next = (next===undefined ? null : next)
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * }
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {ListNode} l1
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {ListNode} l2
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return {ListNode}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">mergeTwoLists</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">l1</span><span class="p">,</span> <span class="nx">l2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">l1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">l2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">l1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">l2</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">l2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">l1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">l1</span><span class="p">.</span><span class="nx">val</span> <span class="o">&lt;=</span> <span class="nx">l2</span><span class="p">.</span><span class="nx">val</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">l1</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">mergeTwoLists</span><span class="p">(</span><span class="nx">l1</span><span class="p">.</span><span class="nx">next</span><span class="p">,</span> <span class="nx">l2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">l1</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">l2</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">mergeTwoLists</span><span class="p">(</span><span class="nx">l1</span><span class="p">,</span> <span class="nx">l2</span><span class="p">.</span><span class="nx">next</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">l2</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>

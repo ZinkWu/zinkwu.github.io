@@ -141,15 +141,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt install zsh
-
-zsh --version
-
-which zsh
-
-<span class="c1"># $ZSH_PATH 是 which zsh 的值</span>
-chsh -s <span class="nv">$ZSH_PATH</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install zsh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">zsh --version
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">which zsh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># $ZSH_PATH 是 which zsh 的值</span>
+</span></span><span class="line"><span class="cl">chsh -s <span class="nv">$ZSH_PATH</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>安装 oh-my-zsh</p>
 <div class="highlight"><div class="chroma">
@@ -161,12 +161,12 @@ chsh -s <span class="nv">$ZSH_PATH</span>
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sh -c <span class="s2">&#34;</span><span class="k">$(</span>wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span>
-
-<span class="c1"># or</span>
-
-sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sh -c <span class="s2">&#34;</span><span class="k">$(</span>wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>此时你的根目录下应该有一个 <code>.oh-my-zsh</code> 目录
 <img loading="lazy" 
@@ -180,8 +180,8 @@ sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://r
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">vim ~/.zshrc
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">vim ~/.zshrc
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>找到 <code>ZSH_THEME=</code> 这一行，修改为 <code>ys</code>，然后在 <code>bash</code> 中运行 <code>source ~/.zshrc</code></p>
 <p>你也可以先花一些时间在<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes">这里</a>找到你喜欢的主题</p>
@@ -196,13 +196,13 @@ sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://r
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">vim ~/.zshrc
-
-<span class="c1"># 找到 plugins=(...) 这一行</span>
-
-<span class="c1"># 我目前只使用了这些插件</span>
-<span class="nv">plugins</span><span class="o">=(</span>cp themes git git-open z zsh-autosuggestions zsh-syntax-highlighting<span class="o">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">vim ~/.zshrc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 找到 plugins=(...) 这一行</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 我目前只使用了这些插件</span>
+</span></span><span class="line"><span class="cl"><span class="nv">plugins</span><span class="o">=(</span>cp themes git git-open z zsh-autosuggestions zsh-syntax-highlighting<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>你可以在<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins">这里</a>找到 <code>oh-my-zsh</code> 自带插件的用法</p>
 <p>下面示范一下如何安装第三方插件，以 <code>zsh-autosuggestions</code> 和 <code>zsh-syntax-highlighting</code> 举例</p>
@@ -220,17 +220,17 @@ sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://r
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> ~/.oh-my-zsh/plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-
-<span class="c1"># zsh-syntax-highlighting 这个插件需要处于 plugins=(...) 的末尾</span>
-
-vim ~/.zshrc
-
-<span class="c1"># 在.zshrc 中添加下面一行</span>
-<span class="nb">source</span> ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">cd</span> ~/.oh-my-zsh/plugins
+</span></span><span class="line"><span class="cl">git clone https://github.com/zsh-users/zsh-autosuggestions
+</span></span><span class="line"><span class="cl">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># zsh-syntax-highlighting 这个插件需要处于 plugins=(...) 的末尾</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vim ~/.zshrc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在.zshrc 中添加下面一行</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="install-node">
     <a href="#install-node" class="anchor">
@@ -266,25 +266,25 @@ vim ~/.zshrc
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">export</span> <span class="nv">NVS_HOME</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.nvs&#34;</span>
-git clone https://github.com/jasongin/nvs <span class="s2">&#34;</span><span class="nv">$NVS_HOME</span><span class="s2">&#34;</span>
-. <span class="s2">&#34;</span><span class="nv">$NVS_HOME</span><span class="s2">/nvs.sh&#34;</span> install
-
-<span class="c1"># 安装最新的 LTS 版本</span>
-nvs add lts
-
-<span class="c1"># 配置为默认版本</span>
-nvs link lts
-
-<span class="c1"># 安装其他版本尝尝鲜</span>
-nvs add <span class="m">12</span>
-
-<span class="c1"># 查看已安装的版本</span>
-nvs ls
-
-<span class="c1"># 在当前 Shell 切换版本</span>
-nvs use <span class="m">12</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">NVS_HOME</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.nvs&#34;</span>
+</span></span><span class="line"><span class="cl">git clone https://github.com/jasongin/nvs <span class="s2">&#34;</span><span class="nv">$NVS_HOME</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">. <span class="s2">&#34;</span><span class="nv">$NVS_HOME</span><span class="s2">/nvs.sh&#34;</span> install
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装最新的 LTS 版本</span>
+</span></span><span class="line"><span class="cl">nvs add lts
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置为默认版本</span>
+</span></span><span class="line"><span class="cl">nvs link lts
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装其他版本尝尝鲜</span>
+</span></span><span class="line"><span class="cl">nvs add <span class="m">12</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看已安装的版本</span>
+</span></span><span class="line"><span class="cl">nvs ls
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在当前 Shell 切换版本</span>
+</span></span><span class="line"><span class="cl">nvs use <span class="m">12</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Node 版本大于等于 16.9.0 之后默认安装 corepack，相当于包管理器的管理器</p>
 <div class="highlight"><div class="chroma">
@@ -298,14 +298,14 @@ nvs use <span class="m">12</span>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">corepack <span class="nb">enable</span>
-
-yarn -v
-which yarn
-
-pnpm -v
-which pnpm
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">corepack <span class="nb">enable</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">yarn -v
+</span></span><span class="line"><span class="cl">which yarn
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">pnpm -v
+</span></span><span class="line"><span class="cl">which pnpm
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>使用 nvs 时，默认的 prefix 是当前激活的 Node.js 版本的安装路径。</p>
 <p>带来一个问题是：切换版本之后，之前安装全局命令模块需要重新安装，非常不方便。</p>
@@ -316,9 +316,9 @@ which pnpm
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">mkdir -p ~/.npm-global
-npm config <span class="nb">set</span> prefix ~/.npm-global
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mkdir -p ~/.npm-global
+</span></span><span class="line"><span class="cl">npm config <span class="nb">set</span> prefix ~/.npm-global
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>还需要配置环境变量到 <code>~/.zshrc</code> 中</p>
 <div class="highlight"><div class="chroma">
@@ -327,9 +327,9 @@ npm config <span class="nb">set</span> prefix ~/.npm-global
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;export PATH=~/.npm-global/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span> &gt;&gt; ~/.zshrc
-<span class="nb">source</span> ~/.zshrc
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;export PATH=~/.npm-global/bin:</span><span class="nv">$PATH</span><span class="s2">&#34;</span> &gt;&gt; ~/.zshrc
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.zshrc
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>ok，这样我们已经得到一个基本可用的开发环境了</p>
 <hr>
@@ -358,14 +358,14 @@ npm config <span class="nb">set</span> prefix ~/.npm-global
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt install proxychains
-
-mkdir ~/.proxychains
-
-sudo cp /etc/proxychains.conf ~/.proxychains/proxychains.conf
-
-vim ~/.zshrc
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt install proxychains
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">mkdir ~/.proxychains
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo cp /etc/proxychains.conf ~/.proxychains/proxychains.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">vim ~/.zshrc
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在<code>.zshrc</code>中添加以下代码</p>
 <div class="highlight"><div class="chroma">
@@ -378,13 +378,13 @@ vim ~/.zshrc
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-.zshrc" data-lang=".zshrc"><span class="nv">windows_ip</span><span class="o">=</span><span class="k">$(</span>cat /etc/resolv.conf <span class="p">|</span> grep nameserver <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
-sed -i <span class="s1">&#39;/socks5/d&#39;</span> <span class="nv">$HOME</span>/.proxychains/proxychains.conf
-<span class="c1"># &#39;$windows_ip&#39; 1080&#39; 请将 1080 改为你自己的代理端口</span>
-sed -i <span class="s1">&#39;$a socks5 &#39;</span><span class="nv">$windows_ip</span><span class="s1">&#39; 1080&#39;</span> <span class="nv">$HOME</span>/.proxychains/proxychains.conf
-
-<span class="nb">alias</span> <span class="nv">ss</span><span class="o">=</span><span class="s1">&#39;proxychains&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-.zshrc" data-lang=".zshrc"><span class="line"><span class="cl"><span class="nv">windows_ip</span><span class="o">=</span><span class="k">$(</span>cat /etc/resolv.conf <span class="p">|</span> grep nameserver <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">sed -i <span class="s1">&#39;/socks5/d&#39;</span> <span class="nv">$HOME</span>/.proxychains/proxychains.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;$windows_ip&#39; 1080&#39; 请将 1080 改为你自己的代理端口</span>
+</span></span><span class="line"><span class="cl">sed -i <span class="s1">&#39;$a socks5 &#39;</span><span class="nv">$windows_ip</span><span class="s1">&#39; 1080&#39;</span> <span class="nv">$HOME</span>/.proxychains/proxychains.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span> <span class="nv">ss</span><span class="o">=</span><span class="s1">&#39;proxychains&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>于是我们可以 <code>ss git clone xxx</code></p>
 <p><strong>如果 proxychains 连接 windows 代理超时，请关闭防火墙</strong></p>

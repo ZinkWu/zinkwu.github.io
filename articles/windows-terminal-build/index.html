@@ -171,8 +171,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">iwr </span><span class="n">-useb</span> <span class="n">get</span><span class="p">.</span><span class="n">scoop</span><span class="p">.</span><span class="n">sh</span> <span class="p">|</span> <span class="nb">iex
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">iwr </span><span class="n">-useb</span> <span class="n">get</span><span class="p">.</span><span class="n">scoop</span><span class="p">.</span><span class="n">sh</span> <span class="p">|</span> <span class="nb">iex
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="安装-neovim">
     <a href="#%e5%ae%89%e8%a3%85-neovim" class="anchor">
@@ -190,9 +190,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">scoop</span> <span class="n">install</span> <span class="n">neovim</span> <span class="n">gcc</span>
-<span class="n">nvim</span> <span class="p">-</span><span class="n">-version</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">scoop</span> <span class="n">install</span> <span class="n">neovim</span> <span class="n">gcc</span>
+</span></span><span class="line"><span class="cl"><span class="n">nvim</span> <span class="p">-</span><span class="n">-version</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="powershell-配置">
     <a href="#powershell-%e9%85%8d%e7%bd%ae" class="anchor">
@@ -210,9 +210,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># 确认处于 user\xxx 目录下</span>
-<span class="n">nvim</span> <span class="p">.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">user_profile</span><span class="p">.</span><span class="n">ps1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># 确认处于 user\xxx 目录下</span>
+</span></span><span class="line"><span class="cl"><span class="n">nvim</span> <span class="p">.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">user_profile</span><span class="p">.</span><span class="n">ps1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>让我们先搞点 alias</p>
 <div class="highlight"><div class="chroma">
@@ -223,11 +223,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-.config\powershell\user_profile.ps1" data-lang=".config\powershell\user_profile.ps1"><span class="c"># Alias</span>
-<span class="nb">Set-Alias</span> <span class="n">vim</span> <span class="n">nvim</span>
-<span class="nb">Set-Alias</span> <span class="n">ll</span> <span class="nb">ls
-</span><span class="nb">Set-Alias</span> <span class="n">g</span> <span class="n">git</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-.config\powershell\user_profile.ps1" data-lang=".config\powershell\user_profile.ps1"><span class="line"><span class="cl"><span class="c"># Alias</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-Alias</span> <span class="n">vim</span> <span class="n">nvim</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-Alias</span> <span class="n">ll</span> <span class="nb">ls
+</span></span></span><span class="line"><span class="cl"><span class="nb">Set-Alias</span> <span class="n">g</span> <span class="n">git</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -236,10 +236,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="k">if</span><span class="p">(!(</span><span class="nb">Test-Path</span> <span class="nv">$PROFILE</span><span class="p">.</span><span class="n">CurrentUserCurrentHost</span><span class="p">))</span> <span class="p">{</span><span class="nb">New-Item</span> <span class="n">-Type</span> <span class="n">File</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span><span class="p">.</span><span class="n">CurrentUserCurrentHost</span> <span class="n">-Force</span><span class="p">}</span>
-
-<span class="n">nvim</span> <span class="nv">$PROFILE</span><span class="p">.</span><span class="n">CurrentUserCurrentHost</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="k">if</span><span class="p">(!(</span><span class="nb">Test-Path</span> <span class="nv">$PROFILE</span><span class="p">.</span><span class="n">CurrentUserCurrentHost</span><span class="p">))</span> <span class="p">{</span><span class="nb">New-Item</span> <span class="n">-Type</span> <span class="n">File</span> <span class="n">-Path</span> <span class="nv">$PROFILE</span><span class="p">.</span><span class="n">CurrentUserCurrentHost</span> <span class="n">-Force</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">nvim</span> <span class="nv">$PROFILE</span><span class="p">.</span><span class="n">CurrentUserCurrentHost</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>输入以下代码并:wq</p>
 <div class="highlight"><div class="chroma">
@@ -247,8 +247,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Documents\PowerShell\Microsoft.PowerShell_profile.ps1" data-lang="Documents\PowerShell\Microsoft.PowerShell_profile.ps1"><span class="p">.</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">config</span><span class="p">\</span><span class="n">powershell</span><span class="p">\</span><span class="n">user_profile</span><span class="p">.</span><span class="n">ps1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Documents\PowerShell\Microsoft.PowerShell_profile.ps1" data-lang="Documents\PowerShell\Microsoft.PowerShell_profile.ps1"><span class="line"><span class="cl"><span class="p">.</span> <span class="nv">$env:USERPROFILE</span><span class="p">\.</span><span class="n">config</span><span class="p">\</span><span class="n">powershell</span><span class="p">\</span><span class="n">user_profile</span><span class="p">.</span><span class="n">ps1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>完成以上操作我们就可以重启 Terminal</p>
 <div class="highlight"><div class="chroma">
@@ -258,10 +258,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># 验证我们的配置文件是否生效</span>
-<span class="n">ll</span>
-<span class="n">g</span> <span class="p">-</span><span class="n">-version</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># 验证我们的配置文件是否生效</span>
+</span></span><span class="line"><span class="cl"><span class="n">ll</span>
+</span></span><span class="line"><span class="cl"><span class="n">g</span> <span class="p">-</span><span class="n">-version</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="安装-posh-gitoh-my-poshterminal-icons">
     <a href="#%e5%ae%89%e8%a3%85-posh-gitoh-my-poshterminal-icons" class="anchor">
@@ -282,12 +282,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Install-Module</span> <span class="nb">posh-git</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-Force</span>
-<span class="nb">Install-Module</span> <span class="nb">oh-my</span><span class="n">-posh</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-Force</span>
-<span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="nb">Terminal-Icons</span> <span class="n">-Repository</span> <span class="n">PSGallery</span> <span class="n">-Force</span>
-<span class="c"># 确保当前在 user/xxx 下</span>
-<span class="n">vim</span> <span class="p">./.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">user_profile</span><span class="p">.</span><span class="n">ps1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="nb">posh-git</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-Force</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="nb">oh-my</span><span class="n">-posh</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-Force</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="nb">Terminal-Icons</span> <span class="n">-Repository</span> <span class="n">PSGallery</span> <span class="n">-Force</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 确保当前在 user/xxx 下</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim</span> <span class="p">./.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">user_profile</span><span class="p">.</span><span class="n">ps1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>导入模块</p>
 <div class="highlight"><div class="chroma">
@@ -302,15 +302,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-.config\powershell\user_profile.ps1" data-lang=".config\powershell\user_profile.ps1"><span class="c"># Prompt</span>
-<span class="nb">Import-Module</span> <span class="nb">posh-git</span>
-<span class="nb">Import-Module</span> <span class="nb">oh-my</span><span class="n">-posh</span>
-<span class="nb">Set-PoshPrompt</span> <span class="n">-Theme</span> <span class="n">JanDeDobbeleer</span> 
-
-<span class="c"># Icons</span>
-<span class="nb">Import-Module</span> <span class="n">-Name</span> <span class="nb">Terminal-Icons</span>
-<span class="c"># 设置主题，后续可以根据自己的喜好更改，google oh-my-posh theme 查看相关主题</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-.config\powershell\user_profile.ps1" data-lang=".config\powershell\user_profile.ps1"><span class="line"><span class="cl"><span class="c"># Prompt</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Import-Module</span> <span class="nb">posh-git</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Import-Module</span> <span class="nb">oh-my</span><span class="n">-posh</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-PoshPrompt</span> <span class="n">-Theme</span> <span class="n">JanDeDobbeleer</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Icons</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Import-Module</span> <span class="n">-Name</span> <span class="nb">Terminal-Icons</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 设置主题，后续可以根据自己的喜好更改，google oh-my-posh theme 查看相关主题</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>此时你终端内的图标应该会改变
 <img loading="lazy" 
@@ -333,8 +333,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">z</span> <span class="n">-Force</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">z</span> <span class="n">-Force</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="安装-psreadline">
     <a href="#%e5%ae%89%e8%a3%85-psreadline" class="anchor">
@@ -353,10 +353,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">PSReadLine</span> <span class="n">-AllowPrerelease</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-Force</span> <span class="n">-SkipPublisherCheck</span>
-
-<span class="n">vim</span> <span class="p">./.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">user_profile</span><span class="p">.</span><span class="n">ps1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">PSReadLine</span> <span class="n">-AllowPrerelease</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-Force</span> <span class="n">-SkipPublisherCheck</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">vim</span> <span class="p">./.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">user_profile</span><span class="p">.</span><span class="n">ps1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -368,13 +368,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-.config\powershell\user_profile.ps1" data-lang=".config\powershell\user_profile.ps1"><span class="c"># PSReadLine</span>
-<span class="nb">Set-PSReadLineOption</span> <span class="n">-EditMode</span> <span class="n">Emacs</span>
-<span class="nb">Set-PSReadLineOption</span> <span class="n">-BellStyle</span> <span class="n">None</span>
-<span class="nb">Set-PSReadLineKeyHandler</span> <span class="n">-Chord</span> <span class="s1">&#39;Ctrl+d&#39;</span> <span class="n">-Function</span> <span class="n">DeleteChar</span>
-<span class="nb">Set-PSReadLineOption</span> <span class="n">-PredictionSource</span> <span class="nb">History
-</span><span class="nb">Set-PSReadLineOption</span> <span class="n">-PredictionViewStyle</span> <span class="n">ListView</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-.config\powershell\user_profile.ps1" data-lang=".config\powershell\user_profile.ps1"><span class="line"><span class="cl"><span class="c"># PSReadLine</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-PSReadLineOption</span> <span class="n">-EditMode</span> <span class="n">Emacs</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-PSReadLineOption</span> <span class="n">-BellStyle</span> <span class="n">None</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-PSReadLineKeyHandler</span> <span class="n">-Chord</span> <span class="s1">&#39;Ctrl+d&#39;</span> <span class="n">-Function</span> <span class="n">DeleteChar</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-PSReadLineOption</span> <span class="n">-PredictionSource</span> <span class="nb">History
+</span></span></span><span class="line"><span class="cl"><span class="nb">Set-PSReadLineOption</span> <span class="n">-PredictionViewStyle</span> <span class="n">ListView</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>此时你输入命令得到的结果应该跟我差不多
 <img loading="lazy" 
@@ -398,10 +398,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">PSFzf</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-Force</span>
-
-<span class="n">vim</span> <span class="p">./.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">user_profile</span><span class="p">.</span><span class="n">ps1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Install-Module</span> <span class="n">-Name</span> <span class="n">PSFzf</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span> <span class="n">-Force</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">vim</span> <span class="p">./.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">user_profile</span><span class="p">.</span><span class="n">ps1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -410,10 +410,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-.config\powershell\user_profile.ps1" data-lang=".config\powershell\user_profile.ps1"><span class="c"># Fzf</span>
-<span class="nb">Import-Module</span> <span class="n">PSFzf</span>
-<span class="nb">Set-PsFzfOption</span> <span class="n">-PSReadlineChordProvider</span> <span class="s1">&#39;Ctrl+f&#39;</span> <span class="n">-PSReadlineChordReverseHistory</span> <span class="s1">&#39;Ctrl+r&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-.config\powershell\user_profile.ps1" data-lang=".config\powershell\user_profile.ps1"><span class="line"><span class="cl"><span class="c"># Fzf</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Import-Module</span> <span class="n">PSFzf</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-PsFzfOption</span> <span class="n">-PSReadlineChordProvider</span> <span class="s1">&#39;Ctrl+f&#39;</span> <span class="n">-PSReadlineChordReverseHistory</span> <span class="s1">&#39;Ctrl+r&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>用法基本跟 fzf 相似，可查看文档学习: <a href="https://github.com/kelleyma49/PSFzf">https://github.com/kelleyma49/PSFzf</a></p>
 <h2 id="搞个-which-和-touch-命令出来">
@@ -432,9 +432,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c"># 编辑 powershell 配置文件</span>
-<span class="n">vim</span> <span class="p">./.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">user_profile</span><span class="p">.</span><span class="n">ps1</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># 编辑 powershell 配置文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim</span> <span class="p">./.</span><span class="n">config</span><span class="p">/</span><span class="n">powershell</span><span class="p">/</span><span class="n">user_profile</span><span class="p">.</span><span class="n">ps1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -461,28 +461,28 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-.config\powershell\user_profile.ps1" data-lang=".config\powershell\user_profile.ps1"><span class="c"># Utilities</span>
-<span class="k">function</span> <span class="n">which</span> <span class="p">(</span><span class="nv">$command</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nb">Get-Command</span> <span class="n">-Name</span> <span class="nv">$command</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span> <span class="p">|</span>
-    <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Path</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
-<span class="p">}</span>
-<span class="k">function</span> <span class="n">touch</span><span class="p">(</span><span class="nv">$name</span><span class="p">){</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$file_path</span> <span class="p">=</span> <span class="nb">Split-Path</span> <span class="n">-Path</span> <span class="nv">$name</span>
-    <span class="nv">$file_name</span> <span class="p">=</span> <span class="nb">Split-Path</span> <span class="n">-Path</span> <span class="nv">$name</span> <span class="n">-Leaf</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$file_path</span> <span class="o">-eq</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nv">$file_path</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">-Not</span> <span class="p">(</span><span class="nb">Test-Path</span><span class="p">(</span><span class="nv">$file_path</span><span class="p">)))</span> <span class="p">{</span>
-      <span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="s2">&#34;directory&#34;</span> <span class="n">-Path</span> <span class="nv">$file_path</span>
-    <span class="p">}</span>
-    <span class="nb">New-Item</span> <span class="n">-Path</span> <span class="nv">$file_path</span> <span class="n">-Name</span> <span class="nv">$file_name</span> <span class="n">-ItemType</span> <span class="s2">&#34;file&#34;</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span>
-     <span class="nb">Write-Host</span> <span class="s2">&#34;Command to create new file.&#34;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-.config\powershell\user_profile.ps1" data-lang=".config\powershell\user_profile.ps1"><span class="line"><span class="cl"><span class="c"># Utilities</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="n">which</span> <span class="p">(</span><span class="nv">$command</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">Get-Command</span> <span class="n">-Name</span> <span class="nv">$command</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span> <span class="p">|</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">Path</span> <span class="n">-ErrorAction</span> <span class="n">SilentlyContinue</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="n">touch</span><span class="p">(</span><span class="nv">$name</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file_path</span> <span class="p">=</span> <span class="nb">Split-Path</span> <span class="n">-Path</span> <span class="nv">$name</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$file_name</span> <span class="p">=</span> <span class="nb">Split-Path</span> <span class="n">-Path</span> <span class="nv">$name</span> <span class="n">-Leaf</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$file_path</span> <span class="o">-eq</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nv">$file_path</span> <span class="p">=</span> <span class="s2">&#34;.&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">-Not</span> <span class="p">(</span><span class="nb">Test-Path</span><span class="p">(</span><span class="nv">$file_path</span><span class="p">)))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">New-Item</span> <span class="n">-ItemType</span> <span class="s2">&#34;directory&#34;</span> <span class="n">-Path</span> <span class="nv">$file_path</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">New-Item</span> <span class="n">-Path</span> <span class="nv">$file_path</span> <span class="n">-Name</span> <span class="nv">$file_name</span> <span class="n">-ItemType</span> <span class="s2">&#34;file&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="nb">Write-Host</span> <span class="s2">&#34;Command to create new file.&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img loading="lazy" 
     src="https://s2.loli.net/2021/12/23/Pjw3EvoxZgMIqh5.png" 

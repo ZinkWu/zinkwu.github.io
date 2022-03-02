@@ -231,26 +231,26 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">fn</span> <span class="o">=</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">resolve</span><span class="p">({</span>
-    	<span class="nx">info</span><span class="o">:</span> <span class="s1">&#39;success&#39;</span>
-    <span class="p">})</span>
-  <span class="p">},</span> <span class="mi">3000</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
-
-<span class="kr">const</span> <span class="nx">onFulfilled</span> <span class="o">=</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kr">const</span> <span class="nx">onRejected</span> <span class="o">=</span> <span class="p">(</span><span class="nx">reson</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reason</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">onFulfilled</span><span class="p">,</span> <span class="nx">onRejected</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">fn</span> <span class="o">=</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">resolve</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    	<span class="nx">info</span><span class="o">:</span> <span class="s1">&#39;success&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="mi">3000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">onFulfilled</span> <span class="o">=</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">onRejected</span> <span class="o">=</span> <span class="p">(</span><span class="nx">reson</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">reason</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">onFulfilled</span><span class="p">,</span> <span class="nx">onRejected</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面的代码是一个基本的<code>Promise</code>使用方法，对于<code>Promise</code>的学习，个人认为直接看 A+ 规范比较好，接下来我会基于 A+ 规范的角度来详细介绍 <code>Promise</code>。</p>
 <p><code>Promise</code>表示构造函数，<code>promise</code>表示实例化对象。</p>
@@ -299,14 +299,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">)</span>
-
-<span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(...,</span> <span class="p">...)</span>
-<span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(...,</span> <span class="p">...)</span>
-<span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(...,</span> <span class="p">...)</span>
-
-<span class="c1">// onFulfilled/onRejected 必须按照书写顺序执行
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(...,</span> <span class="p">...)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(...,</span> <span class="p">...)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(...,</span> <span class="p">...)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// onFulfilled/onRejected 必须按照书写顺序执行
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -320,12 +320,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">)</span>
-
-<span class="kr">const</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">onFulfilled</span><span class="p">,</span> <span class="nx">onRejected</span><span class="p">)</span>
-
-<span class="nx">promise2</span> <span class="k">instanceof</span> <span class="nb">Promise</span> <span class="c1">//true
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">onFulfilled</span><span class="p">,</span> <span class="nx">onRejected</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">promise2</span> <span class="k">instanceof</span> <span class="nb">Promise</span> <span class="c1">//true
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ol>
 <li>如果 <code>onFulfilled</code> 或 <code>onRejected</code> 抛出异常 <code>e</code>, <code>promise2</code> 必须被拒绝，并把 <code>e</code> 作为被拒绝的原因</li>
@@ -363,15 +363,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">)</span>
-<span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
-<span class="nx">cosnt</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">result</span> <span class="c1">//return 了一个 fulfilled 状态的 Promise 对象
-</span><span class="c1"></span><span class="p">})</span>
-
-<span class="nx">promise2</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">result</span><span class="p">.</span><span class="nx">state</span> <span class="c1">//true !!!这里的 state 属性实际是不能访问的，这里只是为了演示
-</span><span class="c1"></span><span class="nx">promise2</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="nx">result</span><span class="p">.</span><span class="nx">value</span> <span class="c1">//true !!!这里的 value 属性实际是不能访问的，这里只是为了演示
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">cosnt</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">result</span> <span class="c1">//return 了一个 fulfilled 状态的 Promise 对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">promise2</span><span class="p">.</span><span class="nx">state</span> <span class="o">===</span> <span class="nx">result</span><span class="p">.</span><span class="nx">state</span> <span class="c1">//true !!!这里的 state 属性实际是不能访问的，这里只是为了演示
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">promise2</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="nx">result</span><span class="p">.</span><span class="nx">value</span> <span class="c1">//true !!!这里的 value 属性实际是不能访问的，这里只是为了演示
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>当<code>x</code>处于<code>pending</code>状态时，<code>promise2</code>也必须保持未处理状态，直到<code>x</code>被处理或拒绝</li>
@@ -389,8 +389,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">then</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">then</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">then</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">then</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -411,13 +411,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">then</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">then</span>
-<span class="k">if</span><span class="p">(</span><span class="nx">then</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">){</span>
-  <span class="nx">then</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">resolvePromise</span><span class="p">,</span> <span class="nx">rejectPromise</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c1">// 看懂了吗，就跟我们的 promise.then(onFulfilled, onRejected)一样，只不过改用 call 调用并改变 this 指向
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">then</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">then</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">then</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">then</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">resolvePromise</span><span class="p">,</span> <span class="nx">rejectPromise</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 看懂了吗，就跟我们的 promise.then(onFulfilled, onRejected)一样，只不过改用 call 调用并改变 this 指向
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -436,14 +436,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">(</span><span class="nx">then</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">then</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span>
-    <span class="k">this</span><span class="p">,</span>
-    <span class="p">(</span><span class="nx">y</span><span class="o">:</span> <span class="nx">any</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">resolveWith</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">},</span>
-    <span class="p">(</span><span class="nx">r</span><span class="o">:</span> <span class="nx">any</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">}</span>
-  <span class="p">)</span>
-<span class="p">}</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">then</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">then</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">y</span><span class="o">:</span> <span class="nx">any</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">resolveWith</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="nx">r</span><span class="o">:</span> <span class="nx">any</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -461,16 +461,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">thenable</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">then</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">){</span>
-    <span class="nx">resolve</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="kr">const</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">thenable</span><span class="p">)</span> <span class="c1">//thenable的then方法会在promise的then中被调用
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">thenable</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">then</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">resolve</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">thenable</span><span class="p">)</span> <span class="c1">//thenable的then方法会在promise的then中被调用
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>

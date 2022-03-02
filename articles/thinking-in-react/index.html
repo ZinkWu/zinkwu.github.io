@@ -6,22 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="theme-color" content="dark">
-    <title>康复训练之 Vue2 UI 库开发总结 | Zink&#39;s Blog</title>
+    <title>React 哲学 | Zink&#39;s Blog</title>
 
     
     
     
     <meta property="og:site_name" content="Zink&#39;s Blog" />
-    <meta property="og:title" content="康复训练之 Vue2 UI 库开发总结 | Zink&#39;s Blog"/>
-    <meta itemprop="name" content="康复训练之 Vue2 UI 库开发总结 | Zink&#39;s Blog" />
-    <meta name="twitter:title" content="康复训练之 Vue2 UI 库开发总结 | Zink&#39;s Blog" />
-    <meta name="application-name" content="康复训练之 Vue2 UI 库开发总结 | Zink&#39;s Blog" />
+    <meta property="og:title" content="React 哲学 | Zink&#39;s Blog"/>
+    <meta itemprop="name" content="React 哲学 | Zink&#39;s Blog" />
+    <meta name="twitter:title" content="React 哲学 | Zink&#39;s Blog" />
+    <meta name="application-name" content="React 哲学 | Zink&#39;s Blog" />
 
 
-    <meta name="description" content="总结记录" />
-    <meta name="twitter:description" content="总结记录 "/>
-    <meta itemprop="description" content=" 总结记录 "/>
-    <meta property="og:description" content=" 总结记录 " />
+    <meta name="description" content="" />
+    <meta name="twitter:description" content=""/>
+    <meta itemprop="description" content=""/>
+    <meta property="og:description" content="" />
 
     
 
@@ -87,17 +87,19 @@
         <header class="article-header">
             <div class="thumb">
                 <div>
-                    <h1>康复训练之 Vue2 UI 库开发总结</h1>
+                    <h1>React 哲学</h1>
                     <div class="post-meta">
                         <div>
                             
                             
                               
                             
-                            By Zink | <time>January 13, 2022</time>
+                            By Zink | <time>March 02, 2022</time>
                             | 1 minutes
                         </div>
                         <div class="tags">
+                            
+                            <a href="/tags/react/">React</a>
                             
                         </div>
                     </div>
@@ -107,83 +109,46 @@
     </article>
 
     <div class="article-post">
-    <p>之前康复训练，写了一个组件库，涵盖了：</p>
+    <p>最近在看 React 的文档，因为之前有使用 Vue 的经验，所以其中的概念理解起来倒是不算难，不过 React 的文档给我的感觉并不只是教我怎么写 React，怎么使用它的语法，它更多的是在教我如何从组件的角度出发，编写一个健壮的 web app。</p>
+<p>以前在写 Vue 组件的时候，通常是使用现有的基础组件库，然后拼装成一个 page component，所有数据都由 page component 管理，通过 props 将数据分发给子组件，但是以前并没有思考过为什么要这样做，只是因为大家都这样写代码，所以我也这样写代码。</p>
+<p>而 React 哲学告诉了我们，在面对一份新的设计稿时，应当如何从最基本的层面去思考如何构建这个页面。</p>
+<p><strong>第一步：通过 UI 来划分组件</strong>
+其实在设计领域，也一直在推崇组件化，即设计师在设计 UI 时，也需要将每个功能点按组件划分，并不是一味地堆叠元素。</p>
+<p>通过<strong>单一功能原则</strong>来判断组件的分为</p>
+<p><strong>第二步：创建一个静态版本</strong>
+这一步通俗来说应该就是切图了，通过 mock data 构建一个没有交互能力的静态版本</p>
+<p><strong>第三步：确定 UI state 的最小（且完整）表示</strong>
+确定哪些数据是需要组件自身来更改。</p>
+<p>通过可以从以下三步判断：</p>
 <ul>
-<li>单元测试</li>
-<li>自动化集成</li>
-<li>上传至npm</li>
-<li>书写文档</li>
-</ul>
-<p>接下来总结下每一步</p>
-<h3 id="单元测试">
-    <a href="#%e5%8d%95%e5%85%83%e6%b5%8b%e8%af%95" class="anchor">
-        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-            <path fill-rule="evenodd"
-                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
-            </path>
-        </svg>
-    </a>
-    单元测试
-</h3>
-<p>单元测试使用了<code>Chai</code>、<code>Karma</code>、<code>Mocha</code>、<code>Siono</code></p>
+<li>该数据是否是由父组件通过 props 传递而来的？如果是，那它应该不是 state。</li>
+<li>该数据是否随时间的推移而保持不变？如果是，那它应该也不是 state。
 <ul>
-<li>Chai.js 是一个断言库</li>
-<li>Karma 是一个测试运行容器，可以呼起浏览器运行测试代码</li>
-<li>Mocha 是一个测试框架，参考了阮一峰的<a href="https://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html">文章</a></li>
-<li>Siono 作为 mock 工具提供间谍函数等，可以让我们在测试中测试组件的事件支持</li>
+<li>这一步我的理解是，该数据是否可由组件自身的交互操作改变它</li>
 </ul>
-<p>其中难点在于如何将这个几个工具搭配起来构成一套完整的测试环境，除了google就是看文档&hellip;</p>
-<h3 id="自动化集成">
-    <a href="#%e8%87%aa%e5%8a%a8%e5%8c%96%e9%9b%86%e6%88%90" class="anchor">
-        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-            <path fill-rule="evenodd"
-                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
-            </path>
-        </svg>
-    </a>
-    自动化集成
-</h3>
-<p>当然，我也不想每次写完代码都自己手动跑一遍测试代码，所以我选择了<a href="https://docs.github.com/cn/actions">GitHub Actions</a>，在每次push代码时自动测试，失败了会有邮件通知</p>
-<h3 id="上传至npm">
-    <a href="#%e4%b8%8a%e4%bc%a0%e8%87%b3npm" class="anchor">
-        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-            <path fill-rule="evenodd"
-                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
-            </path>
-        </svg>
-    </a>
-    上传至NPM
-</h3>
-<p>写了库，总是想 share 出去的</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 登录</span>
-</span></span><span class="line"><span class="cl">npm adduser
-</span></span><span class="line"><span class="cl"><span class="c1"># 根据提示填写</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 发布</span>
-</span></span><span class="line"><span class="cl">npm publish
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="书写文档">
-    <a href="#%e4%b9%a6%e5%86%99%e6%96%87%e6%a1%a3" class="anchor">
-        <svg class="icon" aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16">
-            <path fill-rule="evenodd"
-                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z">
-            </path>
-        </svg>
-    </a>
-    书写文档
-</h3>
-<p>文档方面，选择了 <a href="https://vuepress.vuejs.org/zh/">VuePress</a>，就图个文档易读</p>
+</li>
+<li>你能否根据其他 state 或 props 计算出该数据的值？如果是，那它也不是 state。</li>
+</ul>
+<p><strong>第四步：确定 state 放置的位置</strong>
+假设现在拥有 parent compoent、child1 component 和 child2 component（后文简称 p、c1、c2），c2 中的数据由 p 通过 props 传递给它，c1 自身维护一份 state，但 c2 中的数据依赖 c1 的 state，那么此时应该将 c1 的 state 提升到 p 中，并通过 props 传递给 c1</p>
+<p>以下是官方给出的判断方法：</p>
+<ul>
+<li>找到根据这个 state 进行渲染的所有组件。</li>
+<li>找到他们的共同所有者（common owner）组件（在组件层级上高于所有需要该 state 的组件）。</li>
+<li>该共同所有者组件或者比它层级更高的组件应该拥有该 state。</li>
+<li>如果你找不到一个合适的位置来存放该 state，就可以直接创建一个新的组件来存放该 state，并将这一新组件置于高于共同所有者组件层级的位置。</li>
+</ul>
+<p><strong>第五步：添加反向数据流</strong>
+因为 React 中的数据使用<strong>单项数据流</strong>的方式进行传递，所以在在第四步中，我们将 c1 的 state 提升到 p 中，p 通过 props 传递给 c1，那么如果 c1 的交互操作需要改变这个数据，应该怎么办？数据不是双向绑定的，我们没办法通过在 c1 中修改这个数据来同步改变 p 中的这个数据。</p>
+<p>这时只能通过反向数据流来实现了，其实反向数据流并不是什么 magic，很简单：</p>
+<ul>
+<li>c1 component emit event</li>
+<li>event callback called</li>
+<li>callback call on[PropsData]Change</li>
+<li>p component defined on[PropsData]Change function</li>
+<li>on[PropsData]Change function change p component state</li>
+<li>on[PropsData]Change bind <code>this</code></li>
+</ul>
 
     </div>
 </div>
@@ -192,17 +157,12 @@
     
     <nav class="flex container suggested">
         
-        <a rel="prev" href="/articles/wsl2-install-and-oh-my-zsh-config/" title="Previous post (older)">
+        <a rel="prev" href="/articles/2022-checklist/" title="Previous post (older)">
             <span>Previous</span>
-            wsl2 oh-my-zsh 配置
+            2022 CheckList
             </a>
         
         
-        
-        <a rel="next" href="/articles/vue3-docs-basic-notes/" title="Next post (newer)">
-            <span>Next</span>
-            Vue3 文档笔记-基础篇
-            </a> 
         
     </nav>
     

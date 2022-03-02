@@ -124,12 +124,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 更新本地包数据库</span>
-sudo apt update
-
-<span class="c1"># 更新所有已安装的包</span>
-sudo apt upgrade
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 更新本地包数据库</span>
+</span></span><span class="line"><span class="cl">sudo apt update
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新所有已安装的包</span>
+</span></span><span class="line"><span class="cl">sudo apt upgrade
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -143,8 +143,8 @@ sudo apt upgrade
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">apt install git
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install git
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -160,10 +160,10 @@ sudo apt upgrade
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:gnome-terminator
-sudo apt update
-sudo apt install terminator
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo add-apt-repository ppa:gnome-terminator
+</span></span><span class="line"><span class="cl">sudo apt update
+</span></span><span class="line"><span class="cl">sudo apt install terminator
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -178,9 +178,9 @@ sudo apt install terminator
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">apt install zsh
-chsh -s <span class="sb">`</span>which zsh<span class="sb">`</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install zsh
+</span></span><span class="line"><span class="cl">chsh -s <span class="sb">`</span>which zsh<span class="sb">`</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -194,8 +194,8 @@ chsh -s <span class="sb">`</span>which zsh<span class="sb">`</span>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - <span class="p">|</span> sh
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - <span class="p">|</span> sh
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -212,14 +212,12 @@ chsh -s <span class="sb">`</span>which zsh<span class="sb">`</span>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">apt install autojump
-
-<span class="nb">echo</span> <span class="s2">&#34;[[ -s /usr/share/autojump/autojump.sh ]] &amp;&amp; . /usr/share/autojump/autojump.sh&#34;</span> &gt;&gt; ~/.zshrc
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt install autojump
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;[[ -s /usr/share/autojump/autojump.sh ]] &amp;&amp; . /usr/share/autojump/autojump.sh&#34;</span> &gt;&gt; ~/.zshrc
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -237,12 +235,12 @@ chsh -s <span class="sb">`</span>which zsh<span class="sb">`</span>
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/zsh-users/zsh-autosuggestions
-
-cp -r zsh-autosuggestions/ ~/.oh-my-zsh/custom/plugins
-
-<span class="nb">echo</span> <span class="s2">&#34;source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh&#34;</span> &gt;&gt; ~/.zshrc
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/zsh-users/zsh-autosuggestions
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cp -r zsh-autosuggestions/ ~/.oh-my-zsh/custom/plugins
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh&#34;</span> &gt;&gt; ~/.zshrc
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -260,12 +258,12 @@ cp -r zsh-autosuggestions/ ~/.oh-my-zsh/custom/plugins
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-
-cp -r zsh-syntax-highlighting/ ~/.oh-my-zsh/custom/plugins
-
-<span class="nb">echo</span> <span class="s2">&#34;source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh&#34;</span> &gt;&gt; ~/.zshrc
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cp -r zsh-syntax-highlighting/ ~/.oh-my-zsh/custom/plugins
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh&#34;</span> &gt;&gt; ~/.zshrc
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -276,8 +274,8 @@ cp -r zsh-syntax-highlighting/ ~/.oh-my-zsh/custom/plugins
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;plugins=(autojump zsh-autosuggestion zsh-syntax-highlighting)&#34;</span> &gt;&gt; ~/.zshrc
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;plugins=(autojump zsh-autosuggestion zsh-syntax-highlighting)&#34;</span> &gt;&gt; ~/.zshrc
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -305,13 +303,13 @@ cp -r zsh-syntax-highlighting/ ~/.oh-my-zsh/custom/plugins
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 需在上一步的目录下进行</span>
-wget -O config.yaml 订阅地址?clash<span class="o">=</span>1<span class="p">&amp;</span>log-level<span class="o">=</span>info
-<span class="c1"># 这里的订阅地址需要转换一下，不然生成出的config不正确，google搜索订阅转换即可</span>
-
-chmod +x clash
-./clash -d .
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 需在上一步的目录下进行</span>
+</span></span><span class="line"><span class="cl">wget -O config.yaml 订阅地址?clash<span class="o">=</span>1<span class="p">&amp;</span>log-level<span class="o">=</span>info
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里的订阅地址需要转换一下，不然生成出的config不正确，google搜索订阅转换即可</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">chmod +x clash
+</span></span><span class="line"><span class="cl">./clash -d .
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -333,10 +331,10 @@ chmod +x clash
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-
-sudo apt install ./google-chrome-stable_current_amd64.deb
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo apt install ./google-chrome-stable_current_amd64.deb
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
