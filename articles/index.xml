@@ -6,7 +6,24 @@
     <description>Recent content in Articles on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Wed, 02 Mar 2022 11:12:40 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Mar 2022 11:09:39 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Event Loop Promise async/await 总结</title>
+      <link>https://zinkwu.blog/articles/event-loop-promise-async-await/</link>
+      <pubDate>Thu, 10 Mar 2022 11:09:39 +0000</pubDate>
+      
+      <guid>https://zinkwu.blog/articles/event-loop-promise-async-await/</guid>
+      <description>同步任务  因为 JavaScript 是单线程的，所以同步任务只能在主线程上排队执行，并且只有当前一个任务完成才能执行下一个任务
+当 JavaScript 运行时，每个函数的执行都会进入调用栈（Call Stack）中，当前函数执行完毕后将其移出栈，然后执行下一个函数，如果其中有非常耗时的函数执行，那么调用栈就阻塞了，后面的任务只能一直处于等待状态无法执行，且此时 UI 对面任何用户操作都不会响应，看起来就像程序崩溃了一样。
+为什么解决这个问题，我们有了异步任务
+   异步任务  常见的异步：
+ setTimeout() setInterval() Promise.resolve().then() fetch.then()  异步任务在执行之前不会进入调用栈，它进入事件循环队列（Event Loop Queue），当主线程执行完毕后，且异步时机到了，就会将事件循环队列中的任务推入调用栈中执行。
+   Event Loop  Event Loop 的工作非常简单，它只是监控调用栈和回调队列（包含每个事件对应的回调函数，比如 click 的回调函数）。如果调用栈为空，Event Loop 将队列中的第一个任务移除并推送到调用栈。
+从 ES6 开始，Event Loop 处理异步也分两种，在Macrotask中处理setTimeout这类的，在Microtask中处理Promise这类的。它会优先处理Microtask中的任务
+browser event model    Node.js 中的 Event Loop  Node.js 中的 Event Loop 分为 6 个阶段，依次是：
+ timers 定时器  这个阶段执行已被setTimeout()和setInterval()调度的回调函数   pending callbacks 待定回调  执行延迟到下一个循环迭代的I/O回调   idle, prepare  Node.</description>
+    </item>
+    
     <item>
       <title>React 哲学</title>
       <link>https://zinkwu.blog/articles/thinking-in-react/</link>
@@ -36,23 +53,6 @@
       <guid>https://zinkwu.blog/articles/2022-checklist/</guid>
       <description> 回去上班 读完 Vue2 &amp;amp; Vue3 的两本基于源码的书 读完《数据结构与算法图解》并实践 反复阅读《CSS 世界》 学习 TS &amp;amp; React 并实践 阅读《HTTP 权威指南》前四章 学习写 Rust 多写记录反思 如果有可能的话，继续打鼓吧  最重要的：
  英语报班 将英语用于日常生活 尽量在互联网上脱离简中环境 褪去那些华而不实的东西  </description>
-    </item>
-    
-    <item>
-      <title>Event Loop Promise async/await 总结</title>
-      <link>https://zinkwu.blog/articles/event-loop-promise-async-await/</link>
-      <pubDate>Fri, 11 Feb 2022 19:36:53 +0000</pubDate>
-      
-      <guid>https://zinkwu.blog/articles/event-loop-promise-async-await/</guid>
-      <description>同步任务  因为 JavaScript 是单线程的，所以同步任务只能在主线程上排队执行，并且只有当前一个任务完成才能执行下一个任务
-当 JavaScript 运行时，每个函数的执行都会进入调用栈（Call Stack）中，当前函数执行完毕后将其移出栈，然后执行下一个函数，如果其中有非常耗时的函数执行，那么调用栈就阻塞了，后面的任务只能一直处于等待状态无法执行，且此时 UI 对面任何用户操作都不会响应，看起来就像程序崩溃了一样。
-为什么解决这个问题，我们有了异步任务
-   异步任务  常见的异步：
- setTimeout() setInterval() Promise.resolve().then() fetch.then()  异步任务在执行之前不会进入调用栈，它进入事件循环队列（Event Loop Queue），当主线程执行完毕后，且异步时机到了，就会将事件循环队列中的任务推入调用栈中执行。
-   Event Loop  Event Loop 的工作非常简单，它只是监控调用栈和回调队列（包含每个事件对应的回调函数，比如 click 的回调函数）。如果调用栈为空，Event Loop 将队列中的第一个任务移除并推送到调用栈。
-从 ES6 开始，Event Loop 处理异步也分两种，在Macrotask中处理setTimeout这类的，在Microtask中处理Promise这类的。它会优先处理Microtask中的任务
-   Node.js 中的 Event Loop  Node.js 中的 Event Loop 分为 6 个阶段，依次是：
- timers 定时器  这个阶段执行已被setTimeout()和setInterval()调度的回调函数   pending callbacks 待定回调  执行延迟到下一个循环迭代的I/O回调   idle, prepare  Node.</description>
     </item>
     
     <item>

@@ -5,7 +5,144 @@
     <description>Recent content on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Wed, 02 Mar 2022 11:12:40 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Mar 2022 11:09:39 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+    <title>Event Loop Promise async/await 总结</title>
+    <link>https://zinkwu.blog/articles/event-loop-promise-async-await/</link>
+    <pubDate>Thu, 10 Mar 2022 11:09:39 +0000</pubDate>
+    
+    <guid>https://zinkwu.blog/articles/event-loop-promise-async-await/</guid>
+    <description>
+        &lt;h2 id=&#34;同步任务&#34;&gt;
+    &lt;a href=&#34;#%e5%90%8c%e6%ad%a5%e4%bb%bb%e5%8a%a1&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    同步任务
+&lt;/h2&gt;
+&lt;p&gt;因为 JavaScript 是单线程的，所以同步任务只能在主线程上排队执行，并且只有当前一个任务完成才能执行下一个任务&lt;/p&gt;
+&lt;p&gt;当 JavaScript 运行时，每个函数的执行都会进入调用栈（Call Stack）中，当前函数执行完毕后将其移出栈，然后执行下一个函数，如果其中有非常耗时的函数执行，那么调用栈就阻塞了，后面的任务只能一直处于等待状态无法执行，且此时 UI 对面任何用户操作都不会响应，看起来就像程序崩溃了一样。&lt;/p&gt;
+&lt;p&gt;为什么解决这个问题，我们有了异步任务&lt;/p&gt;
+&lt;h2 id=&#34;异步任务&#34;&gt;
+    &lt;a href=&#34;#%e5%bc%82%e6%ad%a5%e4%bb%bb%e5%8a%a1&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    异步任务
+&lt;/h2&gt;
+&lt;p&gt;常见的异步：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;setTimeout()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;setInterval()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Promise.resolve().then()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fetch.then()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;异步任务在执行之前不会进入调用栈，它进入事件循环队列（Event Loop Queue），当主线程执行完毕后，且异步时机到了，就会将事件循环队列中的任务推入调用栈中执行。&lt;/p&gt;
+&lt;h2 id=&#34;event-loop&#34;&gt;
+    &lt;a href=&#34;#event-loop&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    Event Loop
+&lt;/h2&gt;
+&lt;p&gt;Event Loop 的工作非常简单，它只是监控调用栈和回调队列（包含每个事件对应的回调函数，比如 click 的回调函数）。如果调用栈为空，Event Loop 将队列中的第一个任务&lt;strong&gt;移除并推送&lt;/strong&gt;到调用栈。&lt;/p&gt;
+&lt;p&gt;从 ES6 开始，Event Loop 处理异步也分两种，在&lt;code&gt;Macrotask&lt;/code&gt;中处理&lt;code&gt;setTimeout&lt;/code&gt;这类的，在&lt;code&gt;Microtask&lt;/code&gt;中处理&lt;code&gt;Promise&lt;/code&gt;这类的。它会优先处理&lt;code&gt;Microtask&lt;/code&gt;中的任务&lt;/p&gt;
+&lt;p&gt;browser event model
+&lt;img loading=&#34;lazy&#34; 
+    src=&#34;https://zinkwu.blog/promise/event-model.png&#34; 
+    alt=&#34;promise constructor&#34; 
+     
+    width=1880 
+    height=&#34;699&#34;  /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;nodejs-中的-event-loop&#34;&gt;
+    &lt;a href=&#34;#nodejs-%e4%b8%ad%e7%9a%84-event-loop&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    Node.js 中的 Event Loop
+&lt;/h2&gt;
+&lt;p&gt;Node.js 中的 Event Loop 分为 6 个阶段，依次是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;timers 定时器
+&lt;ul&gt;
+&lt;li&gt;这个阶段执行已被&lt;code&gt;setTimeout()&lt;/code&gt;和&lt;code&gt;setInterval()&lt;/code&gt;调度的回调函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;pending callbacks 待定回调
+&lt;ul&gt;
+&lt;li&gt;执行延迟到下一个循环迭代的I/O回调&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;idle, prepare
+&lt;ul&gt;
+&lt;li&gt;Node.js 系统内部使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;poll 轮询
+&lt;ul&gt;
+&lt;li&gt;检索新的 I/O 事件；执行与 I/O 相关的回调（几乎所有情况下，除了关闭的回调函数，那些由计时器和 &lt;code&gt;setImmediate()&lt;/code&gt; 调度的之外），其余情况 node 将在适当的时候在此阻塞（等待）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;check 检测
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;setImmediate()&lt;/code&gt;回调函数在这里执行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;close callback 关闭的回调函数
+&lt;ul&gt;
+&lt;li&gt;一些关闭的回调函数，如：&lt;code&gt;sockt.on(&#39;close&#39;, ...)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;process.nextTick()&lt;/code&gt;的回调会在每个阶段结束之前调用。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;每次运行的事件循环之间，Node.js 检查它是否在等待任何异步 I/O 或计时器，如果没有的话，则完全关闭。&lt;/p&gt;
+&lt;p&gt;当我们在 Node 中首次执行 JavaScript 代码时，会有开启 Event Loop 和执行 JavaScript 两个阶段，这两个阶段是串行发生，开启速度受制于机器性能，这就是为什么在主线程中执行这两个异步，他们的顺序并不总是相同。&lt;/p&gt;
+&lt;h2 id=&#34;promise-aplus&#34;&gt;
+    &lt;a href=&#34;#promise-aplus&#34; class=&#34;anchor&#34;&gt;
+        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
+            &lt;path fill-rule=&#34;evenodd&#34;
+                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
+            &lt;/path&gt;
+        &lt;/svg&gt;
+    &lt;/a&gt;
+    Promise Aplus
+&lt;/h2&gt;
+&lt;p&gt;这里是我根据规范实现的 &lt;a href=&#34;https://github.com/ZinkWu/z-promise.js&#34;&gt;z-promise.js&lt;/a&gt;，另外还根据 promise aplus 画了两张流程图:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;promise constructor&lt;/strong&gt;
+&lt;img loading=&#34;lazy&#34; 
+    src=&#34;https://zinkwu.blog/promise/promise-constructor.png&#34; 
+    alt=&#34;promise constructor&#34; 
+     
+    width=1175 
+    height=&#34;1231&#34;  /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;promise.then&lt;/strong&gt;
+&lt;img loading=&#34;lazy&#34; 
+    src=&#34;https://zinkwu.blog/promise/promise-then.png&#34; 
+    alt=&#34;promise.then&#34; 
+     
+    width=1803 
+    height=&#34;2019&#34;  /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/lingirlsea/promisesaplus&#34;&gt;A+ 译文参考&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;以下内容待更新&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;async/await&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    </description>
+    </item>
+    
     <item>
     <title>React 哲学</title>
     <link>https://zinkwu.blog/articles/thinking-in-react/</link>
@@ -88,430 +225,6 @@
      
     width=591 
     height=&#34;1280&#34;  /&gt;&lt;/p&gt;
-
-    </description>
-    </item>
-    
-    <item>
-    <title>Event Loop Promise async/await 总结</title>
-    <link>https://zinkwu.blog/articles/event-loop-promise-async-await/</link>
-    <pubDate>Fri, 11 Feb 2022 19:36:53 +0000</pubDate>
-    
-    <guid>https://zinkwu.blog/articles/event-loop-promise-async-await/</guid>
-    <description>
-        &lt;h2 id=&#34;同步任务&#34;&gt;
-    &lt;a href=&#34;#%e5%90%8c%e6%ad%a5%e4%bb%bb%e5%8a%a1&#34; class=&#34;anchor&#34;&gt;
-        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
-            &lt;path fill-rule=&#34;evenodd&#34;
-                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
-            &lt;/path&gt;
-        &lt;/svg&gt;
-    &lt;/a&gt;
-    同步任务
-&lt;/h2&gt;
-&lt;p&gt;因为 JavaScript 是单线程的，所以同步任务只能在主线程上排队执行，并且只有当前一个任务完成才能执行下一个任务&lt;/p&gt;
-&lt;p&gt;当 JavaScript 运行时，每个函数的执行都会进入调用栈（Call Stack）中，当前函数执行完毕后将其移出栈，然后执行下一个函数，如果其中有非常耗时的函数执行，那么调用栈就阻塞了，后面的任务只能一直处于等待状态无法执行，且此时 UI 对面任何用户操作都不会响应，看起来就像程序崩溃了一样。&lt;/p&gt;
-&lt;p&gt;为什么解决这个问题，我们有了异步任务&lt;/p&gt;
-&lt;h2 id=&#34;异步任务&#34;&gt;
-    &lt;a href=&#34;#%e5%bc%82%e6%ad%a5%e4%bb%bb%e5%8a%a1&#34; class=&#34;anchor&#34;&gt;
-        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
-            &lt;path fill-rule=&#34;evenodd&#34;
-                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
-            &lt;/path&gt;
-        &lt;/svg&gt;
-    &lt;/a&gt;
-    异步任务
-&lt;/h2&gt;
-&lt;p&gt;常见的异步：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;setTimeout()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;setInterval()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Promise.resolve().then()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;fetch.then()&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;异步任务在执行之前不会进入调用栈，它进入事件循环队列（Event Loop Queue），当主线程执行完毕后，且异步时机到了，就会将事件循环队列中的任务推入调用栈中执行。&lt;/p&gt;
-&lt;h2 id=&#34;event-loop&#34;&gt;
-    &lt;a href=&#34;#event-loop&#34; class=&#34;anchor&#34;&gt;
-        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
-            &lt;path fill-rule=&#34;evenodd&#34;
-                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
-            &lt;/path&gt;
-        &lt;/svg&gt;
-    &lt;/a&gt;
-    Event Loop
-&lt;/h2&gt;
-&lt;p&gt;Event Loop 的工作非常简单，它只是监控调用栈和回调队列（包含每个事件对应的回调函数，比如 click 的回调函数）。如果调用栈为空，Event Loop 将队列中的第一个任务&lt;strong&gt;移除并推送&lt;/strong&gt;到调用栈。&lt;/p&gt;
-&lt;p&gt;从 ES6 开始，Event Loop 处理异步也分两种，在&lt;code&gt;Macrotask&lt;/code&gt;中处理&lt;code&gt;setTimeout&lt;/code&gt;这类的，在&lt;code&gt;Microtask&lt;/code&gt;中处理&lt;code&gt;Promise&lt;/code&gt;这类的。它会优先处理&lt;code&gt;Microtask&lt;/code&gt;中的任务&lt;/p&gt;
-&lt;h2 id=&#34;nodejs-中的-event-loop&#34;&gt;
-    &lt;a href=&#34;#nodejs-%e4%b8%ad%e7%9a%84-event-loop&#34; class=&#34;anchor&#34;&gt;
-        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
-            &lt;path fill-rule=&#34;evenodd&#34;
-                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
-            &lt;/path&gt;
-        &lt;/svg&gt;
-    &lt;/a&gt;
-    Node.js 中的 Event Loop
-&lt;/h2&gt;
-&lt;p&gt;Node.js 中的 Event Loop 分为 6 个阶段，依次是：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;timers 定时器
-&lt;ul&gt;
-&lt;li&gt;这个阶段执行已被&lt;code&gt;setTimeout()&lt;/code&gt;和&lt;code&gt;setInterval()&lt;/code&gt;调度的回调函数&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;pending callbacks 待定回调
-&lt;ul&gt;
-&lt;li&gt;执行延迟到下一个循环迭代的I/O回调&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;idle, prepare
-&lt;ul&gt;
-&lt;li&gt;Node.js 系统内部使用&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;poll 轮询
-&lt;ul&gt;
-&lt;li&gt;检索新的 I/O 事件；执行与 I/O 相关的回调（几乎所有情况下，除了关闭的回调函数，那些由计时器和 &lt;code&gt;setImmediate()&lt;/code&gt; 调度的之外），其余情况 node 将在适当的时候在此阻塞（等待）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;check 检测
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;setImmediate()&lt;/code&gt;回调函数在这里执行&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;close callback 关闭的回调函数
-&lt;ul&gt;
-&lt;li&gt;一些关闭的回调函数，如：&lt;code&gt;sockt.on(&#39;close&#39;, ...)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;process.nextTick()&lt;/code&gt;的回调会在每个阶段结束之前调用。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;每次运行的事件循环之间，Node.js 检查它是否在等待任何异步 I/O 或计时器，如果没有的话，则完全关闭。&lt;/p&gt;
-&lt;p&gt;当我们在 Node 中首次执行 JavaScript 代码时，会有开启 Event Loop 和执行 JavaScript 两个阶段，这两个阶段是串行发生，开启速度受制于机器性能，这就是为什么在主线程中执行这两个异步，他们的顺序并不总是相同。&lt;/p&gt;
-&lt;h2 id=&#34;promise&#34;&gt;
-    &lt;a href=&#34;#promise&#34; class=&#34;anchor&#34;&gt;
-        &lt;svg class=&#34;icon&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34; height=&#34;16&#34; version=&#34;1.1&#34; viewBox=&#34;0 0 16 16&#34; width=&#34;16&#34;&gt;
-            &lt;path fill-rule=&#34;evenodd&#34;
-                d=&#34;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&#34;&gt;
-            &lt;/path&gt;
-        &lt;/svg&gt;
-    &lt;/a&gt;
-    Promise
-&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fn&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;resolve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;reject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;setTimeout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;resolve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    	&lt;span class=&#34;nx&#34;&gt;info&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;success&amp;#39;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;promise&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;onFulfilled&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;onRejected&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;reson&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;reason&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;onFulfilled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;onRejected&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;上面的代码是一个基本的&lt;code&gt;Promise&lt;/code&gt;使用方法，对于&lt;code&gt;Promise&lt;/code&gt;的学习，个人认为直接看 A+ 规范比较好，接下来我会基于 A+ 规范的角度来详细介绍 &lt;code&gt;Promise&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Promise&lt;/code&gt;表示构造函数，&lt;code&gt;promise&lt;/code&gt;表示实例化对象。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;Promise&lt;/code&gt;是一个构造函数，接受一个回调函数作为参数，这个参数必须是函数，否则抛出&lt;code&gt;TypeError&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;promise&lt;/code&gt;具有三种状态：&lt;code&gt;pending&lt;/code&gt;、&lt;code&gt;fulfilled&lt;/code&gt;、&lt;code&gt;rejected&lt;/code&gt;，&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;当状态转换至&lt;code&gt;fulfilled&lt;/code&gt;或&lt;code&gt;rejected&lt;/code&gt;时，状态不可再次变更，且&lt;code&gt;fulfilled&lt;/code&gt;状态必须有一个值（不可变），&lt;code&gt;rejected&lt;/code&gt;状态必须有一个值作为拒绝的原因（不可变）&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;promise&lt;/code&gt;必须具有&lt;code&gt;then&lt;/code&gt;方法，用来访问当前值，或最终值，或被拒绝的原因&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;then&lt;/code&gt;方法接受两个参数，如上面代码所示&lt;code&gt;onFulfilled&lt;/code&gt;和&lt;code&gt;onRejected&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;这两个参数都是可选的，且如果其不是函数，则必须被忽略&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;onFulfilled&lt;/code&gt;如果是函数，则会在&lt;code&gt;promise&lt;/code&gt;已经是&lt;code&gt;fulfilled&lt;/code&gt;状态时调用，且将&lt;code&gt;promise&lt;/code&gt;的值作为第一个参数，该函数&lt;strong&gt;只被调用一次&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;onRejected&lt;/code&gt;如果是函数，则会在&lt;code&gt;promise&lt;/code&gt;已经是&lt;code&gt;rejected&lt;/code&gt;状态时调用，且将&lt;code&gt;promise&lt;/code&gt;拒绝的原因作为第一个参数，该函数&lt;strong&gt;只被调用一次&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在&lt;a href=&#34;https://es5.github.io/#x10.3&#34;&gt;执行上下文&lt;/a&gt;堆栈仅包含平台代码之前，不得调用 &lt;code&gt;onFulfilled&lt;/code&gt; 或 &lt;code&gt;onRejected&lt;/code&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;这句话的意思其实就是将&lt;code&gt;onFulfilled&lt;/code&gt;/&lt;code&gt;onRejected&lt;/code&gt;添加到&lt;code&gt;Microtask&lt;/code&gt;队列中去，异步调用它&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;onFulfilled&lt;/code&gt;/&lt;code&gt;onRejected&lt;/code&gt;作为函数调用时，其内部没有&lt;code&gt;this&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;then&lt;/code&gt;可以在同一个&lt;code&gt;promise&lt;/code&gt;上多次调用&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;promise&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;resolve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;success&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(...,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(...,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(...,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// onFulfilled/onRejected 必须按照书写顺序执行
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;then&lt;/code&gt;必须新建且返回一个&lt;code&gt;promise&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;promise&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;resolve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;success&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;promise2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;onFulfilled&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;onRejected&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;promise2&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;instanceof&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Promise&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//true
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ol&gt;
-&lt;li&gt;如果 &lt;code&gt;onFulfilled&lt;/code&gt; 或 &lt;code&gt;onRejected&lt;/code&gt; 抛出异常 &lt;code&gt;e&lt;/code&gt;, &lt;code&gt;promise2&lt;/code&gt; 必须被拒绝，并把 &lt;code&gt;e&lt;/code&gt; 作为被拒绝的原因&lt;/li&gt;
-&lt;li&gt;如果 &lt;code&gt;onFulfilled&lt;/code&gt; 不是函数，且 &lt;code&gt;promise&lt;/code&gt;处于已处理状态，则 &lt;code&gt;promise2&lt;/code&gt; 也必须处于已处理状态，且拥有和 &lt;code&gt;promise&lt;/code&gt; 已处理状态相同的值。&lt;/li&gt;
-&lt;li&gt;如果 &lt;code&gt;onRejected&lt;/code&gt; 不是函数，且 &lt;code&gt;promise&lt;/code&gt; 处于已拒绝状态，则 &lt;code&gt;promise2&lt;/code&gt; 必须处于已拒绝状态，且拥有和 &lt;code&gt;promise&lt;/code&gt; 相同的拒绝原因&lt;/li&gt;
-&lt;li&gt;2.2.7.1 如果 &lt;code&gt;onFulfilled&lt;/code&gt; 或 &lt;code&gt;onRejected&lt;/code&gt; 返回值 &lt;code&gt;x&lt;/code&gt;，执行&lt;code&gt;Promise&lt;/code&gt;解决步骤 &lt;code&gt;[[Resolve]](promise2, x)&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在这里引入一下规范中的&lt;code&gt;Promise&lt;/code&gt;解决步骤，这里我会直接用白话讲，其代码实现可以参考&lt;a href=&#34;https://github.com/ZinkWu/ts-play-ground/blob/main/src/promise.ts#L67&#34;&gt;我的代码&lt;/a&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;Promise&lt;/code&gt;解决步骤其实就是&lt;code&gt;Promise&lt;/code&gt;中的一个静态私有方法，暂且命名为&lt;code&gt;resolveWith&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;当&lt;code&gt;onFulfilled&lt;/code&gt;/&lt;code&gt;onRejected&lt;/code&gt;返回值&lt;code&gt;x&lt;/code&gt;的时候，就执行&lt;code&gt;resolveWith(promise2, x)&lt;/code&gt;，这个&lt;code&gt;promise2&lt;/code&gt;在&lt;code&gt;then&lt;/code&gt;方法执行时创建&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;执行&lt;code&gt;resolveWith(promise2, x)&lt;/code&gt;，它具有以下规则&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;如果&lt;code&gt;promise2&lt;/code&gt;和&lt;code&gt;x&lt;/code&gt;引用同一个对象，即&lt;code&gt;promise2 === x&lt;/code&gt;为&lt;code&gt;true&lt;/code&gt;，则以一个&lt;code&gt;TypeError&lt;/code&gt;类型的值作为拒绝&lt;code&gt;promise2&lt;/code&gt;的原因&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果&lt;code&gt;x&lt;/code&gt;是一个&lt;code&gt;Promise&lt;/code&gt;对象，接收其状态&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;promise&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;resolve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;success&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;resolve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;cosnt&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;promise2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//return 了一个 fulfilled 状态的 Promise 对象
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;promise2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;state&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//true !!!这里的 state 属性实际是不能访问的，这里只是为了演示
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;promise2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;value&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//true !!!这里的 value 属性实际是不能访问的，这里只是为了演示
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;当&lt;code&gt;x&lt;/code&gt;处于&lt;code&gt;pending&lt;/code&gt;状态时，&lt;code&gt;promise2&lt;/code&gt;也必须保持未处理状态，直到&lt;code&gt;x&lt;/code&gt;被处理或拒绝&lt;/li&gt;
-&lt;li&gt;当&lt;code&gt;x&lt;/code&gt;处于&lt;code&gt;fulfilled&lt;/code&gt;状态时，&lt;code&gt;promise2&lt;/code&gt;也必须处于&lt;code&gt;fulfilled&lt;/code&gt;状态，且值相同&lt;/li&gt;
-&lt;li&gt;当&lt;code&gt;x&lt;/code&gt;处于&lt;code&gt;rejected&lt;/code&gt;状态时，&lt;code&gt;promise2&lt;/code&gt;也必须处于&lt;code&gt;rejected&lt;/code&gt;状态，且拒绝的原因相同&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;当&lt;code&gt;x&lt;/code&gt;是一个对象或函数时&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;用&lt;code&gt;x.then&lt;/code&gt;代替&lt;code&gt;then&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果在获取&lt;code&gt;x.then&lt;/code&gt;的过程中抛出异常&lt;code&gt;e&lt;/code&gt;，则拒绝&lt;code&gt;promise2&lt;/code&gt;并用&lt;code&gt;e&lt;/code&gt;作为拒绝的原因&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;解释以下为什么获取一个对象的属性会抛出异常，&lt;code&gt;Object.defineProperty()&lt;/code&gt;可以设置一个属性的&lt;code&gt;getter&lt;/code&gt;/&lt;code&gt;setter&lt;/code&gt;，可以在&lt;code&gt;getter&lt;/code&gt;中抛出异常&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果&lt;code&gt;x.then&lt;/code&gt;是一个函数（这时就可以将&lt;code&gt;x&lt;/code&gt;视为&lt;code&gt;thenable&lt;/code&gt;，因为它具有&lt;code&gt;then&lt;/code&gt;方法），则用&lt;code&gt;x&lt;/code&gt;作为&lt;code&gt;this&lt;/code&gt;调用该函数，并将&lt;code&gt;resolvePromise&lt;/code&gt;作为函数的第一个参数，&lt;code&gt;rejectePromise&lt;/code&gt;作为函数的第二个参数&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;instanceof&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;call&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;resolvePromise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;rejectPromise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 看懂了吗，就跟我们的 promise.then(onFulfilled, onRejected)一样，只不过改用 call 调用并改变 this 指向
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果/当使用值 &lt;code&gt;y&lt;/code&gt; 调用 &lt;code&gt;resolvePromise&lt;/code&gt; 时，运行 &lt;code&gt;resolveWith(promise, y)&lt;/code&gt;（这里其实就有点递归的味道了，规范也确实提到了这种方法可能会导致无限递归，如果&lt;code&gt;thenable&lt;/code&gt;的&lt;code&gt;then&lt;/code&gt;方法返回一个&lt;code&gt;thenable&lt;/code&gt;2，且&lt;code&gt;thenable2&lt;/code&gt;的&lt;code&gt;then&lt;/code&gt;也返回一个&lt;code&gt;thenable3&lt;/code&gt;···，一直这样套娃，就会无限递归，最后爆栈了）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果/当使用 &lt;code&gt;r&lt;/code&gt; 作为原因调用 &lt;code&gt;rejectPromise&lt;/code&gt; 时，用 &lt;code&gt;r&lt;/code&gt; 拒绝 &lt;code&gt;promise&lt;/code&gt;。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;instanceof&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;call&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;any&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;resolveWith&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;any&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;reject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;上面两句话的意思就是说，&lt;code&gt;x&lt;/code&gt;作为&lt;code&gt;thenable&lt;/code&gt;，可以定义自己的&lt;code&gt;then&lt;/code&gt;方法，且在其中自由决定调用&lt;code&gt;resolve&lt;/code&gt;还是&lt;code&gt;reject&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;thenable&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;resolve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;reject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;resolve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;promise&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;resolve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;promise2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;promise&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;then&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;thenable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//thenable的then方法会在promise的then中被调用
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果同时调用 &lt;code&gt;resolvePromise&lt;/code&gt; 和 &lt;code&gt;rejectPromise&lt;/code&gt;，或者对同一个参数进行多次调用，则第一次调用优先，并且忽略任何后来的的调用（这里就是&lt;code&gt;onFulfilled&lt;/code&gt;和&lt;code&gt;onRejected&lt;/code&gt;的特征）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果调用 &lt;code&gt;then&lt;/code&gt; 时抛出异常 &lt;code&gt;e&lt;/code&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;如果 &lt;code&gt;resolvePromise&lt;/code&gt; 或 &lt;code&gt;rejectPromise&lt;/code&gt; 已经被调用，忽略该异常&lt;/li&gt;
-&lt;li&gt;否则，拒绝 &lt;code&gt;promise2&lt;/code&gt; 并以 &lt;code&gt;e&lt;/code&gt; 作为拒绝原因&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果 &lt;code&gt;then&lt;/code&gt; 不是函数，用 &lt;code&gt;x&lt;/code&gt; 去执行 &lt;code&gt;promise2&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果 &lt;code&gt;x&lt;/code&gt; 不是对象或函数，用 &lt;code&gt;x&lt;/code&gt; 去执行 &lt;code&gt;promise2&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;上述的&lt;code&gt;Promise&lt;/code&gt;解决步骤，用白话来说就是&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;如果&lt;code&gt;onFulfilled&lt;/code&gt;或&lt;code&gt;onRejected&lt;/code&gt;返回的&lt;code&gt;x&lt;/code&gt;是一个简单数据类型，那么&lt;code&gt;then&lt;/code&gt;方法就返回一个处于&lt;code&gt;onFulfilled&lt;/code&gt;的新的&lt;code&gt;promise&lt;/code&gt;，且值是&lt;code&gt;x&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;如果&lt;code&gt;onFulfilled&lt;/code&gt;或&lt;code&gt;onRejected&lt;/code&gt;返回的&lt;code&gt;x&lt;/code&gt;是一个函数或对象（其实函数也是一种对象啦），则判断&lt;code&gt;x&lt;/code&gt;是否具有&lt;code&gt;then&lt;/code&gt;方法（或者说判断&lt;code&gt;x&lt;/code&gt;是否是一个&lt;code&gt;thenable&lt;/code&gt;)
-&lt;ol&gt;
-&lt;li&gt;如果&lt;code&gt;x.then&lt;/code&gt;是一个函数，则取执行它，且它内部的&lt;code&gt;this&lt;/code&gt;还是&lt;code&gt;x&lt;/code&gt;，且&lt;code&gt;x.then&lt;/code&gt;接受两个参数：&lt;code&gt;resolve&lt;/code&gt;和&lt;code&gt;reject&lt;/code&gt;，&lt;code&gt;x.then&lt;/code&gt;调用&lt;code&gt;resolve&lt;/code&gt;/&lt;code&gt;reject&lt;/code&gt;，那么&lt;code&gt;promise2&lt;/code&gt;也会是对应的状态，且值就是&lt;code&gt;x.then&lt;/code&gt;调用&lt;code&gt;resolve&lt;/code&gt;/&lt;code&gt;reject&lt;/code&gt;所传的值&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;至此，A+ 规范就结束了，A+ 规范定义了&lt;code&gt;Promise&lt;/code&gt;的基本行为和&lt;code&gt;Promise&lt;/code&gt;链的实现&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/lingirlsea/promisesaplus&#34;&gt;A+ 译文参考&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;以下内容待更新&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;promise.catch()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;promise.finally()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;Promise.race()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;Promise.all()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;Promise.allSettled()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;Promise.any()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;Promise.resolve/reject()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;async/await&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
 
     </description>
     </item>
