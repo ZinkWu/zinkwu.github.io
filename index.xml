@@ -5,7 +5,21 @@
     <description>Recent content on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 10 Mar 2022 11:09:39 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Apr 2022 20:54:45 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+    <title>Life After Resignation</title>
+    <link>https://zinkwu.blog/articles/life-after-resignation/</link>
+    <pubDate>Sun, 17 Apr 2022 20:54:45 +0000</pubDate>
+    
+    <guid>https://zinkwu.blog/articles/life-after-resignation/</guid>
+    <description>
+        &lt;p&gt;This is my first English post.&lt;/p&gt;
+&lt;p&gt;I quit my job last year, I&amp;rsquo;ve been out of work for 9 months so far, from calm at first to extreme anxiety, I was looking for a job recently, I got a few offers during this period, and I went to a company, but I offered to resign on the first day, I don&amp;rsquo;t think that&amp;rsquo;s what I want, I don&amp;rsquo;t like that environment, I don&amp;rsquo;t like them code.&lt;/p&gt;
+&lt;p&gt;But this time I quit my job and I&amp;rsquo;m more anxious, I started to stay up late, I didn&amp;rsquo;t sleep every night, but I didn&amp;rsquo;t do anything worthwhile, I just kept killing time, maybe I would die suddenly one day :). I&amp;rsquo;m thinking about going home live with my parents, about a year, I want to rely on this year to learn the basics of computer science and cultivate my mental strength.&lt;/p&gt;
+
+    </description>
+    </item>
+    
     <item>
     <title>Event Loop Promise async/await 总结</title>
     <link>https://zinkwu.blog/articles/event-loop-promise-async-await/</link>

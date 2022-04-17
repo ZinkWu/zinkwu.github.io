@@ -6,7 +6,17 @@
     <description>Recent content in Articles on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 10 Mar 2022 11:09:39 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Apr 2022 20:54:45 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Life After Resignation</title>
+      <link>https://zinkwu.blog/articles/life-after-resignation/</link>
+      <pubDate>Sun, 17 Apr 2022 20:54:45 +0000</pubDate>
+      
+      <guid>https://zinkwu.blog/articles/life-after-resignation/</guid>
+      <description>This is my first English post.
+I quit my job last year, I&amp;rsquo;ve been out of work for 9 months so far, from calm at first to extreme anxiety, I was looking for a job recently, I got a few offers during this period, and I went to a company, but I offered to resign on the first day, I don&amp;rsquo;t think that&amp;rsquo;s what I want, I don&amp;rsquo;t like that environment, I don&amp;rsquo;t like them code.</description>
+    </item>
+    
     <item>
       <title>Event Loop Promise async/await 总结</title>
       <link>https://zinkwu.blog/articles/event-loop-promise-async-await/</link>
