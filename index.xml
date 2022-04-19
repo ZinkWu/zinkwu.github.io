@@ -5,7 +5,36 @@
     <description>Recent content on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Sun, 17 Apr 2022 20:54:45 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Apr 2022 03:17:52 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+    <title></title>
+    <link>https://zinkwu.blog/articles/why-do-i-choose-go-home/</link>
+    <pubDate>Tue, 19 Apr 2022 03:17:52 +0000</pubDate>
+    
+    <guid>https://zinkwu.blog/articles/why-do-i-choose-go-home/</guid>
+    <description>
+        &lt;p&gt;This is my second English post.&lt;/p&gt;
+&lt;p&gt;Yes, that&amp;rsquo;s right, I choose go home.&lt;/p&gt;
+&lt;p&gt;Why choose go home?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Job market is not good this year.&lt;/li&gt;
+&lt;li&gt;I don&amp;rsquo;s want to continue building buildings without foundation, I need time to learn basic computer knowledge and English. Interview in China are weird, they like to ask how to use frameworks, so far, my knowledge is based on frameworks, I feel incomplete&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;What do I do after go home?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learn &lt;a href=&#34;https://book.douban.com/subject/30280001/&#34;&gt;computer network&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;learn &lt;a href=&#34;https://book.douban.com/subject/19952400/&#34;&gt;algorithm and data structure&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Learn &lt;a href=&#34;https://book.douban.com/subject/26912767/&#34;&gt;CSAPP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Learn &lt;a href=&#34;https://book.douban.com/subject/34464721/&#34;&gt;SICP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Learn &lt;a href=&#34;https://book.douban.com/subject/27096665/&#34;&gt;OS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Maybe I will learn &lt;a href=&#34;https://book.douban.com/subject/35501216/&#34;&gt;Database Systems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Maybe I will learn Java/C/C++/Python&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I want to be a good programmer, I don&amp;rsquo;t want to use the framework.&lt;/p&gt;
+
+    </description>
+    </item>
+    
     <item>
     <title>Life After Resignation</title>
     <link>https://zinkwu.blog/articles/life-after-resignation/</link>
