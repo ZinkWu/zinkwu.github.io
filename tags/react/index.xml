@@ -24,7 +24,7 @@
 第三步：确定 UI state 的最小（且完整）表示
 确定哪些数据是需要组件自身来更改。
 通过可以从以下三步判断：
- 该数据是否是由父组件通过 props 传递而来的？如果是，那它应该不是 state。 该数据是否随时间的推移而保持不变？如果是，那它应该也不是 state。  这一步我的理解是，该数据是否可由组件自身的交互操作改变它   你能否根据其他 state 或 props 计算出该数据的值？如果是，那它也不是 state。  第四步：确定 state 放置的位置
+该数据是否是由父组件通过 props 传递而来的？如果是，那它应该不是 state。 该数据是否随时间的推移而保持不变？如果是，那它应该也不是 state。 这一步我的理解是，该数据是否可由组件自身的交互操作改变它 你能否根据其他 state 或 props 计算出该数据的值？如果是，那它也不是 state。 第四步：确定 state 放置的位置
 假设现在拥有 parent compoent、child1 component 和 child2 component（后文简称 p、c1、c2），c2 中的数据由 p 通过 props 传递给它，c1 自身维护一份 state，但 c2 中的数据依赖 c1 的 state，那么此时应该将 c1 的 state 提升到 p 中，并通过 props 传递给 c1</description>
     </item>
     

@@ -17,7 +17,7 @@
 ex1:
 输入：l1 = [1,2,4], l2 = [1,3,4] 输出：[1,1,2,3,4,4] tip:
 两个链表的节点数目范围是 [0, 50] -100 &amp;lt;= Node.val &amp;lt;= 100 l1 和 l2 均按 非递减顺序 排列 code:
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29  /** * Definition for singly-linked list. * function ListNode(val, next) { * this.val = (val===undefined ?</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 /** * Definition for singly-linked list. * function ListNode(val, next) { * this.val = (val===undefined ?</description>
     </item>
     
     <item>
@@ -29,10 +29,10 @@ ex1:
       <description>给你两个二进制字符串，返回它们的和（用二进制表示）。
 输入为 非空 字符串且只包含数字 1 和 0。
 示例1：
- 输入: a = &amp;ldquo;11&amp;rdquo;, b = &amp;ldquo;1&amp;rdquo; 输出: &amp;ldquo;100&amp;rdquo;
- 示例2：
- 输入: a = &amp;ldquo;1010&amp;rdquo;, b = &amp;ldquo;1011&amp;rdquo; 输出: &amp;ldquo;10101&amp;rdquo;
- 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  //满二进一 var addBinary = function(a, b) { let sum = 0	//保留上一次位数相加后是否进一  let result = &amp;#34;&amp;#34; for(let i = a.length -1, j = b.</description>
+输入: a = &amp;ldquo;11&amp;rdquo;, b = &amp;ldquo;1&amp;rdquo; 输出: &amp;ldquo;100&amp;rdquo;
+示例2：
+输入: a = &amp;ldquo;1010&amp;rdquo;, b = &amp;ldquo;1011&amp;rdquo; 输出: &amp;ldquo;10101&amp;rdquo;
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 //满二进一 var addBinary = function(a, b) { let sum = 0	//保留上一次位数相加后是否进一 let result = &amp;#34;&amp;#34; for(let i = a.length -1, j = b.length-1; i &amp;gt;= 0 || j &amp;gt;= 0; i--, j--){ let count = sum	//取sum的值，与本次遍历的两数相加 count += a[i] &amp;gt; 0 ?</description>
     </item>
     
     <item>
@@ -45,7 +45,7 @@ ex1:
 示例：
 输入：head = [1,3,2] 输出：[2,3,1] 限制：0 &amp;lt;= 链表长度 &amp;lt;= 10000
 解：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56  方法一：遍历链表，使用unshift将元素添加到数组头部 /** * Definition for singly-linked list.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 方法一：遍历链表，使用unshift将元素添加到数组头部 /** * Definition for singly-linked list.</description>
     </item>
     
     <item>
@@ -58,7 +58,7 @@ ex1:
 输入：s = &amp;quot;We are happy.&amp;quot; 输出：&amp;quot;We%20are%20happy.&amp;quot;
 限制：0 &amp;lt;= s 的长度 &amp;lt;= 10000
 解：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  // 方法一：正则 /** * @param {string} s * @return {string} */ var replaceSpace = function(s) { return s.replace(/ /g, &amp;#34;%20&amp;#34;) }; //方法二：遍历字符串 /** * @param {string} s * @return {string} */ var replaceSpace = function(s) { if (!</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 // 方法一：正则 /** * @param {string} s * @return {string} */ var replaceSpace = function(s) { return s.replace(/ /g, &amp;#34;%20&amp;#34;) }; //方法二：遍历字符串 /** * @param {string} s * @return {string} */ var replaceSpace = function(s) { if (!</description>
     </item>
     
     <item>
@@ -74,8 +74,8 @@ ex1:
 限制：
 0 &amp;lt;= n &amp;lt;= 1000
 0 &amp;lt;= m &amp;lt;= 1000
- 解： 由于每行每列的元素大小都是递增的，所以在遍历时可以判断当前元素是否大于 tatget，如果大于，则开始下一轮遍历。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  /** * @param {number[][]} matrix * @param {number} target * @return {boolean} */ var findNumberIn2DArray = function(matrix, target) { let result = false for(let i = 0; i &amp;lt; matrix.</description>
+解： 由于每行每列的元素大小都是递增的，所以在遍历时可以判断当前元素是否大于 tatget，如果大于，则开始下一轮遍历。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 /** * @param {number[][]} matrix * @param {number} target * @return {boolean} */ var findNumberIn2DArray = function(matrix, target) { let result = false for(let i = 0; i &amp;lt; matrix.</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@ ex1:
 示例 1：
 输入： [2, 3, 1, 0, 2, 5, 3] 输出：2 或 3 限制： 2 &amp;lt;= n &amp;lt;= 100000
 解： 哈希，构造一个空对象，遍历数组，每次遍历数组时检查 hash 中是否包含有该元素
-1 2 3 4 5 6 7 8  var findRepeatNumber = function(nums) { let hash = {} let result = [] for(let item of nums){ hash[item] ? result.push(item) : hash[item] = true } return result[0] };   </description>
+1 2 3 4 5 6 7 8 var findRepeatNumber = function(nums) { let hash = {} let result = [] for(let item of nums){ hash[item] ? result.push(item) : hash[item] = true } return result[0] }; </description>
     </item>
     
     <item>
@@ -101,8 +101,8 @@ ex1:
       <description>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
 示例:
-给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9 所以返回 [0, 1]  解:
- 方法1:  暴力法：检查当前元素之后是否有符合条件的元素，时间复杂度为O(n^2)，空间复杂度O(1)    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  /** * @param {number[]} nums * @param {number} target * @return {number[]} */ var twoSum = function(nums, target) { for(let i = 0; i &amp;lt; nums.</description>
+给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9 所以返回 [0, 1] 解:
+方法1: 暴力法：检查当前元素之后是否有符合条件的元素，时间复杂度为O(n^2)，空间复杂度O(1) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 /** * @param {number[]} nums * @param {number} target * @return {number[]} */ var twoSum = function(nums, target) { for(let i = 0; i &amp;lt; nums.</description>
     </item>
     
   </channel>

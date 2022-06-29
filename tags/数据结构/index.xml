@@ -14,9 +14,9 @@
       
       <guid>https://zinkwu.blog/articles/binary-tree/</guid>
       <description>树
- 树是一种常用的数据结构，用来模拟具有树状结构性质的数据集合 树的每一个节点有一个根植和一个包含所有子节点的列表。    二叉树
- 二叉树是一种更为典型的树状结构。二叉树每个节点最多具有两个子树，通常子树称为“左子树”和“右子树”    二叉树前序遍历
- 前序遍历首先访问根节点，然后遍历左子树，最后遍历右子树（根节点 -&amp;gt; 左子树 -&amp;gt; 右子树） 算法：    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25  /** * Definition for a binary tree node. * function TreeNode(val) { * this.val = val; * this.left = this.</description>
+树是一种常用的数据结构，用来模拟具有树状结构性质的数据集合 树的每一个节点有一个根植和一个包含所有子节点的列表。 二叉树
+二叉树是一种更为典型的树状结构。二叉树每个节点最多具有两个子树，通常子树称为“左子树”和“右子树” 二叉树前序遍历
+前序遍历首先访问根节点，然后遍历左子树，最后遍历右子树（根节点 -&amp;gt; 左子树 -&amp;gt; 右子树） 算法： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 /** * Definition for a binary tree node. * function TreeNode(val) { * this.val = val; * this.left = this.right = null; * } */ /** * @param {TreeNode} root * @return {number[]} */ // 递归 const preorderTraversal = function(root) { let result = [] function fn(root){ if(root !</description>
     </item>
     
     <item>
@@ -25,8 +25,8 @@
       <pubDate>Mon, 06 Jan 2020 10:28:59 +0800</pubDate>
       
       <guid>https://zinkwu.blog/articles/linked-list/</guid>
-      <description>链表的区别  链表也分为单链表和双链表。
- 单链表：每个节点包含 value 和 next，next 指向下一个节点 双链表：每个节点包含 prev、value 和 next，prev 指向前一个节点，next 指向下一个节点     单链表的实现  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98  class Node{ constructor(value){ this.</description>
+      <description>链表的区别 链表也分为单链表和双链表。
+单链表：每个节点包含 value 和 next，next 指向下一个节点 双链表：每个节点包含 prev、value 和 next，prev 指向前一个节点，next 指向下一个节点 单链表的实现 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 class Node{ constructor(value){ this.</description>
     </item>
     
     <item>
@@ -35,9 +35,9 @@
       <pubDate>Wed, 18 Dec 2019 10:29:50 +0800</pubDate>
       
       <guid>https://zinkwu.blog/articles/stack-queue/</guid>
-      <description>栈  栈是一种线性数据结构，其修改顺序是后进先出(last in first out)，因此也被成为 LIFO表。 在现实生活中可以映射到我们堆叠在桌子上的书、餐具柜中队列的餐盘之类。
+      <description>栈 栈是一种线性数据结构，其修改顺序是后进先出(last in first out)，因此也被成为 LIFO表。 在现实生活中可以映射到我们堆叠在桌子上的书、餐具柜中队列的餐盘之类。
 我们可以用数组模拟栈：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31  class Static{ constructor(){ this.items = [] } // 检查栈是否为空  get isEmpty(){ return !this.items.length } // 获取栈的长度  get size(){ return this.items.length } // 查看栈顶  get top(){ return this.</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 class Static{ constructor(){ this.items = [] } // 检查栈是否为空 get isEmpty(){ return !this.items.length } // 获取栈的长度 get size(){ return this.items.length } // 查看栈顶 get top(){ return this.items[this.items.length - 1] } // 入栈 push(val){ this.</description>
     </item>
     
   </channel>
