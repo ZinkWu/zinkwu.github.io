@@ -6,7 +6,18 @@
     <description>Recent content in Articles on Zink&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 10 Mar 2022 11:09:39 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Jun 2022 14:20:29 +0000</lastBuildDate><atom:link href="https://zinkwu.blog/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>6.29 思考</title>
+      <link>https://zinkwu.blog/articles/think_0629/</link>
+      <pubDate>Wed, 29 Jun 2022 14:20:29 +0000</pubDate>
+      
+      <guid>https://zinkwu.blog/articles/think_0629/</guid>
+      <description>入职快两个月了，这段时间基本是被工作推动生活，几乎忘了自己的目标，今天更新 checklist 的时候终于有机会回过头来看了。发现这样的状态还是蛮危险的，安逸于当下的生活，对未来失去了活力。
+最近又感到自己知识上的匮乏，twitter 最近的 timeline 发生了一些大事，我能感觉到这些事背后还有更深的冰山，但是我无法探究下去，甚至无法用语言对下面这座冰山进行一个粗略的描述。这使我焦虑，或许我应该调整一下生活模式：把学习新知识作为一个构建生活的方式，而不是用娱乐、工作、消遣来填满我的生活。
+人还是不能被普通人叙事打倒，一定得在某些方面追求卓越（不一定是社会面的判断标准），才能让自己感觉到活着。</description>
+    </item>
+    
     <item>
       <title>Event Loop Promise async/await 总结</title>
       <link>https://zinkwu.blog/articles/event-loop-promise-async-await/</link>

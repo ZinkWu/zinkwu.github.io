@@ -3,20 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://zinkwu.blog/</loc>
-    <lastmod>2022-06-29T13:42:19+00:00</lastmod>
+    <lastmod>2022-06-29T14:30:35+00:00</lastmod>
     <priority>0</priority>
   </url><url>
+    <loc>https://zinkwu.blog/articles/think_0629/</loc>
+    <lastmod>2022-06-29T14:30:35+00:00</lastmod>
+  </url><url>
     <loc>https://zinkwu.blog/articles/</loc>
-    <lastmod>2022-06-29T13:42:19+00:00</lastmod>
+    <lastmod>2022-06-29T14:30:35+00:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/tags/</loc>
+    <lastmod>2022-06-29T14:30:35+00:00</lastmod>
+  </url><url>
+    <loc>https://zinkwu.blog/tags/think/</loc>
+    <lastmod>2022-06-29T14:30:35+00:00</lastmod>
   </url><url>
     <loc>https://zinkwu.blog/articles/event-loop-promise-async-await/</loc>
     <lastmod>2022-03-10T11:32:49+00:00</lastmod>
   </url><url>
     <loc>https://zinkwu.blog/tags/javascript/</loc>
     <lastmod>2022-03-10T11:32:49+00:00</lastmod>
-  </url><url>
-    <loc>https://zinkwu.blog/tags/</loc>
-    <lastmod>2022-06-29T13:42:19+00:00</lastmod>
   </url><url>
     <loc>https://zinkwu.blog/tags/react/</loc>
     <lastmod>2022-03-02T11:54:41+00:00</lastmod>
