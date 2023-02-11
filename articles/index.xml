@@ -72,15 +72,6 @@ timers 定时器 这个阶段执行已被setTimeout()和setInterval()调度的�
     </item>
     
     <item>
-      <title>2022 CheckList</title>
-      <link>https://zinkwu.blog/articles/2022-checklist/</link>
-      <pubDate>Wed, 23 Feb 2022 18:08:16 +0000</pubDate>
-      
-      <guid>https://zinkwu.blog/articles/2022-checklist/</guid>
-      <description> 回去上班 读完 Vue2 &amp;amp; Vue3 的两本基于源码的书 读完 On Java 8 读完《计算机科学导论》 读完《HTTP 权威指南》前四章 学习《大话数据结构》 学习《英语在用》 </description>
-    </item>
-    
-    <item>
       <title>什么是继承？</title>
       <link>https://zinkwu.blog/articles/whats-inheritance/</link>
       <pubDate>Thu, 10 Feb 2022 18:19:40 +0000</pubDate>
