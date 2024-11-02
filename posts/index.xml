@@ -7,15 +7,8 @@
     <generator>Hugo</generator>
     <language>zh-Hans</language>
     <copyright>© 2024 by Rush</copyright>
-    <lastBuildDate>Sat, 02 Nov 2024 13:13:58 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 11 Feb 2023 13:59:54 +0000</lastBuildDate>
     <atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>亲密关系</title>
-      <link>https://example.org/posts/intimacy/</link>
-      <pubDate>Sat, 02 Nov 2024 13:13:58 +0800</pubDate>
-      <guid>https://example.org/posts/intimacy/</guid>
-      <description>&lt;h2 id=&#34;是否需要亲密关系&#34;&gt;是否需要亲密关系？&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;我有自己的独立生活&lt;/li&gt;&#xA;&lt;li&gt;当前的生活模式不稳定&lt;/li&gt;&#xA;&lt;li&gt;我有自己的道路在探索&lt;/li&gt;&#xA;&lt;li&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
-    </item>
     <item>
       <title>指针</title>
       <link>https://example.org/posts/pointer-of-c/</link>
