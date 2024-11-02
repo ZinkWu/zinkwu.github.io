@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Grid Layout | Rush</title>
+<meta name="keywords" content="CSS, Grid 布局, Grid">
+<meta name="description" content="Grid Layout知识点笔记">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/grid-layout/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/grid-layout/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Rush (Alt + H)">Rush</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Grid Layout
+    </h1>
+    <div class="post-description">
+      Grid Layout知识点笔记
+    </div>
+    <div class="post-meta"><span title='2021-12-13 09:02:20 +0800 CST'>December 13, 2021</span>&nbsp;·&nbsp;3 min
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e4%bb%80%e4%b9%88%e6%98%af-grid" aria-label="什么是 Grid">什么是 Grid</a></li>
+                <li>
+                    <a href="#%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" aria-label="基本概念">基本概念</a></li>
+                <li>
+                    <a href="#%e5%ae%b9%e5%99%a8%e5%b1%9e%e6%80%a7" aria-label="容器属性">容器属性</a><ul>
+                        
+                <li>
+                    <a href="#grid-template-columns-%e5%92%8c-grid-template-rows" aria-label="grid-template-columns 和 grid-template-rows">grid-template-columns 和 grid-template-rows</a><ul>
+                        
+                <li>
+                    <a href="#repeat" aria-label="repeat()">repeat()</a></li>
+                <li>
+                    <a href="#auto-fill" aria-label="auto-fill">auto-fill</a></li>
+                <li>
+                    <a href="#fr" aria-label="fr">fr</a></li>
+                <li>
+                    <a href="#minmax" aria-label="minmax()">minmax()</a></li>
+                <li>
+                    <a href="#auto" aria-label="auto">auto</a></li>
+                <li>
+                    <a href="#%e6%8c%87%e5%ae%9a%e7%bd%91%e6%a0%bc%e7%ba%bf%e5%90%8d%e7%a7%b0" aria-label="指定网格线名称">指定网格线名称</a></li></ul>
+                </li>
+                <li>
+                    <a href="#grid-row-gapgrid-column-gapgrid-gap" aria-label="grid-row-gap、grid-column-gap、grid-gap">grid-row-gap、grid-column-gap、grid-gap</a></li>
+                <li>
+                    <a href="#grid-auto-flow" aria-label="grid-auto-flow">grid-auto-flow</a></li>
+                <li>
+                    <a href="#justify-itemsalign-itemsplace-items" aria-label="justify-items、align-items、place-items">justify-items、align-items、place-items</a></li>
+                <li>
+                    <a href="#justify-contentalign-contentplace-content" aria-label="justify-content、align-content、place-content">justify-content、align-content、place-content</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%ad%90%e5%85%83%e7%b4%a0%e5%b1%9e%e6%80%a7" aria-label="子元素属性">子元素属性</a><ul>
+                        
+                <li>
+                    <a href="#grid-column-startgrid-column-endgrid-row-startgrid-start-endgrid-columngrid-start" aria-label="grid-column-start、grid-column-end、grid-row-start、grid-start-end、grid-column、grid-start">grid-column-start、grid-column-end、grid-row-start、grid-start-end、grid-column、grid-start</a></li>
+                <li>
+                    <a href="#justify-selfalign-selfplace-self" aria-label="justify-self、align-self、place-self">justify-self、align-self、place-self</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%8c%ba%e5%9f%9f%e7%9b%b8%e5%85%b3%e7%9a%84%e5%86%85%e5%ae%b9" aria-label="区域相关的内容">区域相关的内容</a><ul>
+                        
+                <li>
+                    <a href="#grid-template-areas" aria-label="grid-template-areas">grid-template-areas</a></li>
+                <li>
+                    <a href="#grid-area" aria-label="grid-area">grid-area</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="什么是-grid">什么是 Grid<a hidden class="anchor" aria-hidden="true" href="#什么是-grid">#</a></h2>
+<ul>
+<li>Grid 是一种 CSS 布局方案</li>
+<li>将浏览器划分为一个个网格并可以任意组合</li>
+<li>Flex 和 Grid 看似相似，但内在相差很大
+<ul>
+<li>Flex 是轴线布局，只能指定 Item 处于轴线某个位置</li>
+<li>Grid 是网格布局，将容器划分为<strong>行</strong>和<strong>列</strong>，产生<strong>单元格</strong>，并指定 Item 处于某个单元格中</li>
+</ul>
+</li>
+</ul>
+<h2 id="基本概念">基本概念<a hidden class="anchor" aria-hidden="true" href="#基本概念">#</a></h2>
+<ul>
+<li>row 行</li>
+<li>column 列</li>
+<li>grid line 网格线</li>
+<li>cell 单元格</li>
+<li>将容器设置为<code>display: grid</code>后，容器内子元素的<code>float</code>、<code>diaplay: inline-block</code>、<code>display: table-cell</code>、<code>vertical-align</code>和<code>column-*</code>等设置都会失效</li>
+</ul>
+<p>这个<a href="https://cssgridgarden.com/">游戏</a>能帮你更好的学习 grid</p>
+<h2 id="容器属性">容器属性<a hidden class="anchor" aria-hidden="true" href="#容器属性">#</a></h2>
+<h3 id="grid-template-columns-和-grid-template-rows">grid-template-columns 和 grid-template-rows<a hidden class="anchor" aria-hidden="true" href="#grid-template-columns-和-grid-template-rows">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;container&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>4<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>5<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>6<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>7<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>8<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>9<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span> <span class="c">/*将元素分为三列,，每一列的宽度是100px*/</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-rows</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span> <span class="c">/*将元素分为三行，每一行的高度是100px*/</span>
+</span></span><span class="line"><span class="cl">    <span class="c">/*
+</span></span></span><span class="line"><span class="cl"><span class="c">    产生一个三行三列的网格，列宽和行高都是100px
+</span></span></span><span class="line"><span class="cl"><span class="c">    除了使用px单位，也可以使用百分比
+</span></span></span><span class="line"><span class="cl"><span class="c">    */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span> <span class="o">&gt;</span> <span class="nt">div</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">blue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="repeat">repeat()<a hidden class="anchor" aria-hidden="true" href="#repeat">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="nf">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">33.33</span><span class="kt">%</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-rows</span><span class="p">:</span> <span class="nf">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">33.33</span><span class="kt">%</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>repeat()</code>的第一个参数表示重复的次数，第二个参数表示重复的值，不过它并不是只能接受两个参数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="nf">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">20</span><span class="kt">px</span> <span class="mi">50</span><span class="kt">px</span> <span class="mi">30</span><span class="kt">px</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>以上代码定义了9列，1、4、7列的宽为20px；2、5、8列的宽为50px；3、6、9列的宽为30px</p>
+<h4 id="auto-fill">auto-fill<a hidden class="anchor" aria-hidden="true" href="#auto-fill">#</a></h4>
+<p>当单元格的大小是固定的，但容器大小不确定，此时我们希望每一行、每一列尽量容纳多的单元格，这是可以使用<code>auto-fill</code>表示自动填充</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="nf">repeat</span><span class="p">(</span><span class="kc">auto</span><span class="o">-</span><span class="kc">fill</span><span class="p">,</span> <span class="mi">100</span><span class="kt">px</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="fr">fr<a hidden class="anchor" aria-hidden="true" href="#fr">#</a></h4>
+<p><code>fr</code>能表示子元素大小的比例关系</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="mi">1</span><span class="n">fr</span> <span class="mi">2</span><span class="n">fr</span> <span class="mi">1</span><span class="n">fr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>以上代码表示第二列的宽是第一列和第三列的两倍，使用<code>fr</code>时也可以结合绝对单位：<code>grid-template-columns: 150px 2fr 1fr;</code></p>
+<h4 id="minmax">minmax()<a hidden class="anchor" aria-hidden="true" href="#minmax">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="mi">1</span><span class="n">fr</span> <span class="mi">1</span><span class="n">fr</span> <span class="nf">minmax</span><span class="p">(</span><span class="mi">100</span><span class="kt">px</span><span class="p">,</span> <span class="mi">2</span><span class="n">fr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>以上代码表示第三列的宽最小值为100px，最大值为第一列和第二列的两倍</p>
+<h4 id="auto">auto<a hidden class="anchor" aria-hidden="true" href="#auto">#</a></h4>
+<p><code>auto</code>表示浏览器自己决定长度</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="kc">auto</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="指定网格线名称">指定网格线名称<a hidden class="anchor" aria-hidden="true" href="#指定网格线名称">#</a></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"> <span class="p">.</span><span class="nc">container</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">grid-template-columns</span><span class="p">:</span> <span class="p">[</span><span class="n">c1</span><span class="p">]</span> <span class="mi">100</span><span class="kt">px</span> <span class="p">[</span><span class="n">c2</span><span class="p">]</span> <span class="mi">100</span><span class="kt">px</span> <span class="p">[</span><span class="n">c3</span><span class="p">]</span> <span class="mi">100</span><span class="kt">px</span> <span class="p">[</span><span class="n">c4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">     <span class="k">grid-template-rows</span><span class="p">:</span> <span class="p">[</span><span class="n">r1</span><span class="p">]</span> <span class="mi">100</span><span class="kt">px</span> <span class="p">[</span><span class="n">r2</span><span class="p">]</span> <span class="mi">100</span><span class="kt">px</span> <span class="p">[</span><span class="n">r3</span><span class="p">]</span> <span class="mi">100</span><span class="kt">px</span> <span class="p">[</span><span class="n">r4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>网格布局允许同一根线有多个名字，比如<code>[start-line r1]</code></p>
+<h3 id="grid-row-gapgrid-column-gapgrid-gap">grid-row-gap、grid-column-gap、grid-gap<a hidden class="anchor" aria-hidden="true" href="#grid-row-gapgrid-column-gapgrid-gap">#</a></h3>
+<p><code>grid-row-gap</code>设置行与行之间的间隔，<code>grid-column-gap</code>设置列与列之间的间隔，<code>gird-gap</code>则是两个属性的缩写</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-rows</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-column-gap</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-row-gap</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">/* 
+</span></span></span><span class="line"><span class="cl"><span class="c">    grid-gap: 5px 5px; 
+</span></span></span><span class="line"><span class="cl"><span class="c">    grid-gap: row-gap column-gap;
+</span></span></span><span class="line"><span class="cl"><span class="c">    如果忽略第二个值，那么浏览器会默认第二个值与第一个值相等
+</span></span></span><span class="line"><span class="cl"><span class="c">    */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="grid-auto-flow">grid-auto-flow<a hidden class="anchor" aria-hidden="true" href="#grid-auto-flow">#</a></h3>
+<p>grid的放置顺序为先行后列，先填满第一行，再开始填充第二行，<code>grid-auto-flow</code>可以改变这个顺序。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-rows</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-auto-flow</span><span class="p">:</span> <span class="kc">column</span><span class="p">;</span> <span class="c">/* 先列后行，默认值是 row */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>grid-auto-flow</code>还有另外两个值：<code>row-dense</code>、<code>cloumn-dense</code>，表示让子元素尽可能密集排布，哪怕转换元素的顺序。</p>
+<h3 id="justify-itemsalign-itemsplace-items">justify-items、align-items、place-items<a hidden class="anchor" aria-hidden="true" href="#justify-itemsalign-itemsplace-items">#</a></h3>
+<p><code>justify-items</code>用于设置单元格内容的水平位置（左中右），<code>align-items</code>用于设置单元格内容的垂直位置（左中右）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">justify-items</span><span class="p">:</span> <span class="kc">start</span> <span class="o">|</span> <span class="kc">end</span> <span class="o">|</span> <span class="kc">center</span> <span class="o">|</span> <span class="kc">stretch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">align-items</span><span class="p">:</span> <span class="kc">start</span> <span class="o">|</span> <span class="kc">end</span> <span class="o">|</span> <span class="kc">center</span> <span class="o">|</span> <span class="kc">stretch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>place-items</code>以上两个属性的缩写</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">contianer</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">place-items</span><span class="p">:</span> <span class="o">&lt;</span><span class="k">align-items</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="kc">justify</span><span class="o">-</span><span class="n">items</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">/*如果忽略第一个值，浏览器默认第二个值等于第一个值*/</span>
+</span></span></code></pre></div><h3 id="justify-contentalign-contentplace-content">justify-content、align-content、place-content<a hidden class="anchor" aria-hidden="true" href="#justify-contentalign-contentplace-content">#</a></h3>
+<p>作用跟上面三个属性相似，不过<code>*-content</code>表示的是容器内整个内容区域的位置，<code>*-items</code>表示子元素在单元格中的位置</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">justify-content</span><span class="p">:</span> <span class="kc">start</span> <span class="o">|</span> <span class="kc">end</span> <span class="o">|</span> <span class="kc">center</span> <span class="o">|</span> <span class="kc">stretch</span> <span class="o">|</span> <span class="kc">space-around</span> <span class="o">|</span> <span class="kc">space-between</span> <span class="o">|</span> <span class="kc">space</span><span class="o">-</span><span class="n">evenly</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">align-content</span><span class="p">:</span> <span class="kc">start</span> <span class="o">|</span> <span class="kc">end</span> <span class="o">|</span> <span class="kc">center</span> <span class="o">|</span> <span class="kc">stretch</span> <span class="o">|</span> <span class="kc">space-around</span> <span class="o">|</span> <span class="kc">space-between</span> <span class="o">|</span> <span class="kc">space</span><span class="o">-</span><span class="n">evenly</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">/* space-evenly 表示子元素之间的间距相等，子元素与容器边框之间的间距也相等 */</span>
+</span></span></code></pre></div><h2 id="子元素属性">子元素属性<a hidden class="anchor" aria-hidden="true" href="#子元素属性">#</a></h2>
+<h3 id="grid-column-startgrid-column-endgrid-row-startgrid-start-endgrid-columngrid-start">grid-column-start、grid-column-end、grid-row-start、grid-start-end、grid-column、grid-start<a hidden class="anchor" aria-hidden="true" href="#grid-column-startgrid-column-endgrid-row-startgrid-start-endgrid-columngrid-start">#</a></h3>
+<p>以上属性可以指定子元素在容器内占据的单元格位置</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-rows</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">item</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-column-start</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">grid-column-end</span><span class="p">:</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>以上代码指定了<code>item</code>占据了2个单元格，<strong>以第一根垂直网格线为起点，以第三根垂直网格线为终点</strong>，不仅可以写第几根网格线，也还可以写网格线名称。</p>
+<p>也可以使用<code>span</code>来表示<strong>跨越</strong>多少个网格</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"> <span class="p">.</span><span class="nc">item</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">grid-column-start</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">grid-column-end</span><span class="p">:</span> <span class="n">span</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">/*从第一根垂直网格线开始，跨越三个单元格*/</span>
+</span></span></code></pre></div><p><code>grid-column</code>、<code>grid-row</code>则是对应属性的缩写</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">item</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-column</span><span class="p">:</span> <span class="o">&lt;</span><span class="kc">start</span><span class="o">-</span><span class="n">line</span><span class="o">&gt;</span> <span class="o">/</span> <span class="o">&lt;</span><span class="kc">end</span><span class="o">-</span><span class="n">line</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-row</span><span class="p">:</span> <span class="o">&lt;</span><span class="kc">start</span><span class="o">-</span><span class="n">line</span><span class="o">&gt;</span> <span class="o">/</span> <span class="o">&lt;</span><span class="kc">end</span><span class="o">-</span><span class="n">line</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">/* 同样可以使用 span */</span>
+</span></span></code></pre></div><h3 id="justify-selfalign-selfplace-self">justify-self、align-self、place-self<a hidden class="anchor" aria-hidden="true" href="#justify-selfalign-selfplace-self">#</a></h3>
+<p>跟<code>justify-items</code>、<code>align-items</code>、<code>space-items</code>用法相同，不过<code>*-self</code>仅作用与单个子元素</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">item</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">justify-self</span><span class="p">:</span> <span class="kc">start</span> <span class="o">|</span> <span class="kc">end</span> <span class="o">|</span> <span class="kc">center</span> <span class="o">|</span> <span class="kc">stretch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">align-self</span><span class="p">:</span> <span class="kc">start</span> <span class="o">|</span> <span class="kc">end</span> <span class="o">|</span> <span class="kc">center</span> <span class="o">|</span> <span class="kc">stretch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>place-items</code>是两个属性的缩写</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">item</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">place-self</span><span class="p">:</span> <span class="o">&lt;</span><span class="k">align-self</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="kc">justify</span><span class="o">-</span><span class="n">self</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="区域相关的内容">区域相关的内容<a hidden class="anchor" aria-hidden="true" href="#区域相关的内容">#</a></h2>
+<h3 id="grid-template-areas">grid-template-areas<a hidden class="anchor" aria-hidden="true" href="#grid-template-areas">#</a></h3>
+<p>网格布局可以指定<strong>区域</strong>，一个区域又单个或多个单元格组成，<code>grid-template-areas</code>用于自定义区域</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-rows</span><span class="p">:</span> <span class="nf">repeat</span><span class="p">(</span><span class="mi">3</span> <span class="mi">100</span><span class="kt">px</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-areas</span><span class="p">:</span> <span class="s1">&#39;a b c&#39;</span>
+</span></span><span class="line"><span class="cl">        			    <span class="s1">&#39;d e f&#39;</span>
+</span></span><span class="line"><span class="cl">        				<span class="s1">&#39;g h i&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>也可以将多个单元格合并为一个区域</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">container</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="k">grid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-columns</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-rows</span><span class="p">:</span> <span class="nf">repeat</span><span class="p">(</span><span class="mi">3</span> <span class="mi">100</span><span class="kt">px</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-template-areas</span><span class="p">:</span> <span class="s1">&#39;a a a&#39;</span>
+</span></span><span class="line"><span class="cl">        			    <span class="s1">&#39;b b b&#39;</span>
+</span></span><span class="line"><span class="cl">        				<span class="s1">&#39;c c c&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">/*
+</span></span></span><span class="line"><span class="cl"><span class="c">如果某个区域不需要利用，则可以用&#34;.&#34;来表示
+</span></span></span><span class="line"><span class="cl"><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">注意，区域的命名会影响到网格线。
+</span></span></span><span class="line"><span class="cl"><span class="c">每个区域的起始网格线，会自动命名为区域名-start，终止网格线自动命名为区域名-end。
+</span></span></span><span class="line"><span class="cl"><span class="c">*/</span>
+</span></span></code></pre></div><h3 id="grid-area">grid-area<a hidden class="anchor" aria-hidden="true" href="#grid-area">#</a></h3>
+<p>用于指定子元素放在哪一个区域</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">item</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">grid-area</span><span class="p">:</span> <span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>grid-area</code>属性还可用作<code>grid-row-start</code>、<code>grid-column-start</code>、<code>grid-row-end</code>、<code>grid-column-end</code>的合并简写形式，直接指定项目的位置。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">item</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">grid-area</span><span class="p">:</span> <span class="o">&lt;</span><span class="kc">row</span><span class="o">-</span><span class="kc">start</span><span class="o">&gt;</span> <span class="o">/</span> <span class="o">&lt;</span><span class="kc">column</span><span class="o">-</span><span class="kc">start</span><span class="o">&gt;</span> <span class="o">/</span> <span class="o">&lt;</span><span class="kc">row</span><span class="o">-</span><span class="kc">end</span><span class="o">&gt;</span> <span class="o">/</span> <span class="o">&lt;</span><span class="kc">column</span><span class="o">-</span><span class="kc">end</span><span class="o">&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/css/">CSS</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/windows-terminal-build/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Win11 PowerShell 配置</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/ubuntu-config/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Ubuntu 20.04.3 LTS 配置</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>© 2024 by Rush</span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

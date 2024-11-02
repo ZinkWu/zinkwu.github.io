@@ -1,198 +1,299 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
-    
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="theme-color" content="dark">
-    <title>算法 | Zink&#39;s Blog</title>
+<html lang="en" dir="auto">
 
-    
-    
-    
-    <meta property="og:site_name" content="Zink&#39;s Blog" />
-    <meta property="og:title" content="算法 | Zink&#39;s Blog"/>
-    <meta itemprop="name" content="算法 | Zink&#39;s Blog" />
-    <meta name="twitter:title" content="算法 | Zink&#39;s Blog" />
-    <meta name="application-name" content="算法 | Zink&#39;s Blog" />
-
-
-    <meta name="description" content="" />
-    <meta name="twitter:description" content=""/>
-    <meta itemprop="description" content=""/>
-    <meta property="og:description" content="" />
-
-    
-
-
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    
-    <link rel="stylesheet" href="/sass/main.min.ab99ff095f832511e24ffb2fba2b51ad473b2f7e9301d674eba2c6c3a6e8bd81.css">
-    
-</head>
-    <script>
-    (function() {
-        const colorSchemeKey = 'ThemeColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.userColorScheme = 'dark';
-        } else {
-            document.documentElement.dataset.userColorScheme = 'light';
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>算法 | Rush</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/tags/%E7%AE%97%E6%B3%95/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/%E7%AE%97%E6%B3%95/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/%E7%AE%97%E6%B3%95/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
         }
-    })();
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
 </script>
 
-    <body class="dark">
-        <nav class="navbar">
-    <div class="container">
-        <div class="flex">
-            <div>
-                <a class="brand" href="/">
-                    
-                    <span class="emoji">
-                        🥁
-                    </span>
-                    
-                    
-                    Zink&#39;s Blog
-                    </a>
-            </div>
-            <div class="flex">
-                
-                <a href="/about/">About</a>
-                
-                <a href="/articles/">Articles</a>
-                
-                <a href="/tags">Tags</a>
-                
-                <a href="/index.xml">RSS</a>
-                
-                <button id="dark-mode-button">
-                  <svg class="light" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="#FFD983" d="M30.312.776C32 19 20 32 .776 30.312c8.199 7.717 21.091 7.588 29.107-.429C37.9 21.867 38.03 8.975 30.312.776z"/><path d="M30.705 15.915a1.163 1.163 0 1 0 1.643 1.641a1.163 1.163 0 0 0-1.643-1.641zm-16.022 14.38a1.74 1.74 0 0 0 0 2.465a1.742 1.742 0 1 0 0-2.465zm13.968-2.147a2.904 2.904 0 0 1-4.108 0a2.902 2.902 0 0 1 0-4.107a2.902 2.902 0 0 1 4.108 0a2.902 2.902 0 0 1 0 4.107z" fill="#FFCC4D"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)" /></svg>
-                  <svg class="dark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="#FFD983" d="M16 2s0-2 2-2s2 2 2 2v2s0 2-2 2s-2-2-2-2V2zm18 14s2 0 2 2s-2 2-2 2h-2s-2 0-2-2s2-2 2-2h2zM4 16s2 0 2 2s-2 2-2 2H2s-2 0-2-2s2-2 2-2h2zm5.121-8.707s1.414 1.414 0 2.828s-2.828 0-2.828 0L4.878 8.708s-1.414-1.414 0-2.829c1.415-1.414 2.829 0 2.829 0l1.414 1.414zm21 21s1.414 1.414 0 2.828s-2.828 0-2.828 0l-1.414-1.414s-1.414-1.414 0-2.828s2.828 0 2.828 0l1.414 1.414zm-.413-18.172s-1.414 1.414-2.828 0s0-2.828 0-2.828l1.414-1.414s1.414-1.414 2.828 0s0 2.828 0 2.828l-1.414 1.414zm-21 21s-1.414 1.414-2.828 0s0-2.828 0-2.828l1.414-1.414s1.414-1.414 2.828 0s0 2.828 0 2.828l-1.414 1.414zM16 32s0-2 2-2s2 2 2 2v2s0 2-2 2s-2-2-2-2v-2z"/><circle fill="#FFD983" cx="18" cy="18" r="10"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)" /></svg>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Rush (Alt + H)">Rush</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
                 </button>
             </div>
-            </div>
-    </div>
-</nav>
-        <main>
-            
-
-
-
-
-<header>
-  <div class="container">
-    <h1>算法</h1>
-    <p class="subtitle">
-      <span class="count">7</span> posts found.
-    </p>
-  </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/tags/">Tags</a></div>
+  <h1>
+    算法
+    <a href="/tags/%E7%AE%97%E6%B3%95/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
 </header>
 
-<section>
-  <div class="container">
-    <section>
-      <section>
-        <div class="posts">
-          
-          <div class="post">
-            <a href="/articles/metge-two-sorted-linked-list/">
-              <div class="post-row">
-                <time>Jul 17</time>
-                <h3>合并两个有序链表</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-          <div class="post">
-            <a href="/articles/add-binary/">
-              <div class="post-row">
-                <time>Jul 23</time>
-                <h3>二进制求和</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-          <div class="post">
-            <a href="/articles/print-linked-list/">
-              <div class="post-row">
-                <time>Mar 29</time>
-                <h3>从尾到头打印链表</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-          <div class="post">
-            <a href="/articles/replace-spaces/">
-              <div class="post-row">
-                <time>Mar 28</time>
-                <h3>替换空格</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-          <div class="post">
-            <a href="/articles/locating-a-2d-matrix/">
-              <div class="post-row">
-                <time>Mar 26</time>
-                <h3>二维数组中的查找</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-          <div class="post">
-            <a href="/articles/array-repetition-numbers/">
-              <div class="post-row">
-                <time>Mar 24</time>
-                <h3>数组中重复的数字</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-          <div class="post">
-            <a href="/articles/two-sum/">
-              <div class="post-row">
-                <time>Jan 14</time>
-                <h3>两数之和</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-        </div>
-      </section>
-    </section>
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">合并两个有序链表
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
+ex1:
+输入：l1 = [1,2,4], l2 = [1,3,4] 输出：[1,1,2,3,4,4] tip:
+两个链表的节点数目范围是 [0, 50] -100 &lt;= Node.val &lt;= 100 l1 和 l2 均按 非递减顺序 排列 code:
+/** * Definition for singly-linked list. * function ListNode(val, next) { * this.val = (val===undefined ? 0 : val) * this.next = (next===undefined ? null : next) * } */ /** * @param {ListNode} l1 * @param {ListNode} l2 * @return {ListNode} */ var mergeTwoLists = function(l1, l2) { if(!l1 &amp;&amp; !l2){ return null } if(!l1){ return l2 }else if(!l2){ return l1 } if(l1.val &lt;= l2.val){ l1.next = mergeTwoLists(l1.next, l2) return l1 }else{ l2.next = mergeTwoLists(l1, l2.next) return l2 } }; </p>
   </div>
-</section>
+  <footer class="entry-footer"><span title='2021-07-17 10:09:51 +0800 CST'>July 17, 2021</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to 合并两个有序链表" href="http://localhost:1313/posts/metge-two-sorted-linked-list/"></a>
+</article>
 
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">二进制求和
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>给你两个二进制字符串，返回它们的和（用二进制表示）。
+输入为 非空 字符串且只包含数字 1 和 0。
+示例1：
+输入: a = “11”, b = “1” 输出: “100”
+示例2：
+输入: a = “1010”, b = “1011” 输出: “10101”
+//满二进一 var addBinary = function(a, b) { let sum = 0	//保留上一次位数相加后是否进一 let result = &#34;&#34; for(let i = a.length -1, j = b.length-1; i &gt;= 0 || j &gt;= 0; i--, j--){ let count = sum	//取sum的值，与本次遍历的两数相加 count &#43;= a[i] &gt; 0 ? parseInt(a[i]) : 0 count &#43;= b[j] &gt; 0 ? parseInt(b[j]) : 0 //count的值只可能为 0、1、2、3 result &#43;= count % 2 sum = Math.floor(count / 2)	// count &gt;= 2 时会进一 } result &#43;= sum == 1 ? sum : &#34;&#34; //最后要检查sum是否为1，为1则表示还需要进位 return result.split(&#34;&#34;).reverse().join(&#34;&#34;) //反转，因为是从字符串末端开始遍历 }; </p>
+  </div>
+  <footer class="entry-footer"><span title='2020-07-23 10:09:44 +0800 CST'>July 23, 2020</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to 二进制求和" href="http://localhost:1313/posts/add-binary/"></a>
+</article>
 
-        </main>
-        <footer class="footer flex">
-    <section class="container">
-        <nav class="footer-links">
-            
-            <a href="/">© 2021-2023 Zink&#39;s Blog</a>
-            
-        </nav>
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">从尾到头打印链表
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。
+示例：
+输入：head = [1,3,2] 输出：[2,3,1] 限制：0 &lt;= 链表长度 &lt;= 10000
+解：
+方法一：遍历链表，使用unshift将元素添加到数组头部 /** * Definition for singly-linked list. * function ListNode(val) { * this.val = val; * this.next = null; * } */ /** * @param {ListNode} head * @return {number[]} */ var reversePrint = function(head) { if(head === null) return [] let result = [] while(head){ result.unshift(head.val) head = head.next } return result }; 方法二：反转链表，遍历链表将元素push到数组 /** * Definition for singly-linked list. * function ListNode(val) { * this.val = val; * this.next = null; * } */ /** * @param {ListNode} head * @return {number[]} */ var reversePrint = function(head) { if(head === null) return [] head = reverseList(head) let result = [] while(head){ result.push(head.val) head = head.next } return result }; function reverseList(head){ let next; let pre; while(head){ next = head.next; head.next = pre; pre = head; head = next; } return pre } </p>
+  </div>
+  <footer class="entry-footer"><span title='2020-03-29 10:09:29 +0800 CST'>March 29, 2020</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to 从尾到头打印链表" href="http://localhost:1313/posts/print-linked-list/"></a>
+</article>
 
-        
-    </section>
-    <script defer src="/ts/features.f658accd96ff946aea04e7fca44a794f9632d32718aaf69be3f0f434b3ac6118.js" 
-    data-enable-footnotes="false"
-    ></script>
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">替换空格
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>请实现一个函数，把字符串 s 中的每个空格替换成&#34;%20&#34;。
+输入：s = &#34;We are happy.&#34; 输出：&#34;We%20are%20happy.&#34;
+限制：0 &lt;= s 的长度 &lt;= 10000
+解：
+// 方法一：正则 /** * @param {string} s * @return {string} */ var replaceSpace = function(s) { return s.replace(/ /g, &#34;%20&#34;) }; //方法二：遍历字符串 /** * @param {string} s * @return {string} */ var replaceSpace = function(s) { if (!s || !s.length) { return &#34;&#34;; } let result = &#34;&#34; for(let i = 0; i&lt;s.length; i&#43;&#43;){ if(s[i] === &#34; &#34;){ result &#43;= &#34;%20&#34; }else{ result &#43;= s[i] } } return result }; </p>
+  </div>
+  <footer class="entry-footer"><span title='2020-03-28 10:24:35 +0800 CST'>March 28, 2020</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to 替换空格" href="http://localhost:1313/posts/replace-spaces/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">二维数组中的查找
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+示例： 现有矩阵 matrix 如下：
+[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30] ] 给定 target = 5，返回 true。
+给定 target = 20，返回 false。
+限制：
+0 &lt;= n &lt;= 1000
+0 &lt;= m &lt;= 1000
+解： 由于每行每列的元素大小都是递增的，所以在遍历时可以判断当前元素是否大于 tatget，如果大于，则开始下一轮遍历。
+/** * @param {number[][]} matrix * @param {number} target * @return {boolean} */ var findNumberIn2DArray = function(matrix, target) { let result = false for(let i = 0; i &lt; matrix.length; i&#43;&#43;){ for(let j = 0; j &lt; matrix[i].length; j&#43;&#43;){ if(matrix[i][j] &gt; target){ break } if(matrix[i][j] === target){ result = true return result } } } return result }; </p>
+  </div>
+  <footer class="entry-footer"><span title='2020-03-26 10:25:39 +0800 CST'>March 26, 2020</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to 二维数组中的查找" href="http://localhost:1313/posts/locating-a-2d-matrix/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="http://localhost:1313/tags/%E7%AE%97%E6%B3%95/page/2/">Next&nbsp;2/2&nbsp;»
+    </a>
+  </nav>
 </footer>
+    </main>
+    
+<footer class="footer">
+        <span>© 2024 by Rush</span> · 
 
-    </body>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
 </html>

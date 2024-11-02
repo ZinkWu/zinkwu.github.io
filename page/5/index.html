@@ -1,198 +1,285 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
-    
+<html lang="en" dir="auto">
+
 <head>
-	<meta name="generator" content="Hugo 0.110.0">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="theme-color" content="dark">
-    <title>Zink&#39;s Blog</title>
+	<meta name="generator" content="Hugo 0.136.5"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Rush</title>
 
-    
-    
-    
-    <meta property="og:site_name" content="Zink&#39;s Blog" />
-    <meta property="og:title" content="Zink&#39;s Blog"/>
-    <meta itemprop="name" content="Zink&#39;s Blog" />
-    <meta name="twitter:title" content="Zink&#39;s Blog" />
-    <meta name="application-name" content="Zink&#39;s Blog" />
-
-
-    <meta name="description" content="" />
-    <meta name="twitter:description" content=""/>
-    <meta itemprop="description" content=""/>
-    <meta property="og:description" content="" />
-
-    
-
-
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    
-    <link rel="stylesheet" href="/sass/main.min.ab99ff095f832511e24ffb2fba2b51ad473b2f7e9301d674eba2c6c3a6e8bd81.css">
-    
-</head>
-    <script>
-    (function() {
-        const colorSchemeKey = 'ThemeColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.userColorScheme = 'dark';
-        } else {
-            document.documentElement.dataset.userColorScheme = 'light';
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml">
+<link rel="alternate" type="application/json" href="http://localhost:1313/index.json">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
         }
-    })();
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
 </script>
 
-    <body class="dark">
-        <nav class="navbar">
-    <div class="container">
-        <div class="flex">
-            <div>
-                <a class="brand" href="/">
-                    
-                    <span class="emoji">
-                        🥁
-                    </span>
-                    
-                    
-                    Zink&#39;s Blog
-                    </a>
-            </div>
-            <div class="flex">
-                
-                <a href="/about/">About</a>
-                
-                <a href="/articles/">Articles</a>
-                
-                <a href="/tags">Tags</a>
-                
-                <a href="/index.xml">RSS</a>
-                
-                <button id="dark-mode-button">
-                  <svg class="light" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="#FFD983" d="M30.312.776C32 19 20 32 .776 30.312c8.199 7.717 21.091 7.588 29.107-.429C37.9 21.867 38.03 8.975 30.312.776z"/><path d="M30.705 15.915a1.163 1.163 0 1 0 1.643 1.641a1.163 1.163 0 0 0-1.643-1.641zm-16.022 14.38a1.74 1.74 0 0 0 0 2.465a1.742 1.742 0 1 0 0-2.465zm13.968-2.147a2.904 2.904 0 0 1-4.108 0a2.902 2.902 0 0 1 0-4.107a2.902 2.902 0 0 1 4.108 0a2.902 2.902 0 0 1 0 4.107z" fill="#FFCC4D"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)" /></svg>
-                  <svg class="dark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="#FFD983" d="M16 2s0-2 2-2s2 2 2 2v2s0 2-2 2s-2-2-2-2V2zm18 14s2 0 2 2s-2 2-2 2h-2s-2 0-2-2s2-2 2-2h2zM4 16s2 0 2 2s-2 2-2 2H2s-2 0-2-2s2-2 2-2h2zm5.121-8.707s1.414 1.414 0 2.828s-2.828 0-2.828 0L4.878 8.708s-1.414-1.414 0-2.829c1.415-1.414 2.829 0 2.829 0l1.414 1.414zm21 21s1.414 1.414 0 2.828s-2.828 0-2.828 0l-1.414-1.414s-1.414-1.414 0-2.828s2.828 0 2.828 0l1.414 1.414zm-.413-18.172s-1.414 1.414-2.828 0s0-2.828 0-2.828l1.414-1.414s1.414-1.414 2.828 0s0 2.828 0 2.828l-1.414 1.414zm-21 21s-1.414 1.414-2.828 0s0-2.828 0-2.828l1.414-1.414s1.414-1.414 2.828 0s0 2.828 0 2.828l-1.414 1.414zM16 32s0-2 2-2s2 2 2 2v2s0 2-2 2s-2-2-2-2v-2z"/><circle fill="#FFD983" cx="18" cy="18" r="10"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)" /></svg>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Rush (Alt + H)">Rush</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
                 </button>
             </div>
-            </div>
-    </div>
-</nav>
-        <main>
-            
-
-<div class="container">
-    <section class="my">
-        <div class="content">
-            
-            <p>好记性不如烂笔头</p>
-
-            
-            <div class="bio-social">
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            </div>
         </div>
-    </section>
-</div>
-
-
-
-
-
-
-<div class="container">
-    <section>
-        <h2>
-            Latest Articles
-            
-            <a class="section-button" href="/articles/">View all</a>
-            
-        </h2>
-        <div class="posts">
-            
-            <div class="post">
-                <a href="/articles/debounce-throttle/">
-                    <div class="post-row">
-                        <time>Aug 06</time>
-                        <h3>防抖和节流</h3>
-                    </div>
-                    
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/archives" title="Archive">
+                    <span>Archive</span>
                 </a>
-            </div>
-            
-            <div class="post">
-                <a href="/articles/js-deep-and-shallow-clone/">
-                    <div class="post-row">
-                        <time>Jul 24</time>
-                        <h3>JavaScript的深浅拷贝</h3>
-                    </div>
-                    
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
                 </a>
-            </div>
-            
-        </div>
-    </section>
-    
-</div>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
 
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">数组中重复的数字
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>找出数组中重复的数字。
+在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+示例 1：
+输入： [2, 3, 1, 0, 2, 5, 3] 输出：2 或 3 限制： 2 &lt;= n &lt;= 100000
+解： 哈希，构造一个空对象，遍历数组，每次遍历数组时检查 hash 中是否包含有该元素
+var findRepeatNumber = function(nums) { let hash = {} let result = [] for(let item of nums){ hash[item] ? result.push(item) : hash[item] = true } return result[0] }; </p>
+  </div>
+  <footer class="entry-footer"><span title='2020-03-24 10:26:48 +0800 CST'>March 24, 2020</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to 数组中重复的数字" href="http://localhost:1313/posts/array-repetition-numbers/"></a>
+</article>
 
-        </main>
-        <footer class="footer flex">
-    <section class="container">
-        <nav class="footer-links">
-            
-            <a href="/">© 2021-2023 Zink&#39;s Blog</a>
-            
-        </nav>
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">两数之和
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
+示例:
+给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] &#43; nums[1] = 2 &#43; 7 = 9 所以返回 [0, 1] 解:
+方法1: 暴力法：检查当前元素之后是否有符合条件的元素，时间复杂度为O(n^2)，空间复杂度O(1) /** * @param {number[]} nums * @param {number} target * @return {number[]} */ var twoSum = function(nums, target) { for(let i = 0; i &lt; nums.length; i&#43;&#43;){ let num = target - nums[i] for(let j = i &#43; 1; j &lt; nums.length; j&#43;&#43;){ if(nums[j] === num){ return [i, j] } } } return [] }; 方法2： Hash表：每次迭代都回头检查 Hash 中是否有匹配元素，没有的话则将元素插入 Hash 中，时间复杂度O(n)，空间复杂度O(n) /** * @param {number[]} nums * @param {number} target * @return {number[]} */ var twoSum = function(nums, target) { let hash = {} for(let i = 0; i &lt; nums.length; i&#43;&#43;){ let result = target - nums[i] if(hash[result] !== undefined) return [hash[result], i] hash[nums[i]] = i } return [] }; </p>
+  </div>
+  <footer class="entry-footer"><span title='2020-01-14 10:28:07 +0800 CST'>January 14, 2020</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to 两数之和" href="http://localhost:1313/posts/two-sum/"></a>
+</article>
 
-        
-    </section>
-    <script defer src="/ts/features.f658accd96ff946aea04e7fca44a794f9632d32718aaf69be3f0f434b3ac6118.js" 
-    data-enable-footnotes="false"
-    ></script>
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">链表
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>链表的区别 链表也分为单链表和双链表。
+单链表：每个节点包含 value 和 next，next 指向下一个节点 双链表：每个节点包含 prev、value 和 next，prev 指向前一个节点，next 指向下一个节点 单链表的实现 class Node{ constructor(value){ this.value = value this.next = null } } class MyLinkedList{ constructor(){ this.head = null this.length = 0 } // 按索引获取节点 value get(index){ if(index &gt;= 0 &amp;&amp; index &lt; this.length){ let current = this.head if(index === 0){ return current.value }else{ let position = 0 while(position &lt; index){ current = current.next position&#43;&#43; } return current.value } } return -1 } // 在头部添加节点 addAtHead(val){ const node = new Node(val) let current = this.head this.head = node this.head.next = current this.length&#43;&#43; } // 添加节点到尾部 addAtTail(val){ const node = new Node(val) if(this.length){ let current = this.head while(current.next){ current = current.next } current.next = node }else{ this.head = node } this.length&#43;&#43; } // 在给定位置添加节点 addAtIndex(index, val){ const node = new Node(val) let position = 0 let current = null let previous = null let length = this.length if(length === 0 &amp;&amp; index &lt;= 0){ this.head = node this.length&#43;&#43; }else if (index &lt;= 0){ this.addAtHead(val) }else if(index === length){ this.addAtTail(val) }else if(index &gt; 0 &amp;&amp; index &lt; length){ current = this.head while(position &lt; index){ previous = current current = current.next position&#43;&#43; } previous.next = node node.next = current this.length&#43;&#43; } } // 按索引删除 deleteAtIndex(index){ if(index &gt;= this.length) return let current = this.head let previous = null let position = 0 if(index === 0 &amp;&amp; index === this.length){ this.head = null }else if(index === 0 ){ this.head = current.next }else{ while(position &lt; index){ previous = current current = current.next position&#43;&#43; } previous.next = current.next } this.length-- } } 双链表的实现 class Node{ constructor(value){ this.value = value this.next = null this.prev = null } } class MyLinkedList{ constructor(){ this.head = null this.length = 0 } get(index){ if(index &gt;= 0 &amp;&amp; index &lt; this.length){ let current = this.head if(index === 0){ return current.value }else{ let position = 0 while(position &lt; index){ current = current.next position&#43;&#43; } return current.value } } return -1 } addAtHead(val){ const node = new Node(val) let current = this.head this.head = node this.head.next = current this.length&#43;&#43; if(this.length === 1){ return }else{ current.prev = this.head } } addAtTail(val){ const node = new Node(val) if(this.length){ let current = this.head while(current.next){ current = current.next } current.next = node node.prev = current }else{ this.head = node } this.length&#43;&#43; } addAtIndex(index, val){ const node = new Node(val) let position = 0 let current = null let previous = null let length = this.length if(length === 0 &amp;&amp; index &lt;= 0){ this.head = node this.length&#43;&#43; }else if (index &lt;= 0){ this.addAtHead(val) }else if(index === length){ this.addAtTail(val) }else if(index &gt; 0 &amp;&amp; index &lt; length){ current = this.head while(position &lt; index){ previous = current current = current.next position&#43;&#43; } previous.next = node current.prev = node node.prev = previous node.next = current this.length&#43;&#43; } } deleteAtIndex(index){ if(index &gt;= this.length) return let current = this.head let previous = null let position = 0 if(index === 0 &amp;&amp; this.length === 1){ this.head = null }else if(index === 0){ this.head = current.next current.next.prev = null }else{ while(position &lt; index){ previous = current current = current.next position&#43;&#43; } if(index === this.length - 1){ previous.next = null }else{ previous.next = current.next current.next.prev = previous } } this.length-- } } 环形链表 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。 说明：不允许修改给定的链表。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2020-01-06 10:28:59 +0800 CST'>January 6, 2020</span>&nbsp;·&nbsp;3 min</footer>
+  <a class="entry-link" aria-label="post link to 链表" href="http://localhost:1313/posts/linked-list/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">栈、队列
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>栈 栈是一种线性数据结构，其修改顺序是后进先出(last in first out)，因此也被成为 LIFO表。 在现实生活中可以映射到我们堆叠在桌子上的书、餐具柜中队列的餐盘之类。
+我们可以用数组模拟栈：
+class Static{ constructor(){ this.items = [] } // 检查栈是否为空 get isEmpty(){ return !this.items.length } // 获取栈的长度 get size(){ return this.items.length } // 查看栈顶 get top(){ return this.items[this.items.length - 1] } // 入栈 push(val){ this.items.push(val) return this.items } // 出栈 pop(){ return this.items.pop() } // 清空栈 clear(){ this.items.length = [] return this.items } } 队列 与栈相反，队列是修改顺序是先进先出(first in first out)，称为 FIFO表。 在现实生活中可以映射到点餐队列、打印队列。
+用数组模拟队列：
+class Queue{ constructor(){ this.items = [] } // 检查队列是否为空 get isEmpty(){ return !this.items.length } // 获取队列的长度 get size(){ return this.items.length } // 获取首元素 get first(){ return this.items[0] } // 获取尾元素 get last(){ return this.items[this.items.length - 1] } // 入队 enqueue(val){ this.items.push(val) return this.items } // 出队 dequeue(){ return this.items.shift() } // 清空队列 clear(){ this.items.length = 0 } } </p>
+  </div>
+  <footer class="entry-footer"><span title='2019-12-18 10:29:50 +0800 CST'>December 18, 2019</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to 栈、队列" href="http://localhost:1313/posts/stack-queue/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">浏览器地址栏输入URL敲回车之后发生了哪些事
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 判断输入的是 URL 还是搜索的关键字
+转换非 ASCII 的 Unicode 字符
+比如：中文、空格 检查HSTS 列表
+浏览器检查自带的“预加载 HSTS（HTTP严格传输安全）”列表，这个列表里包含了那些请求浏览器只使用HTTPS进行连接的 URL，如果这个 URL在列表里，则默认使用 HTTPS 协议而不是 HTTP 协议 查找域名的 IP 地址
+查找浏览器的 DNS 缓存，没找到则执行下一步 查找操作系统中的 DNS 缓存，没找到则执行下一步 查找 OS 中的 hosts 文件，没找到则执行下一步 在 OS 的 LDNS 中查找域名对应的 IP（这一步可能会遇到 DNS 污染，解决方案为：1. 切换 DNS 服务器；2. 清空 DNS 缓存；3. 修改系统 hosts 文件，将域名与对应的 IP 地址绑定写死），没找到则发起一个迭代 DNS 解析请求 LDNS 向 根域名服务器 发起请求，RDNS 返回 一级域名 对应的 IP 地址 LDNS 向 一级域名服务器 发起请求，得到 二级域名 对应的 IP 地址 LDNS 向 二级域名服务器 发起请求，得到 三级域名 对应的 IP 地址 LDNS 将得到的 IP 地址返回给 OS，并且将这个 IP 地址缓存起来 OS 将 IP 地址返回给浏览器，并且将这个 IP 地址缓存起来 浏览器得到域名对应的 IP 地址，并且将这个 IP 地址缓存起来 建立 TCP 连接
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-11-18 10:30:51 +0800 CST'>November 18, 2019</span>&nbsp;·&nbsp;3 min</footer>
+  <a class="entry-link" aria-label="post link to 浏览器地址栏输入URL敲回车之后发生了哪些事" href="http://localhost:1313/posts/what-happens-when-you-type-an-url-in-the-browser-and-press-ente/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/page/4/">
+      «&nbsp;Prev&nbsp;4/6
+    </a>
+    <a class="next" href="http://localhost:1313/page/6/">Next&nbsp;6/6&nbsp;»
+    </a>
+  </nav>
 </footer>
+    </main>
+    
+<footer class="footer">
+        <span>© 2024 by Rush</span> · 
 
-    </body>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
 </html>

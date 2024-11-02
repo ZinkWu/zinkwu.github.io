@@ -1,198 +1,306 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
-    
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="theme-color" content="dark">
-    <title>JavaScript | Zink&#39;s Blog</title>
+<html lang="en" dir="auto">
 
-    
-    
-    
-    <meta property="og:site_name" content="Zink&#39;s Blog" />
-    <meta property="og:title" content="JavaScript | Zink&#39;s Blog"/>
-    <meta itemprop="name" content="JavaScript | Zink&#39;s Blog" />
-    <meta name="twitter:title" content="JavaScript | Zink&#39;s Blog" />
-    <meta name="application-name" content="JavaScript | Zink&#39;s Blog" />
-
-
-    <meta name="description" content="" />
-    <meta name="twitter:description" content=""/>
-    <meta itemprop="description" content=""/>
-    <meta property="og:description" content="" />
-
-    
-
-
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    
-    <link rel="stylesheet" href="/sass/main.min.ab99ff095f832511e24ffb2fba2b51ad473b2f7e9301d674eba2c6c3a6e8bd81.css">
-    
-</head>
-    <script>
-    (function() {
-        const colorSchemeKey = 'ThemeColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.userColorScheme = 'dark';
-        } else {
-            document.documentElement.dataset.userColorScheme = 'light';
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Javascript | Rush</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/tags/javascript/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/javascript/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/javascript/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
         }
-    })();
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
 </script>
 
-    <body class="dark">
-        <nav class="navbar">
-    <div class="container">
-        <div class="flex">
-            <div>
-                <a class="brand" href="/">
-                    
-                    <span class="emoji">
-                        🥁
-                    </span>
-                    
-                    
-                    Zink&#39;s Blog
-                    </a>
-            </div>
-            <div class="flex">
-                
-                <a href="/about/">About</a>
-                
-                <a href="/articles/">Articles</a>
-                
-                <a href="/tags">Tags</a>
-                
-                <a href="/index.xml">RSS</a>
-                
-                <button id="dark-mode-button">
-                  <svg class="light" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="#FFD983" d="M30.312.776C32 19 20 32 .776 30.312c8.199 7.717 21.091 7.588 29.107-.429C37.9 21.867 38.03 8.975 30.312.776z"/><path d="M30.705 15.915a1.163 1.163 0 1 0 1.643 1.641a1.163 1.163 0 0 0-1.643-1.641zm-16.022 14.38a1.74 1.74 0 0 0 0 2.465a1.742 1.742 0 1 0 0-2.465zm13.968-2.147a2.904 2.904 0 0 1-4.108 0a2.902 2.902 0 0 1 0-4.107a2.902 2.902 0 0 1 4.108 0a2.902 2.902 0 0 1 0 4.107z" fill="#FFCC4D"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)" /></svg>
-                  <svg class="dark" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 36 36"><path fill="#FFD983" d="M16 2s0-2 2-2s2 2 2 2v2s0 2-2 2s-2-2-2-2V2zm18 14s2 0 2 2s-2 2-2 2h-2s-2 0-2-2s2-2 2-2h2zM4 16s2 0 2 2s-2 2-2 2H2s-2 0-2-2s2-2 2-2h2zm5.121-8.707s1.414 1.414 0 2.828s-2.828 0-2.828 0L4.878 8.708s-1.414-1.414 0-2.829c1.415-1.414 2.829 0 2.829 0l1.414 1.414zm21 21s1.414 1.414 0 2.828s-2.828 0-2.828 0l-1.414-1.414s-1.414-1.414 0-2.828s2.828 0 2.828 0l1.414 1.414zm-.413-18.172s-1.414 1.414-2.828 0s0-2.828 0-2.828l1.414-1.414s1.414-1.414 2.828 0s0 2.828 0 2.828l-1.414 1.414zm-21 21s-1.414 1.414-2.828 0s0-2.828 0-2.828l1.414-1.414s1.414-1.414 2.828 0s0 2.828 0 2.828l-1.414 1.414zM16 32s0-2 2-2s2 2 2 2v2s0 2-2 2s-2-2-2-2v-2z"/><circle fill="#FFD983" cx="18" cy="18" r="10"/><rect x="0" y="0" width="36" height="36" fill="rgba(0, 0, 0, 0)" /></svg>
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Rush (Alt + H)">Rush</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
                 </button>
             </div>
-            </div>
-    </div>
-</nav>
-        <main>
-            
-
-
-
-
-<header>
-  <div class="container">
-    <h1>JavaScript</h1>
-    <p class="subtitle">
-      <span class="count">7</span> posts found.
-    </p>
-  </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/tags/">Tags</a></div>
+  <h1>
+    Javascript
+    <a href="/tags/javascript/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
 </header>
 
-<section>
-  <div class="container">
-    <section>
-      <section>
-        <div class="posts">
-          
-          <div class="post">
-            <a href="/articles/event-loop-promise-async-await/">
-              <div class="post-row">
-                <time>Mar 10</time>
-                <h3>Event Loop Promise async/await 总结</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-          <div class="post">
-            <a href="/articles/whats-inheritance/">
-              <div class="post-row">
-                <time>Feb 10</time>
-                <h3>什么是继承？</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-          <div class="post">
-            <a href="/articles/call-apply-bind-implement/">
-              <div class="post-row">
-                <time>Sep 24</time>
-                <h3>Call &amp; Apply &amp; Bind实现</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-          <div class="post">
-            <a href="/articles/chinese-input-debounce/">
-              <div class="post-row">
-                <time>Sep 23</time>
-                <h3>Input中如何处理中文输入防抖</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-          <div class="post">
-            <a href="/articles/about-this/">
-              <div class="post-row">
-                <time>Sep 16</time>
-                <h3>这一次，我一定会搞定 This ！</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-          <div class="post">
-            <a href="/articles/debounce-throttle/">
-              <div class="post-row">
-                <time>Aug 06</time>
-                <h3>防抖和节流</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-          <div class="post">
-            <a href="/articles/js-deep-and-shallow-clone/">
-              <div class="post-row">
-                <time>Jul 24</time>
-                <h3>JavaScript的深浅拷贝</h3>
-              </div>
-              
-            </a>
-          </div>
-          
-        </div>
-      </section>
-    </section>
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Event Loop Promise async/await 总结
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>同步任务 因为 JavaScript 是单线程的，所以同步任务只能在主线程上排队执行，并且只有当前一个任务完成才能执行下一个任务
+当 JavaScript 运行时，每个函数的执行都会进入调用栈（Call Stack）中，当前函数执行完毕后将其移出栈，然后执行下一个函数，如果其中有非常耗时的函数执行，那么调用栈就阻塞了，后面的任务只能一直处于等待状态无法执行，且此时 UI 对面任何用户操作都不会响应，看起来就像程序崩溃了一样。
+为什么解决这个问题，我们有了异步任务
+异步任务 常见的异步：
+setTimeout() setInterval() Promise.resolve().then() fetch.then() 异步任务在执行之前不会进入调用栈，它进入事件循环队列（Event Loop Queue），当主线程执行完毕后，且异步时机到了，就会将事件循环队列中的任务推入调用栈中执行。
+Event Loop Event Loop 的工作非常简单，它只是监控调用栈和回调队列（包含每个事件对应的回调函数，比如 click 的回调函数）。如果调用栈为空，Event Loop 将队列中的第一个任务移除并推送到调用栈。
+从 ES6 开始，Event Loop 处理异步也分两种，在Macrotask中处理setTimeout这类的，在Microtask中处理Promise这类的。它会优先处理Microtask中的任务
+browser event model Node.js 中的 Event Loop Node.js 中的 Event Loop 分为 6 个阶段，依次是：
+timers 定时器 这个阶段执行已被setTimeout()和setInterval()调度的回调函数 pending callbacks 待定回调 执行延迟到下一个循环迭代的I/O回调 idle, prepare Node.js 系统内部使用 poll 轮询 检索新的 I/O 事件；执行与 I/O 相关的回调（几乎所有情况下，除了关闭的回调函数，那些由计时器和 setImmediate() 调度的之外），其余情况 node 将在适当的时候在此阻塞（等待） check 检测 setImmediate()回调函数在这里执行 close callback 关闭的回调函数 一些关闭的回调函数，如：sockt.on(&#39;close&#39;, ...) process.nextTick()的回调会在每个阶段结束之前调用。
+...</p>
   </div>
-</section>
+  <footer class="entry-footer"><span title='2022-03-10 11:09:39.01 +0000 UTC'>March 10, 2022</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to Event Loop Promise async/await 总结" href="http://localhost:1313/posts/event-loop-promise-async-await/"></a>
+</article>
 
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">什么是继承？
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>要理解继承，首先需要理解原型链
+function Person(name, age, gender){ this.name = name this.age = age this.gender = gender } Person.prototype.hi = function (){ console.log(`Hi, I&#39;m ${this.name}`) } let f = new Person(&#39;zoe&#39;, 18, &#39;female&#39;) f.__proto__ === Person.prototype // true，ES5写法 Object.getPrototypeOf(f) === Person.prototype // true，ES6写法, __proto__ 是浏览器厂商私建 Person.prototype.__proto__ === Object.prototype // true 首先定义几个基本名词：
+实例对象：通过new xxx出来的对象叫做实例对象 构造函数：如上方代码中的Person，一般以大写字母开头命名 - __proto__：ES6 之前，没有明确访问原型的方法，只能通过__proto__来访问，它的作用就是找到实例对象的原型 prototype：原型，是构造函数的一个属性 constructor：构造函数，写过 Java 这类 oop 的同学应该不陌生，这个在 ES5 中不经常接触到，ES6 中的 Class 经常用到， 然后通过上面的代码，我们可以得到这样的公式：
+实例对象.__proto__ === 构造函数.prototype 构造函数.prototype.__proto__ === Object.prototype （长继承不适用，这里的继承链是 Person 继承 Object） 其次，Object 是原型链的顶端 Object.prototype.__proto__ === null ok，那么明白了这个，我们就来讨论继承，继承本质上只是用来减少重复代码的一种编程手段，如果我们有多个类，并且都有重复的属性，那么我们可以将重复的属性提取到父类身上，再由父类通过继承给子类。再简化一下：子类构造函数的实例对象也能访问到父类的属性或方法。
+function Male(name, age){ this.name = name this.age = age this.gender = &#39;male&#39; } let m = new Male(&#34;m&#34;, 24) function Female(name, age){ this.name = name this.age = age this.gender = &#39;female&#39; } let f = new Female(&#34;f&#34;, 24) 在上面这个例子中，我们定义了两个构造函数，分别来构造男性和女性，但是 name 和 age 重复了，此时我们可以创建一个父类，来优化掉重复的代码
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2022-02-10 18:19:40.992 +0000 UTC'>February 10, 2022</span>&nbsp;·&nbsp;2 min</footer>
+  <a class="entry-link" aria-label="post link to 什么是继承？" href="http://localhost:1313/posts/whats-inheritance/"></a>
+</article>
 
-        </main>
-        <footer class="footer flex">
-    <section class="container">
-        <nav class="footer-links">
-            
-            <a href="/">© 2021-2023 Zink&#39;s Blog</a>
-            
-        </nav>
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Call &amp; Apply &amp; Bind实现
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>call &amp;&amp; apply &amp;&amp; bind 的作用 call、apply、bind的作用都是改变函数的 this 指向
+call：call 的第一个参数就是对函数绑定的 this，为一个对象，后面的参数是函数调用时所需要的参数 apply：apply 只接受两个参数，第一个与 call 相同，第二个参数是为数组，内容是函数调用所需要的参数 bind：bind 与 call作用相同，不过 bind 会返回一个新的函数，第一个参数之后的参数将绑定原函数的参数。 实现 call 先来看看原生call的使用方法
+let obj = { a: 1 } function fn(){ console.log(this.a) } fn() // undefined fn.call(obj) // 1 call 是如何将 this 绑定到 obj 上的呢？ 我们换一种思路，先看下面的代码
+let obj = { a: 1, fn(){ console.log(this.a) } } obj.fn() // 1 这段代码大家都能理解对吧，接下来，让我们打开脑洞。
+如果 call 只是将调用函数绑定到了第一个参数身上呢？似乎一切就说得通了
+function fn(){ console.log(this.a) } Function.prototype.myCall = function(context){ context = context || window //首先判断是否传入第一个参数，如果没传，那么 this 就默认绑定到 window context.callFn = this let result = context.callFn() delete context.callFn return result } let obj = { a: 1 } fn.myCall(obj) // 1 ok，初步绑定 this 的工作我们已经完成，接下来思考如何将剩下的参数传给调用函数。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-09-24 10:33:29 +0800 CST'>September 24, 2019</span>&nbsp;·&nbsp;2 min</footer>
+  <a class="entry-link" aria-label="post link to Call & Apply & Bind实现" href="http://localhost:1313/posts/call-apply-bind-implement/"></a>
+</article>
 
-        
-    </section>
-    <script defer src="/ts/features.f658accd96ff946aea04e7fca44a794f9632d32718aaf69be3f0f434b3ac6118.js" 
-    data-enable-footnotes="false"
-    ></script>
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Input中如何处理中文输入防抖
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>防抖 函数防抖和节流，都是控制事件触发频率的方法。具体实现可以看我的这篇文章
+input 如何处理中文输入 如果只是单纯的使用 input 事件来监听 input 值的改变，那么每次敲击键盘，输入一个字母都会触发 input 事件，其实我们想要的是获取用户输入的中文再进行后续操作。
+我们可以假象一下，输入中文时的字母都是预输入，只有当选择候选词之后，input得到的值才是我们想要的。
+现在，向大家介绍两个新的 DOM 事件：compositionstart、compositionend
+compositionstart：compositionstart 事件触发于一段文字的输入之前 compositionend：当文本段落的组成完成或取消时, compositionend 事件将被触发 &lt;input type=&#34;text&#34;&gt; let inputElement = document.querySelector(&#39;input&#39;) let canRun = true inputElement.addEventListener(&#39;compositionstart&#39;, function(){ console.log(&#39;start&#39;) canRun = false }) inputElement.addEventListener(&#39;compositionend&#39;, function(){ console.log(&#39;end&#39;) canRun = true }) inputElement.addEventListener(&#39;input&#39;, debounce(fn)) function debounce(fn) { let timer = null; return function() { clearTimeout(timer); timer = setTimeout(() =&gt; { fn.apply(this, arguments) }, 500) }; } function fn(e){ if(canRun){ console.log(e.target.value) } } 当我们切换到中文输入法输入时开始在 input 中输入时，compositionstart 的回调函数被调用，将 canRun 状态切换为 false，半秒后执行 fn 时，canRun 状态为 false，不进行任何操作，当中文输入结束后，compositionend 的回调函数被调用，将 canRun 变为 true，此时 input 的回调函数调用，就可以执行后续的操作了，其实就是利用了 compositionstart 和 compositionend 来切换状态机的状态
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-09-23 10:35:18 +0800 CST'>September 23, 2019</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to Input中如何处理中文输入防抖" href="http://localhost:1313/posts/chinese-input-debounce/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">这一次，我一定会搞定 This ！
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>迫于 迫于在写 React 事件处理中的 this 时，写到 this 突然卡壳了，一顿冷静分析之后发现自己对于 this 的理解又忘了一些，于是痛定思痛，重新读了 《You-Dont-Know-JS》中关于 this 的文章。
+函数的执行环境 首先上一段代码
+function fn(){ console.log(this.a) } let obj = { a: 1, fn: fn } var a = &#39;window&#39; fn() //window obj.fn() //1 首先我们要明确一点 ，this 不是编写代码时就绑定的，而是运行时绑定的。 比如 fn() 在调用时，所处的环境是 global，所以他的 this 就是 window 而 obj.fn() 在调用时，所处的环境是在对象 obj 内，所以他的 this 指向 obj 对象
+当一个函数被调用时，会建立一个称为执行环境的活动记录。这个记录包含函数是从何处（调用栈 —— call-stack）被调用的，函数是 如何 被调用的，被传递了什么参数等信息。这个记录的属性之一，就是在函数执行期间将被使用的 this 引用。
+所以，this是根据调用点（函数如何被调用）来为每次函数调用建立的绑定
+调用点的规则 默认绑定： 首先是独立函数调用。在这种倾向下，this 规则是在没有其他规则适用时的默认规则。
+function fn(){ console.log(this) } fn() //window fn() 被独立调用，此时的 this 是默认绑定，所以 this 指向了 window
+隐含绑定 这种规则是：调用点是否拥有一个对象环境。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-09-16 10:36:19 +0800 CST'>September 16, 2019</span>&nbsp;·&nbsp;2 min</footer>
+  <a class="entry-link" aria-label="post link to 这一次，我一定会搞定 This ！" href="http://localhost:1313/posts/about-this/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="http://localhost:1313/tags/javascript/page/2/">Next&nbsp;2/2&nbsp;»
+    </a>
+  </nav>
 </footer>
+    </main>
+    
+<footer class="footer">
+        <span>© 2024 by Rush</span> · 
 
-    </body>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
 </html>
