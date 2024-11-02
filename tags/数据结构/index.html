@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>数据结构 | Rush</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="Zink">
+<link rel="canonical" href="http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="数据结构" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数据结构"/>
+<meta name="twitter:description" content=""/>
+
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Rush (Alt + H)">Rush</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/tags/">Tags</a></div>
+  <h1>
+    数据结构
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">二叉树基础
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 树
+树是一种常用的数据结构，用来模拟具有树状结构性质的数据集合 树的每一个节点有一个根植和一个包含所有子节点的列表。 二叉树
+二叉树是一种更为典型的树状结构。二叉树每个节点最多具有两个子树，通常子树称为“左子树”和“右子树” 二叉树前序遍历
+前序遍历首先访问根节点，然后遍历左子树，最后遍历右子树（根节点 -&gt; 左子树 -&gt; 右子树） 算法： /** * Definition for a binary tree node. * function TreeNode(val) { * this.val = val; * this.left = this.right = null; * } */ /** * @param {TreeNode} root * @return {number[]} */ // 递归 const preorderTraversal = function(root) { let result = [] function fn(root){ if(root !== null){ result.push(root.val) if(root.left) fn(root.left) if(root.right) fn(root.right) } } fn(root) return result }; 二叉树中序遍历 先遍历左子树，然后访问根节点，最后遍历右子树（左子树 -&gt; 根节点 -&gt; 右子树） 算法： /** * Definition for a binary tree node. * function TreeNode(val) { * this.val = val; * this.left = this.right = null; * } */ /** * @param {TreeNode} root * @return {number[]} */ const inorderTraversal = function(root) { let result = [] function fn(root){ if(root !== null){ if(root.left) fn(root.left) result.push(root.val) if(root.right) fn(root.right) } } fn(root) return result }; 二叉树后序遍历 先遍历左子树，然后遍历右子树，最后访问根节点（左子树 -&gt; 右子树 -&gt; 根节点） 算法 /** * Definition for a binary tree node. * function TreeNode(val) { * this.val = val; * this.left = this.right = null; * } */ /** * @param {TreeNode} root * @return {number[]} */ const postorderTraversal = function(root) { let result = [] function fn(root){ if(root !== null){ if(root.left) fn(root.left) if(root.right) fn(root.right) result.push(root.val) } } fn(root) return result }; 二叉树层序遍历 算法： /** * Definition for a binary tree node. * function TreeNode(val) { * this.val = val; * this.left = this.right = null; * } */ /** * @param {TreeNode} root * @return {number[][]} */ // 广度优先 前序 const levelOrder = function(root) { let levels = [] if(root === null) return levels function fn(node, level){ let len = levels.length if(len === level) levels.push([]) levels[level].push(node.val) if(node.left) fn(node.left, level&#43;1) if(node.right) fn(node.right, level&#43;1) } fn(root, 0) return levels }; 二叉树最大深度 给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数 算法： /** * Definition for a binary tree node. * function TreeNode(val) { * this.val = val; * this.left = this.right = null; * } */ /** * @param {TreeNode} root * @return {number} */ var maxDepth = function(root) { // 写递归的一个重要思路就是相信这个函数能完成任务，此题带有动态规划的感觉 // 最大深度 = 1&#43;Math.max(根节点的左子树最大深度, 根节点的右子树最大深度) // 根节点的左子树最大深度 = 1 &#43; Math.max(左子树的左子树最大深度, 左子树的右子树最大深度) // 根节点的右子树最大深度 = 1 &#43; Math.max(右子树的左子树最大深度, 右子树的右子树最大深度) if(!root){ return 0 }else{ return Math.max(maxDepth(root.left), maxDepth(root.right)) &#43; 1 } }; 对称二叉树 给定一个二叉树，检查它是否是镜像对称的。 算法： /** * Definition for a binary tree node. * function TreeNode(val) { * this.val = val; * this.left = this.right = null; * } */ /** * @param {TreeNode} root * @return {boolean} */ var isSymmetric = function(root) { return isMirroTree(root, root) }; function isMirroTree(root_1, root_2){ if(root_1 === null &amp;&amp; root_2 === null) return true if(root_1 === null || root_2 === null) return false return (root_1.val === root_2.val) &amp;&amp; isMirroTree(root_1.left, root_2.right) &amp;&amp; isMirroTree(root_1.right, root_2.left) } 路径总和 给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。 说明: 叶子节点是指没有子节点的节点。 算法： /** * Definition for a binary tree node. * function TreeNode(val) { * this.val = val; * this.left = this.right = null; * } */ /** * @param {TreeNode} root * @param {number} sum * @return {boolean} */ var hasPathSum = function(root, sum) { return helper(root, sum) }; function helper(node, sum){ if(!node){ return false }else{ sum -= node.val } if(!node.left &amp;&amp; !node.right){ return sum === 0 } return helper(node.left, sum) || helper(node.right, sum) } </p>
+  </div>
+  <footer class="entry-footer"><span title='2020-04-24 10:09:33 +0800 CST'>April 24, 2020</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Zink</footer>
+  <a class="entry-link" aria-label="post link to 二叉树基础" href="http://localhost:1313/posts/binary-tree/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">链表
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>链表的区别 链表也分为单链表和双链表。
+单链表：每个节点包含 value 和 next，next 指向下一个节点 双链表：每个节点包含 prev、value 和 next，prev 指向前一个节点，next 指向下一个节点 单链表的实现 class Node{ constructor(value){ this.value = value this.next = null } } class MyLinkedList{ constructor(){ this.head = null this.length = 0 } // 按索引获取节点 value get(index){ if(index &gt;= 0 &amp;&amp; index &lt; this.length){ let current = this.head if(index === 0){ return current.value }else{ let position = 0 while(position &lt; index){ current = current.next position&#43;&#43; } return current.value } } return -1 } // 在头部添加节点 addAtHead(val){ const node = new Node(val) let current = this.head this.head = node this.head.next = current this.length&#43;&#43; } // 添加节点到尾部 addAtTail(val){ const node = new Node(val) if(this.length){ let current = this.head while(current.next){ current = current.next } current.next = node }else{ this.head = node } this.length&#43;&#43; } // 在给定位置添加节点 addAtIndex(index, val){ const node = new Node(val) let position = 0 let current = null let previous = null let length = this.length if(length === 0 &amp;&amp; index &lt;= 0){ this.head = node this.length&#43;&#43; }else if (index &lt;= 0){ this.addAtHead(val) }else if(index === length){ this.addAtTail(val) }else if(index &gt; 0 &amp;&amp; index &lt; length){ current = this.head while(position &lt; index){ previous = current current = current.next position&#43;&#43; } previous.next = node node.next = current this.length&#43;&#43; } } // 按索引删除 deleteAtIndex(index){ if(index &gt;= this.length) return let current = this.head let previous = null let position = 0 if(index === 0 &amp;&amp; index === this.length){ this.head = null }else if(index === 0 ){ this.head = current.next }else{ while(position &lt; index){ previous = current current = current.next position&#43;&#43; } previous.next = current.next } this.length-- } } 双链表的实现 class Node{ constructor(value){ this.value = value this.next = null this.prev = null } } class MyLinkedList{ constructor(){ this.head = null this.length = 0 } get(index){ if(index &gt;= 0 &amp;&amp; index &lt; this.length){ let current = this.head if(index === 0){ return current.value }else{ let position = 0 while(position &lt; index){ current = current.next position&#43;&#43; } return current.value } } return -1 } addAtHead(val){ const node = new Node(val) let current = this.head this.head = node this.head.next = current this.length&#43;&#43; if(this.length === 1){ return }else{ current.prev = this.head } } addAtTail(val){ const node = new Node(val) if(this.length){ let current = this.head while(current.next){ current = current.next } current.next = node node.prev = current }else{ this.head = node } this.length&#43;&#43; } addAtIndex(index, val){ const node = new Node(val) let position = 0 let current = null let previous = null let length = this.length if(length === 0 &amp;&amp; index &lt;= 0){ this.head = node this.length&#43;&#43; }else if (index &lt;= 0){ this.addAtHead(val) }else if(index === length){ this.addAtTail(val) }else if(index &gt; 0 &amp;&amp; index &lt; length){ current = this.head while(position &lt; index){ previous = current current = current.next position&#43;&#43; } previous.next = node current.prev = node node.prev = previous node.next = current this.length&#43;&#43; } } deleteAtIndex(index){ if(index &gt;= this.length) return let current = this.head let previous = null let position = 0 if(index === 0 &amp;&amp; this.length === 1){ this.head = null }else if(index === 0){ this.head = current.next current.next.prev = null }else{ while(position &lt; index){ previous = current current = current.next position&#43;&#43; } if(index === this.length - 1){ previous.next = null }else{ previous.next = current.next current.next.prev = previous } } this.length-- } } 环形链表 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。 说明：不允许修改给定的链表。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2020-01-06 10:28:59 +0800 CST'>January 6, 2020</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Zink</footer>
+  <a class="entry-link" aria-label="post link to 链表" href="http://localhost:1313/posts/linked-list/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">栈、队列
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>栈 栈是一种线性数据结构，其修改顺序是后进先出(last in first out)，因此也被成为 LIFO表。 在现实生活中可以映射到我们堆叠在桌子上的书、餐具柜中队列的餐盘之类。
+我们可以用数组模拟栈：
+class Static{ constructor(){ this.items = [] } // 检查栈是否为空 get isEmpty(){ return !this.items.length } // 获取栈的长度 get size(){ return this.items.length } // 查看栈顶 get top(){ return this.items[this.items.length - 1] } // 入栈 push(val){ this.items.push(val) return this.items } // 出栈 pop(){ return this.items.pop() } // 清空栈 clear(){ this.items.length = [] return this.items } } 队列 与栈相反，队列是修改顺序是先进先出(first in first out)，称为 FIFO表。 在现实生活中可以映射到点餐队列、打印队列。
+用数组模拟队列：
+class Queue{ constructor(){ this.items = [] } // 检查队列是否为空 get isEmpty(){ return !this.items.length } // 获取队列的长度 get size(){ return this.items.length } // 获取首元素 get first(){ return this.items[0] } // 获取尾元素 get last(){ return this.items[this.items.length - 1] } // 入队 enqueue(val){ this.items.push(val) return this.items } // 出队 dequeue(){ return this.items.shift() } // 清空队列 clear(){ this.items.length = 0 } } </p>
+  </div>
+  <footer class="entry-footer"><span title='2019-12-18 10:29:50 +0800 CST'>December 18, 2019</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zink</footer>
+  <a class="entry-link" aria-label="post link to 栈、队列" href="http://localhost:1313/posts/stack-queue/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>© 2024 by Rush</span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

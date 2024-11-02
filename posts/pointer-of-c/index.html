@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>指针 | Rush</title>
+<meta name="keywords" content="C">
+<meta name="description" content="前言
+本月开始学习c语言，教材使用的是《C程序设计语言》第二版，不推荐基础不好的人群食用这本书，当然如果你心态良好也可以试试，我在阅读第五章——指针的时候可谓是痛苦万分，配合ChatGPT终于是基本入门了指针这个概念。
+指针是什么？
+指针是一种可以保存变量地址/内存地址的变量。
+我们知道程序中的变量是存储在计算机内存中的，在现代计算机中1 byte = 8 bit，每个字节都有对饮的内存地址，在高级语言中，指针这个概念被遮蔽了，我们只能通过变量名来访问它存储的值，因为我们没办法获取并存储它的内存地址。
+而 C 将这项能力交给了程序员！
+int *p; // 定义一个指针变量
+int i = 1; // 定义一个 int 类型的变量
+p = &amp;i; // 通过 &amp; 运算符得到 i 的内存地址并赋值给 p
+
+printf(&#34;%d&#34;, *p); // 1
+
+*p &#43;= 1;
+printf(&#34;%d&#34;, *p); // 2
+printf(&#34;%d&#34;, i); // 2
+语句1中声明了一个指针变量（或者指针），类型 *变量名 这个形式可以声明一个指向该「类型」的指针变量。语句2声明了一个整型变量i，语句3中通过&amp;运算符计算出变量i的内存地址并赋值给指针变量p。此时可以将*p看作是i的别名。
+指针与数组
+在C语言中，函数的参数传递都是值传递。
+int plus_one(int x){
+    return &#43;&#43;x;
+}
+
+int a = 1;
+plus_one(a);
+
+printf(&#34;%d&#34;, a); // 1
+在上面的代码中，定义了一个函数，该函数接受一个int类型参数，并将其&#43;1后的值返回。接着调用这个函数，将a作为变量传入其中，稍后将a的值打印出来，我们会发现a的值依旧是1。即我们传入的a只是a存储的值的副本，并不是a的内存地址。
+void full(int list[], int num, int len){
+    int i;
+    for(i = 0; i &lt; len; i&#43;&#43;)
+        list[i] = num;
+}
+
+int s[4];
+full(s, 1, 4);
+
+// s [1,1,1,1]
+上面一段代码将数组s的每一个元素赋值为99。但是，函数的参数传递不是值传递吗？为什么外部变量s会被改变呢？
+根据c的定义，数组变量名作为表达式时其值时该数组第0个元素的地址，所以当我们传递s的时候，实际是传递的&amp;s[0]，所以这个函数可以改写一下：
+void full(int *pl, int num, int len){
+    while(len-- &gt; 0)
+        *pl&#43;&#43; = num;  
+}
+
+int s[4];
+full(s, 1, 4);
+其效果跟上一个版本是一样的，因为数组在内存中占据一块连续的内存空间，所以我们可以直接对指针进行算数运算，将其&#43;1指向下一个元素。">
+<meta name="author" content="Zink">
+<link rel="canonical" href="http://localhost:1313/posts/pointer-of-c/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/pointer-of-c/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="指针" />
+<meta property="og:description" content="前言
+本月开始学习c语言，教材使用的是《C程序设计语言》第二版，不推荐基础不好的人群食用这本书，当然如果你心态良好也可以试试，我在阅读第五章——指针的时候可谓是痛苦万分，配合ChatGPT终于是基本入门了指针这个概念。
+指针是什么？
+指针是一种可以保存变量地址/内存地址的变量。
+我们知道程序中的变量是存储在计算机内存中的，在现代计算机中1 byte = 8 bit，每个字节都有对饮的内存地址，在高级语言中，指针这个概念被遮蔽了，我们只能通过变量名来访问它存储的值，因为我们没办法获取并存储它的内存地址。
+而 C 将这项能力交给了程序员！
+int *p; // 定义一个指针变量
+int i = 1; // 定义一个 int 类型的变量
+p = &amp;i; // 通过 &amp; 运算符得到 i 的内存地址并赋值给 p
+
+printf(&#34;%d&#34;, *p); // 1
+
+*p &#43;= 1;
+printf(&#34;%d&#34;, *p); // 2
+printf(&#34;%d&#34;, i); // 2
+语句1中声明了一个指针变量（或者指针），类型 *变量名 这个形式可以声明一个指向该「类型」的指针变量。语句2声明了一个整型变量i，语句3中通过&amp;运算符计算出变量i的内存地址并赋值给指针变量p。此时可以将*p看作是i的别名。
+指针与数组
+在C语言中，函数的参数传递都是值传递。
+int plus_one(int x){
+    return &#43;&#43;x;
+}
+
+int a = 1;
+plus_one(a);
+
+printf(&#34;%d&#34;, a); // 1
+在上面的代码中，定义了一个函数，该函数接受一个int类型参数，并将其&#43;1后的值返回。接着调用这个函数，将a作为变量传入其中，稍后将a的值打印出来，我们会发现a的值依旧是1。即我们传入的a只是a存储的值的副本，并不是a的内存地址。
+void full(int list[], int num, int len){
+    int i;
+    for(i = 0; i &lt; len; i&#43;&#43;)
+        list[i] = num;
+}
+
+int s[4];
+full(s, 1, 4);
+
+// s [1,1,1,1]
+上面一段代码将数组s的每一个元素赋值为99。但是，函数的参数传递不是值传递吗？为什么外部变量s会被改变呢？
+根据c的定义，数组变量名作为表达式时其值时该数组第0个元素的地址，所以当我们传递s的时候，实际是传递的&amp;s[0]，所以这个函数可以改写一下：
+void full(int *pl, int num, int len){
+    while(len-- &gt; 0)
+        *pl&#43;&#43; = num;  
+}
+
+int s[4];
+full(s, 1, 4);
+其效果跟上一个版本是一样的，因为数组在内存中占据一块连续的内存空间，所以我们可以直接对指针进行算数运算，将其&#43;1指向下一个元素。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/posts/pointer-of-c/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-11T13:59:54+00:00" />
+<meta property="article:modified_time" content="2023-02-11T13:59:54+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="指针"/>
+<meta name="twitter:description" content="前言
+本月开始学习c语言，教材使用的是《C程序设计语言》第二版，不推荐基础不好的人群食用这本书，当然如果你心态良好也可以试试，我在阅读第五章——指针的时候可谓是痛苦万分，配合ChatGPT终于是基本入门了指针这个概念。
+指针是什么？
+指针是一种可以保存变量地址/内存地址的变量。
+我们知道程序中的变量是存储在计算机内存中的，在现代计算机中1 byte = 8 bit，每个字节都有对饮的内存地址，在高级语言中，指针这个概念被遮蔽了，我们只能通过变量名来访问它存储的值，因为我们没办法获取并存储它的内存地址。
+而 C 将这项能力交给了程序员！
+int *p; // 定义一个指针变量
+int i = 1; // 定义一个 int 类型的变量
+p = &amp;i; // 通过 &amp; 运算符得到 i 的内存地址并赋值给 p
+
+printf(&#34;%d&#34;, *p); // 1
+
+*p &#43;= 1;
+printf(&#34;%d&#34;, *p); // 2
+printf(&#34;%d&#34;, i); // 2
+语句1中声明了一个指针变量（或者指针），类型 *变量名 这个形式可以声明一个指向该「类型」的指针变量。语句2声明了一个整型变量i，语句3中通过&amp;运算符计算出变量i的内存地址并赋值给指针变量p。此时可以将*p看作是i的别名。
+指针与数组
+在C语言中，函数的参数传递都是值传递。
+int plus_one(int x){
+    return &#43;&#43;x;
+}
+
+int a = 1;
+plus_one(a);
+
+printf(&#34;%d&#34;, a); // 1
+在上面的代码中，定义了一个函数，该函数接受一个int类型参数，并将其&#43;1后的值返回。接着调用这个函数，将a作为变量传入其中，稍后将a的值打印出来，我们会发现a的值依旧是1。即我们传入的a只是a存储的值的副本，并不是a的内存地址。
+void full(int list[], int num, int len){
+    int i;
+    for(i = 0; i &lt; len; i&#43;&#43;)
+        list[i] = num;
+}
+
+int s[4];
+full(s, 1, 4);
+
+// s [1,1,1,1]
+上面一段代码将数组s的每一个元素赋值为99。但是，函数的参数传递不是值传递吗？为什么外部变量s会被改变呢？
+根据c的定义，数组变量名作为表达式时其值时该数组第0个元素的地址，所以当我们传递s的时候，实际是传递的&amp;s[0]，所以这个函数可以改写一下：
+void full(int *pl, int num, int len){
+    while(len-- &gt; 0)
+        *pl&#43;&#43; = num;  
+}
+
+int s[4];
+full(s, 1, 4);
+其效果跟上一个版本是一样的，因为数组在内存中占据一块连续的内存空间，所以我们可以直接对指针进行算数运算，将其&#43;1指向下一个元素。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "指针",
+      "item": "http://localhost:1313/posts/pointer-of-c/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "指针",
+  "name": "指针",
+  "description": "前言 本月开始学习c语言，教材使用的是《C程序设计语言》第二版，不推荐基础不好的人群食用这本书，当然如果你心态良好也可以试试，我在阅读第五章——指针的时候可谓是痛苦万分，配合ChatGPT终于是基本入门了指针这个概念。\n指针是什么？ 指针是一种可以保存变量地址/内存地址的变量。\n我们知道程序中的变量是存储在计算机内存中的，在现代计算机中1 byte = 8 bit，每个字节都有对饮的内存地址，在高级语言中，指针这个概念被遮蔽了，我们只能通过变量名来访问它存储的值，因为我们没办法获取并存储它的内存地址。\n而 C 将这项能力交给了程序员！\nint *p; // 定义一个指针变量 int i = 1; // 定义一个 int 类型的变量 p = \u0026amp;i; // 通过 \u0026amp; 运算符得到 i 的内存地址并赋值给 p printf(\u0026#34;%d\u0026#34;, *p); // 1 *p += 1; printf(\u0026#34;%d\u0026#34;, *p); // 2 printf(\u0026#34;%d\u0026#34;, i); // 2 语句1中声明了一个指针变量（或者指针），类型 *变量名 这个形式可以声明一个指向该「类型」的指针变量。语句2声明了一个整型变量i，语句3中通过\u0026amp;运算符计算出变量i的内存地址并赋值给指针变量p。此时可以将*p看作是i的别名。\n指针与数组 在C语言中，函数的参数传递都是值传递。\nint plus_one(int x){ return ++x; } int a = 1; plus_one(a); printf(\u0026#34;%d\u0026#34;, a); // 1 在上面的代码中，定义了一个函数，该函数接受一个int类型参数，并将其+1后的值返回。接着调用这个函数，将a作为变量传入其中，稍后将a的值打印出来，我们会发现a的值依旧是1。即我们传入的a只是a存储的值的副本，并不是a的内存地址。\nvoid full(int list[], int num, int len){ int i; for(i = 0; i \u0026lt; len; i++) list[i] = num; } int s[4]; full(s, 1, 4); // s [1,1,1,1] 上面一段代码将数组s的每一个元素赋值为99。但是，函数的参数传递不是值传递吗？为什么外部变量s会被改变呢？\n根据c的定义，数组变量名作为表达式时其值时该数组第0个元素的地址，所以当我们传递s的时候，实际是传递的\u0026amp;s[0]，所以这个函数可以改写一下：\nvoid full(int *pl, int num, int len){ while(len-- \u0026gt; 0) *pl++ = num; } int s[4]; full(s, 1, 4); 其效果跟上一个版本是一样的，因为数组在内存中占据一块连续的内存空间，所以我们可以直接对指针进行算数运算，将其+1指向下一个元素。\n",
+  "keywords": [
+    "C"
+  ],
+  "articleBody": "前言 本月开始学习c语言，教材使用的是《C程序设计语言》第二版，不推荐基础不好的人群食用这本书，当然如果你心态良好也可以试试，我在阅读第五章——指针的时候可谓是痛苦万分，配合ChatGPT终于是基本入门了指针这个概念。\n指针是什么？ 指针是一种可以保存变量地址/内存地址的变量。\n我们知道程序中的变量是存储在计算机内存中的，在现代计算机中1 byte = 8 bit，每个字节都有对饮的内存地址，在高级语言中，指针这个概念被遮蔽了，我们只能通过变量名来访问它存储的值，因为我们没办法获取并存储它的内存地址。\n而 C 将这项能力交给了程序员！\nint *p; // 定义一个指针变量 int i = 1; // 定义一个 int 类型的变量 p = \u0026i; // 通过 \u0026 运算符得到 i 的内存地址并赋值给 p printf(\"%d\", *p); // 1 *p += 1; printf(\"%d\", *p); // 2 printf(\"%d\", i); // 2 语句1中声明了一个指针变量（或者指针），类型 *变量名 这个形式可以声明一个指向该「类型」的指针变量。语句2声明了一个整型变量i，语句3中通过\u0026运算符计算出变量i的内存地址并赋值给指针变量p。此时可以将*p看作是i的别名。\n指针与数组 在C语言中，函数的参数传递都是值传递。\nint plus_one(int x){ return ++x; } int a = 1; plus_one(a); printf(\"%d\", a); // 1 在上面的代码中，定义了一个函数，该函数接受一个int类型参数，并将其+1后的值返回。接着调用这个函数，将a作为变量传入其中，稍后将a的值打印出来，我们会发现a的值依旧是1。即我们传入的a只是a存储的值的副本，并不是a的内存地址。\nvoid full(int list[], int num, int len){ int i; for(i = 0; i \u003c len; i++) list[i] = num; } int s[4]; full(s, 1, 4); // s [1,1,1,1] 上面一段代码将数组s的每一个元素赋值为99。但是，函数的参数传递不是值传递吗？为什么外部变量s会被改变呢？\n根据c的定义，数组变量名作为表达式时其值时该数组第0个元素的地址，所以当我们传递s的时候，实际是传递的\u0026s[0]，所以这个函数可以改写一下：\nvoid full(int *pl, int num, int len){ while(len-- \u003e 0) *pl++ = num; } int s[4]; full(s, 1, 4); 其效果跟上一个版本是一样的，因为数组在内存中占据一块连续的内存空间，所以我们可以直接对指针进行算数运算，将其+1指向下一个元素。\n指针数组 WIP\n",
+  "wordCount" : "122",
+  "inLanguage": "en",
+  "datePublished": "2023-02-11T13:59:54.172Z",
+  "dateModified": "2023-02-11T13:59:54.172Z",
+  "author":{
+    "@type": "Person",
+    "name": "Zink"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/pointer-of-c/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rush",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Rush (Alt + H)">Rush</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      指针
+    </h1>
+    <div class="post-meta"><span title='2023-02-11 13:59:54.172 +0000 UTC'>February 11, 2023</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zink
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%89%8d%e8%a8%80" aria-label="前言">前言</a></li>
+                <li>
+                    <a href="#%e6%8c%87%e9%92%88%e6%98%af%e4%bb%80%e4%b9%88" aria-label="指针是什么？">指针是什么？</a></li>
+                <li>
+                    <a href="#%e6%8c%87%e9%92%88%e4%b8%8e%e6%95%b0%e7%bb%84" aria-label="指针与数组">指针与数组</a></li>
+                <li>
+                    <a href="#%e6%8c%87%e9%92%88%e6%95%b0%e7%bb%84" aria-label="指针数组">指针数组</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h2>
+<p>本月开始学习<code>c语言</code>，教材使用的是<a href="https://book.douban.com/subject/1139336/">《C程序设计语言》第二版</a>，不推荐基础不好的人群食用这本书，当然如果你心态良好也可以试试，我在阅读第五章——指针的时候可谓是痛苦万分，配合ChatGPT终于是基本入门了指针这个概念。</p>
+<h2 id="指针是什么">指针是什么？<a hidden class="anchor" aria-hidden="true" href="#指针是什么">#</a></h2>
+<p><strong>指针是一种可以保存变量地址/内存地址的变量。</strong></p>
+<p>我们知道程序中的变量是存储在计算机内存中的，在现代计算机中<code>1 byte = 8 bit</code>，每个字节都有对饮的内存地址，在高级语言中，指针这个概念被遮蔽了，我们只能通过<strong>变量名</strong>来访问它存储的值，因为我们没办法获取并存储它的内存地址。</p>
+<p>而 C 将这项能力交给了程序员！</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span> <span class="c1">// 定义一个指针变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 定义一个 int 类型的变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span> <span class="c1">// 通过 &amp; 运算符得到 i 的内存地址并赋值给 p
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">);</span> <span class="c1">// 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="o">*</span><span class="n">p</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">);</span> <span class="c1">// 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// 2
+</span></span></span></code></pre></div><p>语句1中声明了一个指针变量（或者指针），<code>类型 *变量名</code> 这个形式可以声明一个指向该「类型」的指针变量。语句2声明了一个整型变量<code>i</code>，语句3中通过<code>&amp;</code>运算符计算出变量<code>i</code>的内存地址并赋值给指针变量p。此时可以将<code>*p</code>看作是<code>i</code>的别名。</p>
+<h2 id="指针与数组">指针与数组<a hidden class="anchor" aria-hidden="true" href="#指针与数组">#</a></h2>
+<p><strong>在C语言中，函数的参数传递都是<code>值传递</code>。</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">plus_one</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">++</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plus_one</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">);</span> <span class="c1">// 1
+</span></span></span></code></pre></div><p>在上面的代码中，定义了一个函数，该函数接受一个<code>int</code>类型参数，并将其+1后的值返回。接着调用这个函数，将<code>a</code>作为变量传入其中，稍后将<code>a</code>的值打印出来，我们会发现<code>a</code>的值依旧是1。即我们传入的<code>a</code>只是<code>a</code>存储的值的副本，并不是<code>a</code>的内存地址。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">full</span><span class="p">(</span><span class="kt">int</span> <span class="n">list</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nf">full</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// s [1,1,1,1]
+</span></span></span></code></pre></div><p>上面一段代码将数组<code>s</code>的每一个元素赋值为99。但是，函数的参数传递不是值传递吗？为什么外部变量<code>s</code>会被改变呢？</p>
+<p>根据c的定义，数组变量名作为表达式时其值时该数组第0个元素的地址，所以当我们传递<code>s</code>的时候，实际是传递的<code>&amp;s[0]</code>，所以这个函数可以改写一下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">full</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">pl</span><span class="p">,</span> <span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">len</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">pl</span><span class="o">++</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nf">full</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+</span></span></code></pre></div><p>其效果跟上一个版本是一样的，因为数组在内存中占据一块连续的内存空间，所以我们可以直接对指针进行算数运算，将其+1指向下一个元素。</p>
+<h2 id="指针数组">指针数组<a hidden class="anchor" aria-hidden="true" href="#指针数组">#</a></h2>
+<p>WIP</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/c/">C</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/posts/think-0629/">
+    <span class="title">Next »</span>
+    <br>
+    <span>6.29 思考</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>© 2024 by Rush</span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
