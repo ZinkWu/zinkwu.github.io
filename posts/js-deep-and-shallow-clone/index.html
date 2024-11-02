@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>JavaScript的深浅拷贝 | Rush</title>
+<meta name="keywords" content="JavaScript, 深拷贝, 浅拷贝">
+<meta name="description" content="深拷贝浅拷贝知识点笔记">
+<meta name="author" content="Zink">
+<link rel="canonical" href="https://zinkwu.me/posts/js-deep-and-shallow-clone/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://zinkwu.me/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://zinkwu.me/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://zinkwu.me/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://zinkwu.me/apple-touch-icon.png">
+<link rel="mask-icon" href="https://zinkwu.me/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://zinkwu.me/posts/js-deep-and-shallow-clone/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="JavaScript的深浅拷贝" />
+<meta property="og:description" content="深拷贝浅拷贝知识点笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zinkwu.me/posts/js-deep-and-shallow-clone/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-07-24T10:38:27+08:00" />
+<meta property="article:modified_time" content="2019-07-24T10:38:27+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript的深浅拷贝"/>
+<meta name="twitter:description" content="深拷贝浅拷贝知识点笔记"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://zinkwu.me/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "JavaScript的深浅拷贝",
+      "item": "https://zinkwu.me/posts/js-deep-and-shallow-clone/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "JavaScript的深浅拷贝",
+  "name": "JavaScript的深浅拷贝",
+  "description": "深拷贝浅拷贝知识点笔记",
+  "keywords": [
+    "JavaScript", "深拷贝", "浅拷贝"
+  ],
+  "articleBody": "JavaScript的数据类型 JS中有7种数据类型：String、Number、Boolean、Null、Undefined、对象以及ES6新增的Symbol。 由于目前还未深入了解过Symbol，所以此次不讨论Symbol。 其中6种为基本类型（或叫做简单数据类型）和1种引用类型（复杂数据类型）。\n基本类型 String Number Boolean Null Undefined 引用类型 对象 不同数据类型在内存中如何存储？ 我们将内存分为栈（Stack）内存和堆（Heap）内存 基本类型以固定大小的空间存在与栈内存中，当基本类型发生值的拷贝时，目标变量会得到原始变量的值的副本。\nlet a = 1 let b = a //1 引用类型的值是对象，保存在堆内存中，引用类型的变量的值并不是值的本身，而是这个值在堆内存中的地址（也有说法为指针，不过我个人觉得地址容易理解）。当引用类型发生值的拷贝的时候，实际上目标变量得到的是原始变量的值的地址。\nlet obj1 = { name: \"jack\" } /* 此时{name: \"jack\"}这个对象存在于堆内存中，我们假设他的地址是218 */ let obj2 = obj1 //在这个赋值操作中，传递的其实是对象在内存中的地址 浅拷贝 let data = { name: \"jack\", age: 18, gender: \"male\" } let copyDate = data copyDate === data //true copyDate.name = \"Tom\" copyDate.name === data.name //true copyDate === data //true 上面这段代码就是一个浅拷贝的例子，由此可见，浅拷贝就是目标变量得到原始变量的值后， 不管是目标变量还是原是变量，只要值发生变化，那么两个变量都会收到影响。这一点从内存图中就可以看出，因为引用地址相同。\n深拷贝 let a = 1 let b = a b = 2 a //1 变量b得到变量a的值，但变量b的值改变，不影响变量a，这就是深拷贝\n存在的问题 \u0026 解决方法 有些时候，我们需要深拷贝一个对象或者数组，但=操作符只能实现浅拷贝\n对象的深拷贝\n//最容易想到的方法：遍历原始对象 let obj = { name: \"jack\" } let copyObj = {} for(let key in obj){ copyObj[key] = obj[key] } obj === copyObj //false //使用JSON let a = {name: \"alex\"} let b = JSON.parse(JSON.stringify(a)) //ES6的方法 let source = { name: \"Tom\", age: 18 } let target = Object.assign({}, source) //Object.assign方法用于将原始对象的所有可枚举属性复制到目标对象上。 target === source //false 数组的深拷贝\n//最简单的方法还是遍历数组，这里就不多讲 //其次我们可以用到Array的方法，比如map、slice等可以返回新数组的方法 let a = [1,2,3,4] let b = a.map(n =\u003e n) let c = a.slice() a === b || a === c //false ",
+  "wordCount" : "173",
+  "inLanguage": "en",
+  "datePublished": "2019-07-24T10:38:27+08:00",
+  "dateModified": "2019-07-24T10:38:27+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Zink"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://zinkwu.me/posts/js-deep-and-shallow-clone/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rush",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://zinkwu.me/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://zinkwu.me/" accesskey="h" title="Rush (Alt + H)">Rush</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://zinkwu.me/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://zinkwu.me/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://zinkwu.me/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://zinkwu.me/">Home</a>&nbsp;»&nbsp;<a href="https://zinkwu.me/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      JavaScript的深浅拷贝
+    </h1>
+    <div class="post-description">
+      深拷贝浅拷贝知识点笔记
+    </div>
+    <div class="post-meta"><span title='2019-07-24 10:38:27 +0800 +0800'>July 24, 2019</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zink
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#javascript%e7%9a%84%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" aria-label="JavaScript的数据类型">JavaScript的数据类型</a></li>
+                <li>
+                    <a href="#%e4%b8%8d%e5%90%8c%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b%e5%9c%a8%e5%86%85%e5%ad%98%e4%b8%ad%e5%a6%82%e4%bd%95%e5%ad%98%e5%82%a8" aria-label="不同数据类型在内存中如何存储？">不同数据类型在内存中如何存储？</a></li>
+                <li>
+                    <a href="#%e6%b5%85%e6%8b%b7%e8%b4%9d" aria-label="浅拷贝">浅拷贝</a></li>
+                <li>
+                    <a href="#%e6%b7%b1%e6%8b%b7%e8%b4%9d" aria-label="深拷贝">深拷贝</a></li>
+                <li>
+                    <a href="#%e5%ad%98%e5%9c%a8%e7%9a%84%e9%97%ae%e9%a2%98--%e8%a7%a3%e5%86%b3%e6%96%b9%e6%b3%95" aria-label="存在的问题 &amp; 解决方法">存在的问题 &amp; 解决方法</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="javascript的数据类型">JavaScript的数据类型<a hidden class="anchor" aria-hidden="true" href="#javascript的数据类型">#</a></h2>
+<p>JS中有7种数据类型：String、Number、Boolean、Null、Undefined、对象以及ES6新增的Symbol。
+<strong>由于目前还未深入了解过Symbol，所以此次不讨论Symbol。</strong>
+其中6种为<strong>基本类型</strong>（或叫做简单数据类型）和1种<strong>引用类型</strong>（复杂数据类型）。</p>
+<ul>
+<li>基本类型
+<ul>
+<li>String</li>
+<li>Number</li>
+<li>Boolean</li>
+<li>Null</li>
+<li>Undefined</li>
+</ul>
+</li>
+<li>引用类型
+<ul>
+<li>对象</li>
+</ul>
+</li>
+</ul>
+<h2 id="不同数据类型在内存中如何存储">不同数据类型在内存中如何存储？<a hidden class="anchor" aria-hidden="true" href="#不同数据类型在内存中如何存储">#</a></h2>
+<p>我们将内存分为<strong>栈（Stack）内存</strong>和<strong>堆（Heap）内存</strong>
+基本类型以固定大小的空间存在与<strong>栈内存</strong>中，当基本类型发生值的拷贝时，目标变量会得到原始变量的值的副本。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span> <span class="c1">//1
+</span></span></span></code></pre></div><p>引用类型的值是对象，保存在<strong>堆内存</strong>中，引用类型的变量的值并不是值的本身，而是这个值在堆内存中的<strong>地址</strong>（也有说法为指针，不过我个人觉得地址容易理解）。当引用类型发生值的拷贝的时候，实际上目标变量得到的是原始变量的值的地址。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;jack&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">此时{name: &#34;jack&#34;}这个对象存在于堆内存中，我们假设他的地址是218
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="nx">obj1</span> <span class="c1">//在这个赋值操作中，传递的其实是对象在内存中的地址
+</span></span></span></code></pre></div><p><img loading="lazy" src="https://i.loli.net/2019/07/24/5d37ffa3e3db962442.png" alt="内存图"  />
+</p>
+<h2 id="浅拷贝">浅拷贝<a hidden class="anchor" aria-hidden="true" href="#浅拷贝">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;jack&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">age</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">gender</span><span class="o">:</span> <span class="s2">&#34;male&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">copyDate</span> <span class="o">=</span> <span class="nx">data</span>
+</span></span><span class="line"><span class="cl"><span class="nx">copyDate</span> <span class="o">===</span> <span class="nx">data</span> <span class="c1">//true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">copyDate</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;Tom&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">copyDate</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="nx">data</span><span class="p">.</span><span class="nx">name</span> <span class="c1">//true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">copyDate</span> <span class="o">===</span> <span class="nx">data</span> <span class="c1">//true
+</span></span></span></code></pre></div><p>上面这段代码就是一个浅拷贝的例子，由此可见，浅拷贝就是<strong>目标变量</strong>得到<strong>原始变量</strong>的值后，
+不管是目标变量还是原是变量，只要值发生变化，那么两个变量都会收到影响。这一点从内存图中就可以看出，因为引用地址相同。</p>
+<h2 id="深拷贝">深拷贝<a hidden class="anchor" aria-hidden="true" href="#深拷贝">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span>
+</span></span><span class="line"><span class="cl"><span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="nx">a</span>   <span class="c1">//1
+</span></span></span></code></pre></div><p>变量b得到变量a的值，但变量b的值改变，不影响变量a，这就是深拷贝</p>
+<h2 id="存在的问题--解决方法">存在的问题 &amp; 解决方法<a hidden class="anchor" aria-hidden="true" href="#存在的问题--解决方法">#</a></h2>
+<p>有些时候，我们需要深拷贝一个对象或者数组，但<code>=</code>操作符只能实现浅拷贝</p>
+<p><strong>对象的深拷贝</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//最容易想到的方法：遍历原始对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;jack&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">copyObj</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">copyObj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">obj</span> <span class="o">===</span> <span class="nx">copyObj</span> <span class="c1">//false
+</span></span></span><span class="line"><span class="cl"><span class="c1">//使用JSON
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;alex&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">a</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//ES6的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">source</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Tom&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">age</span><span class="o">:</span> <span class="mi">18</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">target</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">source</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//Object.assign方法用于将原始对象的所有可枚举属性复制到目标对象上。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">target</span> <span class="o">===</span> <span class="nx">source</span>   <span class="c1">//false
+</span></span></span></code></pre></div><p><strong>数组的深拷贝</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//最简单的方法还是遍历数组，这里就不多讲
+</span></span></span><span class="line"><span class="cl"><span class="c1">//其次我们可以用到Array的方法，比如map、slice等可以返回新数组的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">n</span> <span class="p">=&gt;</span> <span class="nx">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">slice</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span> <span class="o">||</span> <span class="nx">a</span> <span class="o">===</span> <span class="nx">c</span>   <span class="c1">//false
+</span></span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://zinkwu.me/tags/javascript/">Javascript</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://zinkwu.me/posts/debounce-throttle/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>防抖和节流</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>© 2024 by Rush</span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

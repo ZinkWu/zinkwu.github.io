@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>这一次，我一定会搞定 This ！ | Rush</title>
+<meta name="keywords" content="JavaScript, this, 笔记">
+<meta name="description" content="JavaScript中的this规则">
+<meta name="author" content="Zink">
+<link rel="canonical" href="https://zinkwu.me/posts/about-this/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://zinkwu.me/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://zinkwu.me/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://zinkwu.me/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://zinkwu.me/apple-touch-icon.png">
+<link rel="mask-icon" href="https://zinkwu.me/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://zinkwu.me/posts/about-this/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="这一次，我一定会搞定 This ！" />
+<meta property="og:description" content="JavaScript中的this规则" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zinkwu.me/posts/about-this/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-09-16T10:36:19+08:00" />
+<meta property="article:modified_time" content="2019-09-16T10:36:19+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="这一次，我一定会搞定 This ！"/>
+<meta name="twitter:description" content="JavaScript中的this规则"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://zinkwu.me/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "这一次，我一定会搞定 This ！",
+      "item": "https://zinkwu.me/posts/about-this/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "这一次，我一定会搞定 This ！",
+  "name": "这一次，我一定会搞定 This ！",
+  "description": "JavaScript中的this规则",
+  "keywords": [
+    "JavaScript", "this", "笔记"
+  ],
+  "articleBody": "迫于 迫于在写 React 事件处理中的 this 时，写到 this 突然卡壳了，一顿冷静分析之后发现自己对于 this 的理解又忘了一些，于是痛定思痛，重新读了 《You-Dont-Know-JS》中关于 this 的文章。\n函数的执行环境 首先上一段代码\nfunction fn(){ console.log(this.a) } let obj = { a: 1, fn: fn } var a = 'window' fn() //window obj.fn() //1 首先我们要明确一点 ，this 不是编写代码时就绑定的，而是运行时绑定的。 比如 fn() 在调用时，所处的环境是 global，所以他的 this 就是 window 而 obj.fn() 在调用时，所处的环境是在对象 obj 内，所以他的 this 指向 obj 对象\n当一个函数被调用时，会建立一个称为执行环境的活动记录。这个记录包含函数是从何处（调用栈 —— call-stack）被调用的，函数是 如何 被调用的，被传递了什么参数等信息。这个记录的属性之一，就是在函数执行期间将被使用的 this 引用。\n所以，this是根据调用点（函数如何被调用）来为每次函数调用建立的绑定\n调用点的规则 默认绑定： 首先是独立函数调用。在这种倾向下，this 规则是在没有其他规则适用时的默认规则。\nfunction fn(){ console.log(this) } fn() //window fn() 被独立调用，此时的 this 是默认绑定，所以 this 指向了 window\n隐含绑定 这种规则是：调用点是否拥有一个对象环境。\nfunction fn(){ console.log(this.a) } let obj = { a: 1, fn: fn } obj.fn() //1 首先，fn被声明然后作为引用属性添加到 obj 上，我们知道，对象、函数、数组等都是引用类型，存在于堆内存中，以传值（地址）的方式被变量引 用，所以 obj 并不包含或者拥有函数 fn\nobj.fn() 的调用点以 obj 环境来引用函数，所以，函数在被调用的时间节点上拥有对象环境 obj\n对象属性引用链的最后一层是影响调用点的\nfunction fn() { console.log( this.a ); } let obj2 = { a: 42, fn: fn }; let obj1 = { a: 2, obj2: obj2 }; obj1.obj2.fn(); // 42 隐含丢失 隐含丢失：隐含绑定丢失了他的绑定，如何丢的？看代码\nfunction fn(){ console.log(this.a) } let obj = { a: 1, fn: fn } let foo = obj.fn var a = 'window' foo() //window 这段代码，将 foo 引用了 obj.fn，但是在 foo()，他依然属于函数独立调用，所以 this 指向全局作用域的 a\nfunction fn(){ console.log(this.a) } function bar(f){ f() } let obj = { a: 1, fn: fn } var a = 'window' bar(obj.fn) // window 这段代码中，将 obj.fn 作为回调函数传入 bar 中，但是 bar 调用回调函数的方式依然属于 函数独立调用，所以 this 指向 全局作用域的 a\nfunction fn(){ console.log(this.a) } let obj = { a: 1, fn: fn } var a = 'window' setTimeout(obj.fn, 1000) // window 这段代码跟上一段一样。\n箭头函数 箭头函数的 this 不是在运行时生效的，而是在定义这个箭头函数时生效的\nlet obj = { fn(){ setTimeout(function(){ console.log(this) }, 1000) }, arrow(){ let a = () =\u003e {console.log(this)} setTimeout( a, 1000) } } obj.fn() //window obj.arrow() //对象obj obj.fn 中 setTimeout 中的回调函数相当于函数独立调用，this 指向 window，obj.arrow 中的 setTimeout 中的回调函数是一个 箭头函数，而箭头函数的 this 时函数定义生效时所在的对象，也就是 obj，arrow 中的 a 引用了箭头函数，而这个箭头函数是在 arrow 执行时定义的，所以所指向的对象环境为 obj。\n",
+  "wordCount" : "278",
+  "inLanguage": "en",
+  "datePublished": "2019-09-16T10:36:19+08:00",
+  "dateModified": "2019-09-16T10:36:19+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "Zink"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://zinkwu.me/posts/about-this/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Rush",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://zinkwu.me/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://zinkwu.me/" accesskey="h" title="Rush (Alt + H)">Rush</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://zinkwu.me/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://zinkwu.me/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://zinkwu.me/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://zinkwu.me/">Home</a>&nbsp;»&nbsp;<a href="https://zinkwu.me/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      这一次，我一定会搞定 This ！
+    </h1>
+    <div class="post-description">
+      JavaScript中的this规则
+    </div>
+    <div class="post-meta"><span title='2019-09-16 10:36:19 +0800 +0800'>September 16, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zink
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e8%bf%ab%e4%ba%8e" aria-label="迫于">迫于</a></li>
+                <li>
+                    <a href="#%e5%87%bd%e6%95%b0%e7%9a%84%e6%89%a7%e8%a1%8c%e7%8e%af%e5%a2%83" aria-label="函数的执行环境">函数的执行环境</a></li>
+                <li>
+                    <a href="#%e8%b0%83%e7%94%a8%e7%82%b9%e7%9a%84%e8%a7%84%e5%88%99" aria-label="调用点的规则">调用点的规则</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h3 id="迫于">迫于<a hidden class="anchor" aria-hidden="true" href="#迫于">#</a></h3>
+<p>迫于在写 <a href="https://github.com/ZinkWu/Blog/issues/5">React 事件处理中的 this</a> 时，写到 <code>this</code> 突然卡壳了，一顿冷静分析之后发现自己对于 <code>this</code> 的理解又忘了一些，于是痛定思痛，重新读了 《You-Dont-Know-JS》中关于 <code>this</code> 的文章。</p>
+<hr>
+<h3 id="函数的执行环境">函数的执行环境<a hidden class="anchor" aria-hidden="true" href="#函数的执行环境">#</a></h3>
+<p>首先上一段代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;window&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//window
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//1
+</span></span></span></code></pre></div><p>首先我们要明确一点 ，<code>this</code> 不是编写代码时就绑定的，而是运行时绑定的。
+比如 <code>fn()</code> 在调用时，所处的环境是 <code>global</code>，所以他的 <code>this</code> 就是 <code>window</code>
+而 <code>obj.fn()</code> 在调用时，所处的环境是在对象 <code>obj</code> 内，所以他的 <code>this</code> 指向 <code>obj</code> 对象</p>
+<blockquote>
+<p>当一个函数被调用时，会建立一个称为执行环境的活动记录。这个记录包含函数是从何处（调用栈 —— call-stack）被调用的，函数是 如何 被调用的，被传递了什么参数等信息。这个记录的属性之一，就是在函数执行期间将被使用的 this 引用。</p>
+</blockquote>
+<p>所以，<code>this</code>是根据<strong>调用点</strong>（函数如何被调用）来为每次函数调用建立的绑定</p>
+<hr>
+<h3 id="调用点的规则">调用点的规则<a hidden class="anchor" aria-hidden="true" href="#调用点的规则">#</a></h3>
+<ul>
+<li>
+<p>默认绑定：
+首先是独立函数调用。在这种倾向下，<code>this</code> 规则是在没有其他规则适用时的默认规则。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//window
+</span></span></span></code></pre></div><p><code>fn()</code> 被独立调用，此时的 <code>this</code> 是默认绑定，所以 <code>this</code> 指向了 <code>window</code></p>
+</li>
+<li>
+<p>隐含绑定
+这种规则是：调用点是否拥有一个对象环境。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//1
+</span></span></span></code></pre></div><p>首先，<code>fn</code>被声明然后作为引用属性添加到 <code>obj</code> 上，我们知道，对象、函数、数组等都是引用类型，存在于堆内存中，以传值（地址）的方式被变量引 用，所以 <code>obj</code> 并不包含或者拥有函数 <code>fn</code></p>
+<p><code>obj.fn()</code> 的调用点以 <code>obj</code> 环境来引用函数，所以，函数在被调用的时间节点上拥有对象环境 <code>obj</code></p>
+<p>对象属性引用链的最后一层是影响调用点的</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">42</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">obj2</span><span class="o">:</span> <span class="nx">obj2</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">obj1</span><span class="p">.</span><span class="nx">obj2</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span> <span class="c1">// 42
+</span></span></span></code></pre></div></li>
+<li>
+<p>隐含丢失
+隐含丢失：<strong>隐含绑定</strong>丢失了他的绑定，如何丢的？看代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;window&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">foo</span><span class="p">()</span>  <span class="c1">//window
+</span></span></span></code></pre></div><p>这段代码，将 <code>foo</code> 引用了 <code>obj.fn</code>，但是在 <code>foo()</code>，他依然属于函数独立调用，所以 <code>this</code> 指向全局作用域的 <code>a</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">bar</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">f</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;window&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">bar</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">)</span>  <span class="c1">//  window
+</span></span></span></code></pre></div><p>这段代码中，将 <code>obj.fn</code> 作为回调函数传入 <code>bar</code> 中，但是 <code>bar</code> 调用回调函数的方式依然属于 函数独立调用，所以 <code>this</code> 指向 全局作用域的 <code>a</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fn</span><span class="o">:</span> <span class="nx">fn</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;window&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1">//  window
+</span></span></span></code></pre></div><p>这段代码跟上一段一样。</p>
+</li>
+<li>
+<p>箭头函数
+箭头函数的 <code>this</code> 不是在运行时生效的，而是在定义这个箭头函数时生效的</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-JS" data-lang="JS"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fn</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">arrow</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setTimeout</span><span class="p">(</span> <span class="nx">a</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">obj</span><span class="p">.</span><span class="nx">fn</span><span class="p">()</span>  <span class="c1">//window
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">arrow</span><span class="p">()</span>  <span class="c1">//对象obj
+</span></span></span></code></pre></div><p><code>obj.fn</code> 中 <code>setTimeout</code> 中的回调函数相当于函数独立调用，<code>this</code> 指向 <code>window</code>，<code>obj.arrow</code> 中的 <code>setTimeout</code> 中的回调函数是一个 <strong>箭头函数</strong>，而箭头函数的 <code>this</code> 时函数定义生效时所在的对象，也就是 <code>obj</code>，<code>arrow</code> 中的 <code>a</code> 引用了箭头函数，而这个箭头函数是在 <code>arrow</code> 执行时定义的，所以所指向的对象环境为 <code>obj</code>。</p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://zinkwu.me/tags/javascript/">Javascript</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://zinkwu.me/posts/chinese-input-debounce/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Input中如何处理中文输入防抖</span>
+  </a>
+  <a class="next" href="https://zinkwu.me/posts/debounce-throttle/">
+    <span class="title">Next »</span>
+    <br>
+    <span>防抖和节流</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>© 2024 by Rush</span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
