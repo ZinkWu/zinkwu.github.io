@@ -163,7 +163,7 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://zinkwu.me/archives" title="Archive">
+                <a href="https://zinkwu.me/archives/" title="Archive">
                     <span>Archive</span>
                 </a>
             </li>
@@ -829,7 +829,43 @@
   </a>
 </nav>
 
-  </footer>
+  </footer><script src="https://giscus.app/client.js"
+        data-repo="zinkwu/zinkwu.github.io"
+        data-repo-id="R_kgDOGj_r8w"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOGj_r884CAZIx"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        data-loading="false"
+        async>
+</script>
+
+<script async>
+  const theme = localStorage.getItem('pref-theme')
+  
+  document.querySelector("article.post-single > script").setAttribute('data-theme', theme ? theme : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'transparent_dark' : 'light'))
+  
+  document.querySelector('#theme-toggle').addEventListener('click', () => {
+    const currentTheme = localStorage.getItem('pref-theme')
+    let g = document.querySelector('iframe.giscus-frame')
+    if (g) {
+      g.contentWindow.postMessage({
+        giscus: {
+          setConfig: {
+            theme: currentTheme ? ((currentTheme === 'dark') ? 'light': 'transparent_dark') : (document.body.className.includes("dark") ? 'light' : 'transparent_dark')
+          }
+        }
+      }, 'https://giscus.app');
+    }
+  })
+</script>
+
 </article>
     </main>
     
