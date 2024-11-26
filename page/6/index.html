@@ -2,7 +2,7 @@
 <html lang="en" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.137.0"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.139.2"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -141,24 +141,6 @@
     </nav>
 </header>
 <main class="main"> 
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Call &amp; Apply &amp; Bind实现
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>call &amp;&amp; apply &amp;&amp; bind 的作用 call、apply、bind的作用都是改变函数的 this 指向
-call：call 的第一个参数就是对函数绑定的 this，为一个对象，后面的参数是函数调用时所需要的参数 apply：apply 只接受两个参数，第一个与 call 相同，第二个参数是为数组，内容是函数调用所需要的参数 bind：bind 与 call作用相同，不过 bind 会返回一个新的函数，第一个参数之后的参数将绑定原函数的参数。 实现 call 先来看看原生call的使用方法
-let obj = { a: 1 } function fn(){ console.log(this.a) } fn() // undefined fn.call(obj) // 1 call 是如何将 this 绑定到 obj 上的呢？ 我们换一种思路，先看下面的代码
-let obj = { a: 1, fn(){ console.log(this.a) } } obj.fn() // 1 这段代码大家都能理解对吧，接下来，让我们打开脑洞。
-如果 call 只是将调用函数绑定到了第一个参数身上呢？似乎一切就说得通了
-function fn(){ console.log(this.a) } Function.prototype.myCall = function(context){ context = context || window //首先判断是否传入第一个参数，如果没传，那么 this 就默认绑定到 window context.callFn = this let result = context.callFn() delete context.callFn return result } let obj = { a: 1 } fn.myCall(obj) // 1 ok，初步绑定 this 的工作我们已经完成，接下来思考如何将剩下的参数传给调用函数。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2019-09-24 10:33:29 +0800 +0800'>September 24, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zink</footer>
-  <a class="entry-link" aria-label="post link to Call & Apply & Bind实现" href="https://zinkwu.me/posts/call-apply-bind-implement/"></a>
-</article>
 
 <article class="post-entry"> 
   <header class="entry-header">

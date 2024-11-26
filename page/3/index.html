@@ -2,7 +2,7 @@
 <html lang="en" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.137.0"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.139.2"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -144,26 +144,6 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">Win11 PowerShell 配置
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>首先请确保已安装 Git
-下载字体 下载并安装字体，为了修复乱码
-地址: https://github.com/ryanoasis/nerd-fonts/releases 我使用的是 Hack。
-Install PowerShell 安装方式很多，自行搜索，我是直接从 Microsoft store 安装
-Terminal 的基本设置 修改字体为你下载的字体 开启亚克力效果 设置默认终端 安装 Scoop iwr -useb get.scoop.sh | iex 安装 Neovim scoop install neovim gcc nvim --version PowerShell 配置 # 确认处于 user\xxx 目录下 nvim .config/powershell/user_profile.ps1 让我们先搞点 alias
-# Alias Set-Alias vim nvim Set-Alias ll ls Set-Alias g git if(!(Test-Path $PROFILE.CurrentUserCurrentHost)) {New-Item -Type File -Path $PROFILE.CurrentUserCurrentHost -Force} nvim $PROFILE.CurrentUserCurrentHost 输入以下代码并:wq
-. $env:USERPROFILE\.config\powershell\user_profile.ps1 完成以上操作我们就可以重启 Terminal
-# 验证我们的配置文件是否生效 ll g --version 安装 posh-git/oh-my-posh/Terminal-Icons Install-Module posh-git -Scope CurrentUser -Force Install-Module oh-my-posh -Scope CurrentUser -Force Install-Module -Name Terminal-Icons -Repository PSGallery -Force # 确保当前在 user/xxx 下 vim ./.config/powershell/user_profile.ps1 导入模块
-# Prompt Import-Module posh-git Import-Module oh-my-posh Set-PoshPrompt -Theme JanDeDobbeleer # Icons Import-Module -Name Terminal-Icons # 设置主题，后续可以根据自己的喜好更改，google oh-my-posh theme 查看相关主题 此时你终端内的图标应该会改变 ...</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-12-23 01:47:35 +0800 +0800'>December 23, 2021</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zink</footer>
-  <a class="entry-link" aria-label="post link to Win11 PowerShell 配置" href="https://zinkwu.me/posts/windows-terminal-build/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
     <h2 class="entry-hint-parent">Grid Layout
     </h2>
   </header>
@@ -235,6 +215,24 @@ ex1:
   </div>
   <footer class="entry-footer"><span title='2020-10-07 10:09:46 +0800 +0800'>October 7, 2020</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zink</footer>
   <a class="entry-link" aria-label="post link to 位运算" href="https://zinkwu.me/posts/bit-operation/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">二进制求和
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>给你两个二进制字符串，返回它们的和（用二进制表示）。
+输入为 非空 字符串且只包含数字 1 和 0。
+示例1：
+输入: a = “11”, b = “1” 输出: “100”
+示例2：
+输入: a = “1010”, b = “1011” 输出: “10101”
+//满二进一 var addBinary = function(a, b) { let sum = 0	//保留上一次位数相加后是否进一 let result = &#34;&#34; for(let i = a.length -1, j = b.length-1; i &gt;= 0 || j &gt;= 0; i--, j--){ let count = sum	//取sum的值，与本次遍历的两数相加 count &#43;= a[i] &gt; 0 ? parseInt(a[i]) : 0 count &#43;= b[j] &gt; 0 ? parseInt(b[j]) : 0 //count的值只可能为 0、1、2、3 result &#43;= count % 2 sum = Math.floor(count / 2)	// count &gt;= 2 时会进一 } result &#43;= sum == 1 ? sum : &#34;&#34; //最后要检查sum是否为1，为1则表示还需要进位 return result.split(&#34;&#34;).reverse().join(&#34;&#34;) //反转，因为是从字符串末端开始遍历 }; </p>
+  </div>
+  <footer class="entry-footer"><span title='2020-07-23 10:09:44 +0800 +0800'>July 23, 2020</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zink</footer>
+  <a class="entry-link" aria-label="post link to 二进制求和" href="https://zinkwu.me/posts/add-binary/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
