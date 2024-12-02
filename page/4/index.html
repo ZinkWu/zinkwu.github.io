@@ -144,6 +144,24 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">二进制求和
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>给你两个二进制字符串，返回它们的和（用二进制表示）。
+输入为 非空 字符串且只包含数字 1 和 0。
+示例1：
+输入: a = “11”, b = “1” 输出: “100”
+示例2：
+输入: a = “1010”, b = “1011” 输出: “10101”
+//满二进一 var addBinary = function(a, b) { let sum = 0	//保留上一次位数相加后是否进一 let result = &#34;&#34; for(let i = a.length -1, j = b.length-1; i &gt;= 0 || j &gt;= 0; i--, j--){ let count = sum	//取sum的值，与本次遍历的两数相加 count &#43;= a[i] &gt; 0 ? parseInt(a[i]) : 0 count &#43;= b[j] &gt; 0 ? parseInt(b[j]) : 0 //count的值只可能为 0、1、2、3 result &#43;= count % 2 sum = Math.floor(count / 2)	// count &gt;= 2 时会进一 } result &#43;= sum == 1 ? sum : &#34;&#34; //最后要检查sum是否为1，为1则表示还需要进位 return result.split(&#34;&#34;).reverse().join(&#34;&#34;) //反转，因为是从字符串末端开始遍历 }; </p>
+  </div>
+  <footer class="entry-footer"><span title='2020-07-23 10:09:44 +0800 +0800'>July 23, 2020</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zink</footer>
+  <a class="entry-link" aria-label="post link to 二进制求和" href="https://zinkwu.me/posts/add-binary/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">二叉树基础
     </h2>
   </header>
@@ -207,23 +225,6 @@
   </div>
   <footer class="entry-footer"><span title='2020-03-26 10:25:39 +0800 +0800'>March 26, 2020</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zink</footer>
   <a class="entry-link" aria-label="post link to 二维数组中的查找" href="https://zinkwu.me/posts/locating-a-2d-matrix/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">数组中重复的数字
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>找出数组中重复的数字。
-在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
-示例 1：
-输入： [2, 3, 1, 0, 2, 5, 3] 输出：2 或 3 限制： 2 &lt;= n &lt;= 100000
-解： 哈希，构造一个空对象，遍历数组，每次遍历数组时检查 hash 中是否包含有该元素
-var findRepeatNumber = function(nums) { let hash = {} let result = [] for(let item of nums){ hash[item] ? result.push(item) : hash[item] = true } return result[0] }; </p>
-  </div>
-  <footer class="entry-footer"><span title='2020-03-24 10:26:48 +0800 +0800'>March 24, 2020</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zink</footer>
-  <a class="entry-link" aria-label="post link to 数组中重复的数字" href="https://zinkwu.me/posts/array-repetition-numbers/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
