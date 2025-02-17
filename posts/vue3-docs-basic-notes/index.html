@@ -416,8 +416,7 @@
 </li>
 <li>
 <blockquote>
-<p>当 Vue 正在更新使用 <code>v-for</code> 渲染的元素列表时，它默认使用“就地更新”的策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序，而是就地更新每个元素，并且确保它们在每个索引位置正确渲染。</p>
-</blockquote>
+<p>当 Vue 正在更新使用 <code>v-for</code> 渲染的元素列表时，它默认使用“就地更新”的策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序，而是就地更新每个元素，并且确保它们在每个索引位置正确渲染。</p></blockquote>
 </li>
 <li>
 <p>用比较简单的描述是，如果 <code>v-for</code>渲染出来的列表没有绑定<code>key</code>，那么在<code>v-for</code>绑定值变化的时候，Vue 是基于绑定值的索引来更新 DOM 树的</p>
@@ -510,8 +509,7 @@
 <ul>
 <li>
 <blockquote>
-<p><code>passive</code>: <code>Boolean</code>，设置为true时，表示 <code>listener</code> 永远不会调用 <code>preventDefault()</code>。如果 listener 仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。查看 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#%E4%BD%BF%E7%94%A8_passive_%E6%94%B9%E5%96%84%E7%9A%84%E6%BB%9A%E5%B1%8F%E6%80%A7%E8%83%BD">使用 passive 改善的滚屏性能</a> 了解更多.</p>
-</blockquote>
+<p><code>passive</code>: <code>Boolean</code>，设置为true时，表示 <code>listener</code> 永远不会调用 <code>preventDefault()</code>。如果 listener 仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。查看 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener#%E4%BD%BF%E7%94%A8_passive_%E6%94%B9%E5%96%84%E7%9A%84%E6%BB%9A%E5%B1%8F%E6%80%A7%E8%83%BD">使用 passive 改善的滚屏性能</a> 了解更多.</p></blockquote>
 </li>
 </ul>
 </li>
@@ -540,8 +538,7 @@
 <ul>
 <li>将其 <code>value</code> attribute 绑定到一个名叫 <code>modelValue</code> 的 prop 上</li>
 <li>在其 <code>input</code> 事件被触发时，将新的值通过自定义的 <code>update:modelValue</code> 事件抛出</li>
-</ul>
-</blockquote>
+</ul></blockquote>
 <p>当然，我们也可以自定这个值，并不一定是 <code>modelValue</code></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">input</span>
@@ -655,8 +652,7 @@
 </ul>
 <p><code>emits</code>还可以验证抛出事件</p>
 <blockquote>
-<p>要添加验证，请为事件分配一个函数，该函数接收传递给 <code>$emit</code> 调用的参数，并返回一个布尔值以指示事件是否有效。</p>
-</blockquote>
+<p>要添加验证，请为事件分配一个函数，该函数接收传递给 <code>$emit</code> 调用的参数，并返回一个布尔值以指示事件是否有效。</p></blockquote>
 <ul>
 <li>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">emits</span><span class="o">:</span> <span class="p">{</span>
@@ -714,8 +710,7 @@
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><blockquote>
-<p>但是，因为 <code>props</code> 是响应式的，你<strong>不能使用 ES6 解构</strong>，它会消除 prop 的响应性。</p>
-</blockquote>
+<p>但是，因为 <code>props</code> 是响应式的，你<strong>不能使用 ES6 解构</strong>，它会消除 prop 的响应性。</p></blockquote>
 <p>如果要解构 prop，需要使用<code>toRefs</code>函数来完成</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">toRefs</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
 </span></span><span class="line"><span class="cl">

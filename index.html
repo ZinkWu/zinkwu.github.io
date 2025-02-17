@@ -2,7 +2,7 @@
 <html lang="en" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.139.3"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.143.1"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -167,14 +167,16 @@
     <p>yarn2 yarn2不再支持yarn global add，参考 issue。 顺便一说发现好多人还在用yarn1…
 volta 使用volta作为node manamger，目前存在无法使用pnpm全局安装的问题，同样可采用pnpm dlx ...的方式来解决
 volta uninstall yarn失败，参考 issue1、issue2。
+2025.2.17更新：以切换到 fnm 管理 node版本，无法忍受不能使用 –global 指令，并且如果是在/node_modules/dir目录下使用 pnpm link，会自动忽略 package.json 并报错
 fnm fnm和volta 用下来，个人还是感觉volta更舒适，主要还是在于volta对于node版本的切换无感知，而fnm需要手动切换版本。
 volta只需要在项目中volta pin node@x.x.x就可以将版本写入package.json中，随后每次进入不同的目录都会自动切换到对应的node版本。
+2025.2.17更新：官方的自动安装脚本有错误，需手动修复 FNM_PATH
 corepack corepack不能与volta使用，当你使用volta install node后，你的node中并没有 corepack，参考 issue1、issue2
 虽然说corepack已经被视为规范，但它处于试验阶段好几年了，且node官方常年不作为…所以我还是选择先相信volta
 </p>
   </div>
   <footer class="entry-footer"><span title='2024-12-02 14:08:30 +0800 +0800'>December 2, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Zink</footer>
-  <a class="entry-link" aria-label="post link to 记录 node/package manager 的一些细碎" href="https://zinkwu.me/posts/volta/"></a>
+  <a class="entry-link" aria-label="post link to 记录 node/package manager 的一些细碎" href="https://zinkwu.me/posts/node-manager/"></a>
 </article>
 
 <article class="post-entry"> 

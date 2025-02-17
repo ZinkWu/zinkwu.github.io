@@ -203,7 +203,6 @@ function fn(){ console.log(this.a) } let obj = { a: 1, fn: fn } var a = &#39;win
 所以，this是根据调用点（函数如何被调用）来为每次函数调用建立的绑定
 调用点的规则 默认绑定： 首先是独立函数调用。在这种倾向下，this 规则是在没有其他规则适用时的默认规则。
 function fn(){ console.log(this) } fn() //window fn() 被独立调用，此时的 this 是默认绑定，所以 this 指向了 window
-隐含绑定 这种规则是：调用点是否拥有一个对象环境。
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2019-09-16 10:36:19 +0800 +0800'>September 16, 2019</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Zink</footer>

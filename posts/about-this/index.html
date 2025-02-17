@@ -234,8 +234,7 @@
 比如 <code>fn()</code> 在调用时，所处的环境是 <code>global</code>，所以他的 <code>this</code> 就是 <code>window</code>
 而 <code>obj.fn()</code> 在调用时，所处的环境是在对象 <code>obj</code> 内，所以他的 <code>this</code> 指向 <code>obj</code> 对象</p>
 <blockquote>
-<p>当一个函数被调用时，会建立一个称为执行环境的活动记录。这个记录包含函数是从何处（调用栈 —— call-stack）被调用的，函数是 如何 被调用的，被传递了什么参数等信息。这个记录的属性之一，就是在函数执行期间将被使用的 this 引用。</p>
-</blockquote>
+<p>当一个函数被调用时，会建立一个称为执行环境的活动记录。这个记录包含函数是从何处（调用栈 —— call-stack）被调用的，函数是 如何 被调用的，被传递了什么参数等信息。这个记录的属性之一，就是在函数执行期间将被使用的 this 引用。</p></blockquote>
 <p>所以，<code>this</code>是根据<strong>调用点</strong>（函数如何被调用）来为每次函数调用建立的绑定</p>
 <hr>
 <h3 id="调用点的规则">调用点的规则<a hidden class="anchor" aria-hidden="true" href="#调用点的规则">#</a></h3>

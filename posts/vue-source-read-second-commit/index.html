@@ -206,8 +206,7 @@
 <p>在第 23 行，<code>var content  = el.innerHTML.replace(/\{\{(.*)\}\}/g, markToken)</code>，用正则表达式匹配<code>{{...}}</code>，</p>
 <p>关于 <code>String.prototype.replace()</code></p>
 <blockquote>
-<p>你可以指定一个函数作为第二个参数。在这种情况下，当匹配执行后，该函数就会执行。 函数的返回值作为替换字符串。 (注意：上面提到的特殊替换参数在这里不能被使用。) 另外要注意的是，如果第一个参数是正则表达式，并且其为全局匹配模式，那么这个方法将被多次调用，每次匹配都会被调用。</p>
-</blockquote>
+<p>你可以指定一个函数作为第二个参数。在这种情况下，当匹配执行后，该函数就会执行。 函数的返回值作为替换字符串。 (注意：上面提到的特殊替换参数在这里不能被使用。) 另外要注意的是，如果第一个参数是正则表达式，并且其为全局匹配模式，那么这个方法将被多次调用，每次匹配都会被调用。</p></blockquote>
 <p>当第二个参数是一个函数时，函数接收多个参数，第一个参数<code>match</code>，表示匹配的子串，比如：<code>{{msg}}</code>、<code>{{what}}</code>等，第二个参数用于匹配正则表达式中括号匹配到的字符串，就是匹配正则表达式的这一部分：<code>(.*)</code>，并且这里可以接收多个参数：<code>p1,p2,p3...</code>，他们分别是括号对应的索引，具体参见 MDN。</p>
 <p>ok，我们继续回到 23 行，每次匹配执行后都会执行这个函数，这个函数首先会往<code>bindings</code>内填充<code>key:value</code>，key 是<code>{{}}</code>内的值，value 则是一个空对象，然后 return 一个字符串 <code>return '&lt;span ' + bindingMark + '=&quot;' + variable +'&quot;&gt;&lt;/span&gt;'</code></p>
 <p>接着遍历 bindings 执行 bind 方法</p>

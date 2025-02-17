@@ -13,14 +13,16 @@ yarn2不再支持yarn global add，参考 issue。
 volta
 使用volta作为node manamger，目前存在无法使用pnpm全局安装的问题，同样可采用pnpm dlx ...的方式来解决
 volta uninstall yarn失败，参考 issue1、issue2。
+2025.2.17更新：以切换到 fnm 管理 node版本，无法忍受不能使用 &ndash;global 指令，并且如果是在/node_modules/dir目录下使用 pnpm link，会自动忽略 package.json 并报错
 fnm
 fnm和volta 用下来，个人还是感觉volta更舒适，主要还是在于volta对于node版本的切换无感知，而fnm需要手动切换版本。
 volta只需要在项目中volta pin node@x.x.x就可以将版本写入package.json中，随后每次进入不同的目录都会自动切换到对应的node版本。
+2025.2.17更新：官方的自动安装脚本有错误，需手动修复 FNM_PATH
 corepack
 corepack不能与volta使用，当你使用volta install node后，你的node中并没有 corepack，参考 issue1、issue2
 虽然说corepack已经被视为规范，但它处于试验阶段好几年了，且node官方常年不作为&hellip;所以我还是选择先相信volta">
 <meta name="author" content="Zink">
-<link rel="canonical" href="https://zinkwu.me/posts/volta/">
+<link rel="canonical" href="https://zinkwu.me/posts/node-manager/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://zinkwu.me/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://zinkwu.me/favicon-16x16.png">
@@ -29,7 +31,7 @@ corepack不能与volta使用，当你使用volta install node后，你的node中
 <link rel="mask-icon" href="https://zinkwu.me/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://zinkwu.me/posts/volta/">
+<link rel="alternate" hreflang="en" href="https://zinkwu.me/posts/node-manager/">
 <noscript>
     <style>
         #theme-toggle,
@@ -73,14 +75,16 @@ yarn2不再支持yarn global add，参考 issue。
 volta
 使用volta作为node manamger，目前存在无法使用pnpm全局安装的问题，同样可采用pnpm dlx ...的方式来解决
 volta uninstall yarn失败，参考 issue1、issue2。
+2025.2.17更新：以切换到 fnm 管理 node版本，无法忍受不能使用 &ndash;global 指令，并且如果是在/node_modules/dir目录下使用 pnpm link，会自动忽略 package.json 并报错
 fnm
 fnm和volta 用下来，个人还是感觉volta更舒适，主要还是在于volta对于node版本的切换无感知，而fnm需要手动切换版本。
 volta只需要在项目中volta pin node@x.x.x就可以将版本写入package.json中，随后每次进入不同的目录都会自动切换到对应的node版本。
+2025.2.17更新：官方的自动安装脚本有错误，需手动修复 FNM_PATH
 corepack
 corepack不能与volta使用，当你使用volta install node后，你的node中并没有 corepack，参考 issue1、issue2
 虽然说corepack已经被视为规范，但它处于试验阶段好几年了，且node官方常年不作为&hellip;所以我还是选择先相信volta" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zinkwu.me/posts/volta/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zinkwu.me/posts/node-manager/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-12-02T14:08:30+08:00" />
 <meta property="article:modified_time" content="2024-12-02T14:08:30+08:00" />
 
@@ -92,9 +96,11 @@ yarn2不再支持yarn global add，参考 issue。
 volta
 使用volta作为node manamger，目前存在无法使用pnpm全局安装的问题，同样可采用pnpm dlx ...的方式来解决
 volta uninstall yarn失败，参考 issue1、issue2。
+2025.2.17更新：以切换到 fnm 管理 node版本，无法忍受不能使用 &ndash;global 指令，并且如果是在/node_modules/dir目录下使用 pnpm link，会自动忽略 package.json 并报错
 fnm
 fnm和volta 用下来，个人还是感觉volta更舒适，主要还是在于volta对于node版本的切换无感知，而fnm需要手动切换版本。
 volta只需要在项目中volta pin node@x.x.x就可以将版本写入package.json中，随后每次进入不同的目录都会自动切换到对应的node版本。
+2025.2.17更新：官方的自动安装脚本有错误，需手动修复 FNM_PATH
 corepack
 corepack不能与volta使用，当你使用volta install node后，你的node中并没有 corepack，参考 issue1、issue2
 虽然说corepack已经被视为规范，但它处于试验阶段好几年了，且node官方常年不作为&hellip;所以我还是选择先相信volta"/>
@@ -115,7 +121,7 @@ corepack不能与volta使用，当你使用volta install node后，你的node中
       "@type": "ListItem",
       "position":  2 ,
       "name": "记录 node/package manager 的一些细碎",
-      "item": "https://zinkwu.me/posts/volta/"
+      "item": "https://zinkwu.me/posts/node-manager/"
     }
   ]
 }
@@ -126,12 +132,12 @@ corepack不能与volta使用，当你使用volta install node后，你的node中
   "@type": "BlogPosting",
   "headline": "记录 node/package manager 的一些细碎",
   "name": "记录 node\/package manager 的一些细碎",
-  "description": "yarn2 yarn2不再支持yarn global add，参考 issue。 顺便一说发现好多人还在用yarn1\u0026hellip;\nvolta 使用volta作为node manamger，目前存在无法使用pnpm全局安装的问题，同样可采用pnpm dlx ...的方式来解决\nvolta uninstall yarn失败，参考 issue1、issue2。\nfnm fnm和volta 用下来，个人还是感觉volta更舒适，主要还是在于volta对于node版本的切换无感知，而fnm需要手动切换版本。\nvolta只需要在项目中volta pin node@x.x.x就可以将版本写入package.json中，随后每次进入不同的目录都会自动切换到对应的node版本。\ncorepack corepack不能与volta使用，当你使用volta install node后，你的node中并没有 corepack，参考 issue1、issue2\n虽然说corepack已经被视为规范，但它处于试验阶段好几年了，且node官方常年不作为\u0026hellip;所以我还是选择先相信volta\n",
+  "description": "yarn2 yarn2不再支持yarn global add，参考 issue。 顺便一说发现好多人还在用yarn1\u0026hellip;\nvolta 使用volta作为node manamger，目前存在无法使用pnpm全局安装的问题，同样可采用pnpm dlx ...的方式来解决\nvolta uninstall yarn失败，参考 issue1、issue2。\n2025.2.17更新：以切换到 fnm 管理 node版本，无法忍受不能使用 \u0026ndash;global 指令，并且如果是在/node_modules/dir目录下使用 pnpm link，会自动忽略 package.json 并报错\nfnm fnm和volta 用下来，个人还是感觉volta更舒适，主要还是在于volta对于node版本的切换无感知，而fnm需要手动切换版本。\nvolta只需要在项目中volta pin node@x.x.x就可以将版本写入package.json中，随后每次进入不同的目录都会自动切换到对应的node版本。\n2025.2.17更新：官方的自动安装脚本有错误，需手动修复 FNM_PATH\ncorepack corepack不能与volta使用，当你使用volta install node后，你的node中并没有 corepack，参考 issue1、issue2\n虽然说corepack已经被视为规范，但它处于试验阶段好几年了，且node官方常年不作为\u0026hellip;所以我还是选择先相信volta\n",
   "keywords": [
     "Node"
   ],
-  "articleBody": "yarn2 yarn2不再支持yarn global add，参考 issue。 顺便一说发现好多人还在用yarn1…\nvolta 使用volta作为node manamger，目前存在无法使用pnpm全局安装的问题，同样可采用pnpm dlx ...的方式来解决\nvolta uninstall yarn失败，参考 issue1、issue2。\nfnm fnm和volta 用下来，个人还是感觉volta更舒适，主要还是在于volta对于node版本的切换无感知，而fnm需要手动切换版本。\nvolta只需要在项目中volta pin node@x.x.x就可以将版本写入package.json中，随后每次进入不同的目录都会自动切换到对应的node版本。\ncorepack corepack不能与volta使用，当你使用volta install node后，你的node中并没有 corepack，参考 issue1、issue2\n虽然说corepack已经被视为规范，但它处于试验阶段好几年了，且node官方常年不作为…所以我还是选择先相信volta\n",
-  "wordCount" : "28",
+  "articleBody": "yarn2 yarn2不再支持yarn global add，参考 issue。 顺便一说发现好多人还在用yarn1…\nvolta 使用volta作为node manamger，目前存在无法使用pnpm全局安装的问题，同样可采用pnpm dlx ...的方式来解决\nvolta uninstall yarn失败，参考 issue1、issue2。\n2025.2.17更新：以切换到 fnm 管理 node版本，无法忍受不能使用 –global 指令，并且如果是在/node_modules/dir目录下使用 pnpm link，会自动忽略 package.json 并报错\nfnm fnm和volta 用下来，个人还是感觉volta更舒适，主要还是在于volta对于node版本的切换无感知，而fnm需要手动切换版本。\nvolta只需要在项目中volta pin node@x.x.x就可以将版本写入package.json中，随后每次进入不同的目录都会自动切换到对应的node版本。\n2025.2.17更新：官方的自动安装脚本有错误，需手动修复 FNM_PATH\ncorepack corepack不能与volta使用，当你使用volta install node后，你的node中并没有 corepack，参考 issue1、issue2\n虽然说corepack已经被视为规范，但它处于试验阶段好几年了，且node官方常年不作为…所以我还是选择先相信volta\n",
+  "wordCount" : "40",
   "inLanguage": "en",
   "datePublished": "2024-12-02T14:08:30+08:00",
   "dateModified": "2024-12-02T14:08:30+08:00",
@@ -141,7 +147,7 @@ corepack不能与volta使用，当你使用volta install node后，你的node中
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://zinkwu.me/posts/volta/"
+    "@id": "https://zinkwu.me/posts/node-manager/"
   },
   "publisher": {
     "@type": "Organization",
@@ -251,9 +257,11 @@ corepack不能与volta使用，当你使用volta install node后，你的node中
 <h2 id="volta">volta<a hidden class="anchor" aria-hidden="true" href="#volta">#</a></h2>
 <p>使用<code>volta</code>作为<code>node manamger</code>，目前存在无法使用<code>pnpm</code>全局安装的问题，同样可采用<code>pnpm dlx ...</code>的方式来解决</p>
 <p><code>volta uninstall yarn</code>失败，参考 <a href="https://github.com/volta-cli/volta/issues/327">issue1</a>、<a href="https://github.com/volta-cli/volta/issues/1431#issuecomment-1443984008">issue2</a>。</p>
+<p><span style="background-color:#fcf3b4">2025.2.17更新：以切换到 fnm 管理 node版本，无法忍受不能使用 &ndash;global 指令，并且如果是在<code>/node_modules/dir</code>目录下使用 <code>pnpm link</code>，会自动忽略 package.json 并报错</span></p>
 <h2 id="fnm">fnm<a hidden class="anchor" aria-hidden="true" href="#fnm">#</a></h2>
 <p><code>fnm</code>和<code>volta</code> 用下来，个人还是感觉<code>volta</code>更舒适，主要还是在于<code>volta</code>对于<code>node</code>版本的切换无感知，而<code>fnm</code>需要手动切换版本。</p>
 <p><code>volta</code>只需要在项目中<code>volta pin node@x.x.x</code>就可以将版本写入<code>package.json</code>中，随后每次进入不同的目录都会自动切换到对应的<code>node</code>版本。</p>
+<p><span style="background-color:#fcf3b4">2025.2.17更新：官方的自动安装脚本有<a href="https://github.com/Schniz/fnm/issues/1376">错误</a>，需手动修复 <code>FNM_PATH</code></span></p>
 <h2 id="corepack">corepack<a hidden class="anchor" aria-hidden="true" href="#corepack">#</a></h2>
 <p><code>corepack</code>不能与<code>volta</code>使用，当你使用<code>volta install node</code>后，你的<code>node</code>中并没有 <code>corepack</code>，参考 <a href="https://github.com/volta-cli/volta/issues/987">issue1</a>、<a href="https://github.com/volta-cli/volta/issues/1200">issue2</a></p>
 <p>虽然说<code>corepack</code>已经被视为规范，但它处于试验阶段好几年了，且<code>node</code>官方常年不作为&hellip;所以我还是选择先相信<code>volta</code></p>

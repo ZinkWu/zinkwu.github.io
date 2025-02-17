@@ -4,25 +4,27 @@
     <title>Node on Rush</title>
     <link>https://zinkwu.me/tags/node/</link>
     <description>Recent content in Node on Rush</description>
-    <generator>Hugo -- 0.139.3</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>zh-Hans</language>
     <copyright>2024 by Rush</copyright>
     <lastBuildDate>Mon, 02 Dec 2024 14:08:30 +0800</lastBuildDate>
     <atom:link href="https://zinkwu.me/tags/node/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>记录 node/package manager 的一些细碎</title>
-      <link>https://zinkwu.me/posts/volta/</link>
+      <link>https://zinkwu.me/posts/node-manager/</link>
       <pubDate>Mon, 02 Dec 2024 14:08:30 +0800</pubDate>
-      <guid>https://zinkwu.me/posts/volta/</guid>
+      <guid>https://zinkwu.me/posts/node-manager/</guid>
       <description>&lt;h2 id=&#34;yarn2&#34;&gt;yarn2&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;yarn2&lt;/code&gt;不再支持&lt;code&gt;yarn global add&lt;/code&gt;，参考 &lt;a href=&#34;https://github.com/yarnpkg/berry/issues/4570#issuecomment-1164084755&#34;&gt;issue&lt;/a&gt;。
 顺便一说发现好多人还在用&lt;code&gt;yarn1&lt;/code&gt;&amp;hellip;&lt;/p&gt;
 &lt;h2 id=&#34;volta&#34;&gt;volta&lt;/h2&gt;
 &lt;p&gt;使用&lt;code&gt;volta&lt;/code&gt;作为&lt;code&gt;node manamger&lt;/code&gt;，目前存在无法使用&lt;code&gt;pnpm&lt;/code&gt;全局安装的问题，同样可采用&lt;code&gt;pnpm dlx ...&lt;/code&gt;的方式来解决&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;volta uninstall yarn&lt;/code&gt;失败，参考 &lt;a href=&#34;https://github.com/volta-cli/volta/issues/327&#34;&gt;issue1&lt;/a&gt;、&lt;a href=&#34;https://github.com/volta-cli/volta/issues/1431#issuecomment-1443984008&#34;&gt;issue2&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;span style=&#34;background-color:#fcf3b4&#34;&gt;2025.2.17更新：以切换到 fnm 管理 node版本，无法忍受不能使用 &amp;ndash;global 指令，并且如果是在&lt;code&gt;/node_modules/dir&lt;/code&gt;目录下使用 &lt;code&gt;pnpm link&lt;/code&gt;，会自动忽略 package.json 并报错&lt;/span&gt;&lt;/p&gt;
 &lt;h2 id=&#34;fnm&#34;&gt;fnm&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;fnm&lt;/code&gt;和&lt;code&gt;volta&lt;/code&gt; 用下来，个人还是感觉&lt;code&gt;volta&lt;/code&gt;更舒适，主要还是在于&lt;code&gt;volta&lt;/code&gt;对于&lt;code&gt;node&lt;/code&gt;版本的切换无感知，而&lt;code&gt;fnm&lt;/code&gt;需要手动切换版本。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;volta&lt;/code&gt;只需要在项目中&lt;code&gt;volta pin node@x.x.x&lt;/code&gt;就可以将版本写入&lt;code&gt;package.json&lt;/code&gt;中，随后每次进入不同的目录都会自动切换到对应的&lt;code&gt;node&lt;/code&gt;版本。&lt;/p&gt;
+&lt;p&gt;&lt;span style=&#34;background-color:#fcf3b4&#34;&gt;2025.2.17更新：官方的自动安装脚本有&lt;a href=&#34;https://github.com/Schniz/fnm/issues/1376&#34;&gt;错误&lt;/a&gt;，需手动修复 &lt;code&gt;FNM_PATH&lt;/code&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;h2 id=&#34;corepack&#34;&gt;corepack&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;corepack&lt;/code&gt;不能与&lt;code&gt;volta&lt;/code&gt;使用，当你使用&lt;code&gt;volta install node&lt;/code&gt;后，你的&lt;code&gt;node&lt;/code&gt;中并没有 &lt;code&gt;corepack&lt;/code&gt;，参考 &lt;a href=&#34;https://github.com/volta-cli/volta/issues/987&#34;&gt;issue1&lt;/a&gt;、&lt;a href=&#34;https://github.com/volta-cli/volta/issues/1200&#34;&gt;issue2&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;虽然说&lt;code&gt;corepack&lt;/code&gt;已经被视为规范，但它处于试验阶段好几年了，且&lt;code&gt;node&lt;/code&gt;官方常年不作为&amp;hellip;所以我还是选择先相信&lt;code&gt;volta&lt;/code&gt;&lt;/p&gt;</description>
