@@ -167,7 +167,7 @@
     <p>yarn2 yarn2不再支持yarn global add，参考 issue。 顺便一说发现好多人还在用yarn1…
 volta 使用volta作为node manamger，目前存在无法使用pnpm全局安装的问题，同样可采用pnpm dlx ...的方式来解决
 volta uninstall yarn失败，参考 issue1、issue2。
-2025.2.17更新：以切换到 fnm 管理 node版本，无法忍受不能使用 –global 指令，并且如果是在/node_modules/dir目录下使用 pnpm link，会自动忽略 package.json 并报错
+2025.2.17更新：已切换到 fnm 管理 node 版本，无法忍受不能使用 –global 指令，并且如果是在/node_modules/dir目录下使用 pnpm link，会自动忽略 package.json 并报错
 fnm fnm和volta 用下来，个人还是感觉volta更舒适，主要还是在于volta对于node版本的切换无感知，而fnm需要手动切换版本。
 volta只需要在项目中volta pin node@x.x.x就可以将版本写入package.json中，随后每次进入不同的目录都会自动切换到对应的node版本。
 2025.2.17更新：官方的自动安装脚本有错误，需手动修复 FNM_PATH
